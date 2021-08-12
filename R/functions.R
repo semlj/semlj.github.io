@@ -6,7 +6,7 @@ library(gh)
 jamovi<-paste0('<span class="jamovi">jamovi</span>')
 
 
-modulename<-paste0('<span class="modulename">PATHj</span>')
+modulename<-paste0('<span class="modulename">',MODULE_NAME,'</span>')
 
 
 opt<-function(opt) {
