@@ -1,0 +1,31 @@
+---
+title: "Simple models"
+author: "(Marcello Gallucci)"
+nickname: simplemodels
+topic: simple
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+
+```
+
+
+`r keywords("multiple regression, path analysis, lavaan, multivatiate regression")`
+
+`r draft`
+
+
+# Related examples
+
+`r issues()`
