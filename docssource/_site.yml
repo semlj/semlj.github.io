@@ -1,7 +1,7 @@
-name: "pathj-website"
+name: "semlj-website"
 output_dir: "../docs/"
 navbar:
-  title: "PATHj"
+  title: "SEMLj"
   left:
   - text: "Help"
     href:  help.html
@@ -16,7 +16,7 @@ navbar:
 
   right: 
   - text: "View on Github"
-    href: https://github.com/pathj/pathj
+    href: https://github.com/semlj/semlj
 output:
   html_document:
     css: style.css
