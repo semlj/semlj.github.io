@@ -38,7 +38,7 @@ Some worked out examples of the analyses carried out with jamovi `r modulename` 
 
 ## Install in R
 
-To install it in R, simple use:
+To install it in R, simply use:
 
 ```
 
