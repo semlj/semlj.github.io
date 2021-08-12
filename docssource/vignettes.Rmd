@@ -25,7 +25,7 @@ source("../R/functions.R")
 
 # Introduction
 
-GAMLj module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
+SEMLj module can be installed and used in R as a standard R packages. Please check the R help for details. Here we provide some appliactions of the package in R.
 
 # Installation
 
@@ -37,7 +37,7 @@ devtools::install_github("pathj/pathj")
 
 ```{r, echo=FALSE,results='hide'}
 
-pkg<-"pathj"
+pkg<-"semlj"
 fn<-NULL
 
 extract_help<-function(pkg) {
