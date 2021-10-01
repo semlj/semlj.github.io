@@ -11,7 +11,7 @@
 
 
 
-<title>Releases Notes</title>
+<title>SEM via lavaan syntax in jamovi</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -364,45 +364,43 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Releases Notes</h1>
+<h1 class="title toc-ignore">SEM via lavaan syntax in jamovi</h1>
 
 </div>
 
 
-<div id="releases-and-changes" class="section level1">
-<h1>Releases and changes</h1>
-<div id="version.0.3.0-future" class="section level2">
-<h2>Version.0.3.0 (future)</h2>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> semlj,jamovi, lavaan, SEM </span></p>
+<p><strong>SEMLj</strong> module of the SEMLj suite for jamovi</p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.2.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(Rosseel <a href="#ref-lavaan">2012</a>)</span>. # User Interface</p>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>Some worked out examples of the analyses carried out with jamovi <span class="modulename">SEMLj</span> are posted here (more to come)</p>
 <ul>
-<li><p>Formative latent variables added</p></li>
-<li><p>Fix some multigroup labels</p></li>
-<li><p>Better automatic labels anche checks on them</p></li>
-<li><p>Variances and covariances for multigroup analysis</p></li>
-<li><p>Multilevel models</p></li>
-<li><p>Rsquared for all kinds of model</p></li>
 </ul>
 </div>
-<div id="version.0.2.0-current" class="section level2">
-<h2>Version.0.2.0 (current)</h2>
+<div id="details" class="section level1">
+<h1>Details</h1>
+<p>Some more information about the module specs can be found here</p>
 <ul>
-<li><p>UI and results updated, work with the R-code on the way</p></li>
-<li><p>First steps towards implementing R-code for the tables, not working yet</p></li>
-<li><p>Added REF for semTools, small fixes</p></li>
-<li><p>Added text version of covariance / correlation tables</p></li>
-<li><p>Updates to the additional outputs: (1) removed the test of the baseline model (already covered in your Model Tests), (2) removed the table Loglikelihood and Information Criteria (except from rmr, rmr_nomean covered in your Fit Indices), (3) re-created the table for other fit indices, (4) fixed an error with the modification indices (prevents showing an empty table if non MI exceeds the defined threshold)</p></li>
-<li><p>Made user interfaces in the syntax and the GUI-version equivalent</p></li>
-<li><p>Renamed covcorr to covcorrObserved for consistency, other small fixes</p></li>
-<li><p>Updated covariance / correlation tables, GUI-layout for path diagram</p></li>
-<li><p>Temporary copy for keep the adjusted UI</p></li>
-<li><p>Added Modification indices, added storing the previous options and the lavaan-fit (to re-use them)</p></li>
-<li><p>Made the GUIs / outputs for syntax and interactive version equivalent</p></li>
-<li><p>Re-implemented Mardia’s skewness and kurtosis (in order to remove semTools-dependency and to make better use of calculations already contained in the lavaan model-fit</p></li>
-<li><p>Added semTools-REF for the Mardia-code, small fixes in the results-yaml-definition</p></li>
-<li><p>Small fixes, preventing non-required output on the command line</p></li>
-<li><p>Some finishing touches for cov. / correl. tables</p></li>
-<li><p>Added mean structure, further estimation options (Auto, PML), and standardization of the observed variables</p></li>
-<li><p>First public version</p></li>
+<li>
+<a href="compute_details.html">SEMLj computation details</a>
+</li>
 </ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href=" https://github.com/pathj/pathj/issues "> PATHj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+<p>#<a href="https://psu-psychology.github.io/r-bootcamp-2018/talks/lavaan_tutorial.html#path-analysis-on-housing-data" class="uri">https://psu-psychology.github.io/r-bootcamp-2018/talks/lavaan_tutorial.html#path-analysis-on-housing-data</a></p>
+<div id="refs" class="references">
+<div id="ref-lavaan">
+<p>Rosseel, Yves. 2012. “lavaan: An R Package for Structural Equation Modeling.” <em>Journal of Statistical Software</em> 48 (2): 1–36. <a href="https://www.jstatsoft.org/v48/i02/">https://www.jstatsoft.org/v48/i02/</a>.</p>
+</div>
 </div>
 </div>
 

@@ -5,6 +5,10 @@ navbar:
   left:
   - text: "Help"
     href:  help.html
+  - text: "SEMLj Syntax"
+    href:  syntax.html
+  - text: "SEMLj GUI"
+    href:  gui.html
   - text: "Examples"
     href:  examples.html
   - text: "Rosetta Store"
