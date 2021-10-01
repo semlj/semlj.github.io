@@ -9,8 +9,6 @@ navbar:
     href:  examples.html
   - text: "Rosetta Store"
     href:  rosetta.html
-  - text: "SEMLj in R"
-    href:  vignettes.html
   - text: "Release Notes"
     href:  release_notes.html
 
