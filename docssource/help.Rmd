@@ -24,7 +24,7 @@ source("../R/functions.R")
 
 `r keywords("pathj,jamovi, path analyis")`
 
-**SEMLj** module of the SEMLj suite for jamovi
+**SEMLj** module of Structural Equation Models in jamovi
 
 `r version("0.2.*")` 
 `r draft`
