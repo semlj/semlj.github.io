@@ -24,7 +24,7 @@ source("../R/functions.R")
 
 `r keywords("semlj,jamovi, lavaan, SEM")`
 
-**SEMLj** module of the SEMLj suite for jamovi
+**SEMLj** interactive module of the SEMLj suite for jamovi
 
 `r version("0.2.*")` 
 `r draft`
@@ -32,7 +32,7 @@ source("../R/functions.R")
 
 # Introduction
 
-The `r modulename` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. 
+The `r modulename` module is a interactive (point and click) `r jamovi` interface to `lavaan` R package [@lavaan]. 
 # User Interface
 
 
@@ -52,4 +52,4 @@ Some more information about the module specs can be found here
 `r issues()`
 
 
-#https://psu-psychology.github.io/r-bootcamp-2018/talks/lavaan_tutorial.html#path-analysis-on-housing-data
+## References
