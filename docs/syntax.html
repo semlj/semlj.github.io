@@ -371,10 +371,64 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> semlj,jamovi, lavaan, SEM </span></p>
 <p><strong>SEMLj</strong> lavaan syntax module of the SEMLj suite for jamovi</p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.2.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.3.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(Rosseel <a href="#ref-lavaan">2012</a>)</span>. # User Interface</p>
+<p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(Rosseel <a href="#ref-lavaan">2012</a>)</span>. The module offers a syntax interface in which lavaan syntax for the model definition can be passed to the module. Almost everything you can pass in lavaan, you can pass it to <span class="modulename">SEMLj</span>. All the available options are in the foldable panels below the syntax field. Thus, it is recomended that the user takes a look at <code>lavaan</code> <a href="https://lavaan.ugent.be/index.html">website</a> for details.</p>
+</div>
+<div id="user-interface" class="section level1">
+<h1>User Interface</h1>
+<p>When installed, the module sub-modules can be found in the <code>SEM</code> menu.</p>
+<p><img src=" pics/menu.png " class="img-responsive" alt=""></p>
+<p>Here we need <span class="option">SEM (syntax)</span>.</p>
+<div id="syntax-field" class="section level2">
+<h2>Syntax field</h2>
+<p><img src=" pics/syntax/panel_syntax.png " class="img-responsive" alt=""></p>
+<p>The syntax pannel accepts <code>lavaan</code> syntax as decribed in <a href="https://lavaan.ugent.be/tutorial/syntax1.html">lavaan website</a> Whereas any syntax you submit will be passed to <code>lavaan::lavaan()</code>, <span class="modulename">SEMLj</span> may be not ready to understand the results and frame them in the output tables. At the moment, we have tested:</p>
+<ul>
+<li>Path analysis models</li>
+<li>Structural Equation models</li>
+<li>Confirmatory Factor Analysis</li>
+<li>Multigroup Analysis</li>
+<li>Multilevel Models</li>
+<li>Defined parameters (i.e a:=p1^2)</li>
+<li>free and fixing parameters via model syntax (i.e x~~x or a~0*1)</li>
+</ul>
+</div>
+<div id="model-options" class="section level2">
+<h2>Model Options</h2>
+<p><img src=" pics/syntax/panel_model.png " class="img-responsive" alt=""></p>
+<p>The <span class="option">Estimation Method</span> allows choosing the right estimation method available for a model. The <span class="option">Automatic</span> option (default) lets <code>lavaan</code> choose the right method depending to the type of model one is estimating.</p>
+<p><span class="option">Constraints tests</span> computes the <span class="math inline">\(\chi^2\)</span> test for contrainted coefficients (if any). In case one has more than one contraints, each constraint is tested uniquely (if <span class="option">Univariate</span> is flagged) and in addition to the previous ones (if <span class="option">Cumulative</span> is flagged).</p>
+</div>
+<div id="model-parameters" class="section level2">
+<h2>Model parameters</h2>
+<p><img src=" pics/syntax/panel_parameters.png " class="img-responsive" alt=""></p>
+<p>This panel offers many options to be passed to <code>lavaan</code> for specify parameters charateristics, such as how to compute their standard errors, their confidence intervals, or how to fix scales of latent variables.</p>
+<p>In addition, it offers the <span class="option">Indirect Effects</span> option which computes and estimate all possible indirect effects (from exogenous to endogenous variables) present in the model.</p>
+</div>
+<div id="multi-group-analysis" class="section level2">
+<h2>Multi-group Analysis</h2>
+<p><img src=" pics/syntax/panel_multigroup.png " class="img-responsive" alt=""></p>
+<p>This panel allows for specifying a categorical variable (factor) defining groups of multi-group analysis. One simply writes the name of the factor variable in the <span class="option">Factor for multi-group analysis</span> field.</p>
+<p>Once a multi-group analysis is set, one can choose which parameter to fix as equal across groups.</p>
+</div>
+<div id="multilevel-analysis" class="section level2">
+<h2>Multilevel Analysis</h2>
+<p><img src=" pics/syntax/panel_multilevel.png " class="img-responsive" alt=""></p>
+<p>This panel allows specifying a categorical variable (factor) defining cluster variable of multgroup analysis. One simply writes the name of the factor variable in the <span class="option">Factor for multi-group analysis</span> field.</p>
+<p>Once a cluster is set, the right syntax for specifying the multilevel model should be set in the syntax panel. See deailts <a href="https://lavaan.ugent.be/tutorial/multilevel.html">here</a>.</p>
+</div>
+<div id="output-options" class="section level2">
+<h2>Output Options</h2>
+<p><img src=" pics/syntax/panel_output.png " class="img-responsive" alt=""></p>
+<p>This panel allows requesting all sort of additional information about the model results, such as the $R^2&quot;’s, the implied and residual variances and covariances, and the modification indexes.</p>
+</div>
+<div id="path-diagram" class="section level2">
+<h2>Path Diagram</h2>
+<p><img src=" pics/syntax/panel_diagram.png " class="img-responsive" alt=""></p>
+<p>This panel produces the path diagram graph and allow for some change in shapes and orientation of the diagram. The digram is produced using R <a href="http://sachaepskamp.com/semPlot">semPlot module</a>, see also <span class="citation">(Epskamp <a href="#ref-semplot">2015</a>)</span></p>
+</div>
 </div>
 <div id="examples" class="section level1">
 <h1>Examples</h1>
@@ -399,6 +453,9 @@ Got comments, issues or spotted a bug? Please open an issue on <a href=" https:/
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>
 <div id="refs" class="references">
+<div id="ref-semplot">
+<p>Epskamp, Sacha. 2015. “SemPlot: Unified Visualizations of Structural Equation Models.” <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 22 (3). Taylor &amp; Francis: 474–83.</p>
+</div>
 <div id="ref-lavaan">
 <p>Rosseel, Yves. 2012. “lavaan: An R Package for Structural Equation Modeling.” <em>Journal of Statistical Software</em> 48 (2): 1–36. <a href="https://www.jstatsoft.org/v48/i02/">https://www.jstatsoft.org/v48/i02/</a>.</p>
 </div>

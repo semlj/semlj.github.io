@@ -2,7 +2,7 @@
 title: "Simple models"
 author: "(Marcello Gallucci)"
 nickname: simplemodels
-topic: simple
+topic: general
 category: example
 output: 
   html_document:
@@ -16,8 +16,9 @@ editor_options:
 ---
 
 ```{r echo=FALSE,results='hide'}
+source("../R/constants.R")
 source("../R/functions.R")
-
+data<-read.csv("../data/worland5.csv")
 ```
 
 
@@ -25,7 +26,183 @@ source("../R/functions.R")
 
 `r draft`
 
+In this example we show how to estimate simple regression models with `r modulename`. The aim is threefold: first, it may help seeing how the SEM module can estimate path analysis, and see how path analysis encompasses models usually estimated with the General Linear Model (but look at [GAMLj module](https://gamlj.github.io/) for a specialized module in `r jamovi`). Second, we are going to estimate some models discussed in [UCLA statistical consulting webpage](https://stats.idre.ucla.edu/r/seminars/rsem/), so one can compare the results obtained in `lavaan` with the ones obtained in `r modulename`. Third, we show how to add some interesting test and twist to simple regression models.
+
+We show input of both `r modulename` _interactive sub-module_ and the _GUI sub-module_. Outputs are the same for the two sub-modules.
+
+Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
+
+# Research data
+
+The data we use can be found [here at UCLA](https://stats.idre.ucla.edu/wp-content/uploads/2021/02/worland5.csv). The sample is composed by 500 students,  each with 9 observed variables: Motivation (motiv), Harmony (harm), Stability (stabi), Negative Parental Psychology (ppsych), SES, Verbal IQ (verbal), Reading (read), Arithmetic (arith) and Spelling (spell). They are all continuous variables.
+
+# Simple regression (Model 1A)
+
+First, we estimate a simple regression with *read* as dependent (endogenous) variable and *motiv* as independent (exogenous) variable. 
+
+## Input
+
+Since we have only observed variables, we need to set the latent variable as equal to the observed variable. This is done simply by selecting only one observed variable per latent variable.
+
+In `r modulename` _interactive sub-module_ we set the variables roles in the first panel as shown here: The dependent variable goes in the `r opt("Latent Endogenous Variables")` field, and the independent variable goes in the `r opt("Latent Exogenous Variables")` field.
+
+`r pic("pics/example1/input_model1_roles.png")`
+
+We also name the latent variables `l_read` and `l_motiv` to distingish them from the observed variables.
+
+In `r modulename` _interactive sub-module_ we achieve the same model definition using `lavaan syntax`. We specify the endogenous variable predictor in the `r opt("Endogenous Models")` panel.
+
+`r pic("pics/example1/input_model1_model.png")`
+
+
+In `r modulename` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax. Note that in the _syntax sub-module_ we could have used path analysis syntax (`read~motive`), but here we want to show the exact procedure used in the _interactive sub-module_.
+
+`r pic("pics/example1/syntax_model1_model.png")`
+
+
+
+
+Because we want to see the path diagram of the model (although in this case is too simple to be interesting), we ask for the path diagram in the `r opt("Path Diagram")` panel.
+
+`r pic("pics/example1/input_model1_diagram.png")`
+
+## Output
+
+### General info
+
+`r pic("pics/example1/output_model1_measures.png")`
+
+
+The first table of interest here is the `r opt("Measurement model")` table. We see that the loading of the two observed variables on their respective latent variables are set to 1. This means that observed and latent are the same variables, so we can interpret the relationship between `l__read` and `l_motiv` as the relationship between `read` and `motive`.
+
+This relationship (the B coefficient) is found in the `r opt("Parameters Estimates")` table.
+
+`r pic("pics/example1/output_model1_parameters.png")`
+
+The `Parameter Estimates` table reports the regression coefficients. Notice that the `Estimate` is the B coefficient, and the $\beta$ is the fully standardized coefficient. In this case they are equal because the variables have the same variance (100), which implies that B and $\beta$ are equal. This table basically shows that the regression coefficient linking `read` and `motiv` is $.530$, $z=14.0$,$p<.001$.
+
+### Overall tests
+
+`r pic("pics/example1/output_model1_overall.png")`
+
+`Model tests` table reports the chi-square of the whole model. Because there is no fixed parameter, the user model chi-square is zero. The `Baseline model` row refers to the comparison between the user model, that is `l_read~l_motiv`, and a model in which the variables covariance is set to zero. In this case, it is simply testing that the effect of `motiv` on `read` is different from zero.
+
+Fit indices are the standard indices reported is structural equation models. 
+
+### $R^2$
+
+
+To see the $R^2$ of this model, we select `r opt("Rsquared=Endogenous")` option in the `r opt("Output Options")` panel. 
+
+`r pic("pics/example1/input_model1_r2.png")`
+
+The $R^2$ one obtains is equivalent to the $R^2$ one would get in a linear regression.
+
+`r pic("pics/example1/output_model1_r2.png")`
+
+
+### Coefficients
+
+
+### Additional parameters
+
+`r pic("pics/example1/output_model1_variances.png")`
+
+
+The `Variances and Covariances` table reports variables estimated parameters. As regards `l_read`, we obtain the estimated residual variance. This value ($71.8$) is basically the Mean Square Error ($SS_{error} / DF_{error}$) one gets in a standard regression. For `l_motiv`, we obtain the whole variance _estimated_ in the sample. Variances of the observed variables are set to 0 because all their variability is captured by the latent variables.
+
+Finally, the path diagram which is indeed very simple 
+
+`r pic("pics/example1/output_model1_path.png")`
+
+
+# Multiple regression (Model 2)
+
+## Input
+In model 2 we add a second predictor `ppsych`, first in the variables role panel, then to the endogenous variables model.
+
+`r pic("pics/example1/input_model2_vars.png")`
+
+`r pic("pics/example1/input_model2_model.png")`
+
+
+In `r modulename` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax.
+
+`r pic("pics/example1/syntax_model2_model.png")`
+
+
+## Output
+
+
+Results are in line with a standard multiple regression model. The path diagram is as follows
+
+`r pic("pics/example1/output_model2_path.png")`
+
+We do not go through the output again, because we would find the same tables with the same interpretation as before. However, we can do something with this model that OLS regression does not allow to do with simplicity. We test the null-hypothesis that the two predictors have the same effect. In other words, we test that the effect from `motiv` to `read` is not different from the effect from `ppsych` to `read`. 
+
+Let's look at the parameters we have just estimated.
+
+`r pic("pics/example1/output_model2_parameters.png")`
+
+We want to test the null-hypothesis $.461=-.275$. This test makes sense because the two coefficients have the same scale, as indicated by the fact that `motiv` and `ppsych` have the same variance.
+
+To obtain this test, we need to restrict the two coefficients to be equal. We can refer to parameters with their label (automatically assigned by `r modulename`). Parameters labels are shown in the tables when `r opt("Show parameters labels")` option is flagged in the `r opt("Output Options")` panel.
+
+`r pic("pics/example1/output_model2_parameters2.png")`
+
+We can see that the two coefficients we want to equate are labelled $p4$ and $p5$. 
+
+Thus, in `r modulename` _interactive sub-module_ we go to the `r opt ("Custom Model Settings")` panel and constraints them as equal.
+
+`r pic("pics/example1/input_model2_constraints.png")`
+
+in `r modulename` _syntax sub-module_ we just write the contraints syntax below the model syntax.
+
+`r pic("pics/example1/syntax_model2_constraints.png")`
+
+
+
+The output now reports the coefficients as equal to .093. 
+
+In the output we also find a new table, `Constraints Score Tests`, which provides a chi-square test comparing the original model with the constrained model with the two coefficients set as equal (_equal_ is defined as $==$)(more examples of contraints can be obtained `r modulename` by selecting `r opt("Show syntax examples")` option in the `r opt("Output Options")` panel). 
+
+`r pic("pics/example1/output_model2_constraints.png")`
+
+
+The test null-hypothesis is that they are equal, thus if one finds the test to be _significant_, one can reject the null-hypothesis. In this case, the coefficients can be considered as _statistically different_.
+
+We the same logic, one can test any reasonable hypothesis in a model by restricting the appropriate coefficients to be equal or to equate a specific value. 
+
+# Multivariate regression 
+
+_(Models 3A-E)_
+
+We can now add some endogenous dependent variables. We add `arith` (_arithmetic test score_) as dependent variable in the model, with `motiv` and `ppsych` as predictors of `read`, and only `motiv` as predictor of `arith`. The path diagram looks like this.
+
+`r pic("pics/example1/output_model3_path.png")`
+
+
+In `r modulename` _interactive sub-module_ we obtain this model by adding `l_arith` to the `r opt("Latent Endogeneous Variables")` field, filling it with the observed variable `arith`, and then defining `l_arith` predictors in the `r opt("Endogenous Models")` panel.
+
+`r pic("pics/example1/input_model3_vars.png")`
+`r pic("pics/example1/input_model3_model.png")`
+
+In `r modulename` _syntax sub-module_ we add the latent variable updating the syntax.
+
+`r pic("pics/example1/syntax_model3_model.png")`
+
+We get exactly the same results obtained in lavaan (cf  [UCLA statistical consulting webpage](https://stats.idre.ucla.edu/r/seminars/rsem/)). 
+
+`r pic("pics/example1/output_model3_parameters.png")`
+`r pic("pics/example1/output_model3_variances.png")`
+
+The $R^2$ are now two, one for each endogenous variable (see [PATHj example](https://pathj.github.io/example1.html) for a discussion about $R^2$ in multivariate path analysis)
+
+`r pic("pics/example1/output_model3_r2.png")`
+
 
 # Related examples
+`r include_examples("general")`
+`r include_examples("gui")`
 
 `r issues()`
