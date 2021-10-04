@@ -133,7 +133,7 @@ This panel produces the path diagram graph  and allow for some change in shapes 
 
 Some worked out examples of the analyses carried out with jamovi `r modulename` are posted here (more to come)
 
-`r include_examples("semlj")`
+`r include_examples()`
 
 # Details
 
