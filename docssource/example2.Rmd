@@ -1,5 +1,5 @@
 ---
-title: "Simple models"
+title: "SEM: Political Democracy"
 author: "(Marcello Gallucci)"
 nickname: simplemodels
 topic: general
@@ -11,6 +11,8 @@ output:
      toc: true
      toc_float:
         collapsed: false
+bibliography: 
+     - bib.bib
 editor_options: 
   chunk_output_type: console
 ---
@@ -22,55 +24,97 @@ data<-read.csv("../data/worland5.csv")
 ```
 
 
-`r keywords("multiple regression, path analysis, lavaan, multivatiate regression")`
+`r keywords("SEM, structural equations model, lavaan")`
 
 `r draft`
 
-In this example we show how to estimate simple regression models with `r modulename`. The aim is threefold: first, it may help seeing how the SEM module can estimate path analysis, and see how path analysis encompasses models usually estimated with the General Linear Model (but look at [GAMLj module](https://gamlj.github.io/) for a specialized module in `r jamovi`). Second, we are going to estimate some models discussed in [UCLA statistical consulting webpage](https://stats.idre.ucla.edu/r/seminars/rsem/), so one can compare the results obtained in `lavaan` with the ones obtained in `r modulename`. Third, we show how to add some interesting test and twist to simple regression models.
+In this example show a simple structural equation model using a classical dataset from Bollen [@bollen1989]. This example can be found also in `lavaal` [website](https://lavaan.ugent.be/tutorial/sem.html), so the user can compare results and get information for `lavaan` tutorials.
 
-We show input of both `r modulename` _interactive (GUI) sub-module_ and the _syntax sub-module_. Outputs are the same for the two sub-modules.
+We show input for  `r modulename` _interactive sub-module_. For `r modulename` _syntax sub-module_ one just paste the `lavaan` syntax and gets the same results of the interactive module.
 
-Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
 
 # Research data
 
-The data we use can be found [here at UCLA](https://stats.idre.ucla.edu/wp-content/uploads/2021/02/worland5.csv). The sample is composed by 500 students,  each with 9 observed variables: Motivation (motiv), Harmony (harm), Stability (stabi), Negative Parental Psychology (ppsych), SES, Verbal IQ (verbal), Reading (read), Arithmetic (arith) and Spelling (spell). They are all continuous variables.
+The dataset contains various measures of political democracy and industrialization in developing countries. For what concerns us, observed variables $y1$ to $y4$ refer to democracy indicator in 1960, observed variables $y5$ to $y8$ refer to democracy indicator in 1965, whereas indicators $x1$ to $x3$ are indistrialization indicators in 1960. 
 
-# Simple regression (Model 1A)
+The model we want to estimate is basically a mediation model in which (latent)  indistrialization level in 1960 influences (latent) democracy in 1960, which in turn influences (latent) democracy in 1965.
 
-First, we estimate a simple regression with *read* as dependent (endogenous) variable and *motiv* as independent (exogenous) variable. 
+The path diagram should be the following.
 
-## Input
+`r pic("pics/example2/output_model1_path.png")`
 
-Since we have only observed variables, we need to set the latent variable as equal to the observed variable. This is done simply by selecting only one observed variable per latent variable.
+It is worth noticing that this model requires the latent relations we mentioned, and some correlations between observed variables. In particular, we want the following pairs of observed variables to be correlated: 
+$r(y1,y5)$, $r(y2,y4)$, $r(y2,y6)$, $r(y3,y7)$,$r(y4,y8)$, and $r(y6,y8)$. Those are correlations among residuals of the observed variables, after removing their loadings on the latent variables. In factor analysis terms, the correlations among uniquenesses.
 
-In `r modulename` _interactive sub-module_ we set the variables roles in the first panel as shown here: The dependent variable goes in the `r opt("Latent Endogenous Variables")` field, and the independent variable goes in the `r opt("Latent Exogenous Variables")` field.
-
-`r pic("pics/example1/input_model1_roles.png")`
-
-We also name the latent variables `l_read` and `l_motiv` to distingish them from the observed variables.
-
-In `r modulename` _interactive sub-module_ we achieve the same model definition using `lavaan syntax`. We specify the endogenous variable predictor in the `r opt("Endogenous Models")` panel.
-
-`r pic("pics/example1/input_model1_model.png")`
+`r pic("pics/example2/input_model1_variances.png")`
 
 
-In `r modulename` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax. Note that in the _syntax sub-module_ we could have used path analysis syntax (`read~motive`), but here we want to show the exact procedure used in the _interactive sub-module_.
+# Model Input
 
-`r pic("pics/example1/syntax_model1_model.png")`
+We need to define the three latent variables `ind60`, `dem60`, and `dem65`, each measured with the corresponding observed variables. 
+
+For each latent variable, we define its name in place of "Endogenous 1", "Endogenous 2" etc, and put the observed variables in the corresponding field.
+
+`r pic("pics/example2/input_model1_vars.png")`
+
+In details, we have the variables role panels defined as follows:
+
+`r pic("pics/example2/input_model1_vars2.png")`
+`r pic("pics/example2/input_model1_vars3.png")`
+`r pic("pics/example2/input_model1_vars4.png")`
+
+When we set the variables like we did, `r modulename` knows our model has three latent variables, two endogenuous and one exogenous, and it knows what are the indicators of each latent variable.
+
+We now need to specify the relationships between variables. `dem60` is predicted by `ind60`, and `dem65` is predicted by `ind60` and `dem60`. We declare that in the `r opt("Endogenous models")`.
+
+`r pic("pics/example2/input_model1_model.png")`
+
+If we run this model like this, we would obtain the following structural model. 
+
+`r pic("pics/example2/output_model1_path2.png")`
+
+We can notice that this model, as compared with the intented model seen before, lacks the correlations between the observed variables. We can easily free them (meaning estimate them), in the `r opt("Variances and covariances")` panel. We select the pairs of variables we wants to be correlated.
+
+`r pic("pics/example2/input_model1_variances.png")`
 
 
-
-
-Because we want to see the path diagram of the model (although in this case is too simple to be interesting), we ask for the path diagram in the `r opt("Path Diagram")` panel.
+Because we want to see the path diagram of the model, we ask for the path diagram in the `r opt("Path Diagram")` panel.
 
 `r pic("pics/example1/input_model1_diagram.png")`
 
 ## Output
 
-### General info
+## Path diagram
 
-`r pic("pics/example1/output_model1_measures.png")`
+We check the path diagram to be sure we set the model as we intended, and we did.
+
+`r pic("pics/example2/output_model1_path3.png")`
+
+For now on, we discuss the output tables in the order they appear in the output.
+
+## Model info
+
+Here we find general informations about the model.
+
+`r pic("pics/example2/output_model1_modelinfo.png")`
+
+We can see that we have 75 observations, 31 free (estimated) parameters, and that the model converged. We find the model likelihood for the user model and the unrestricted one, and the syntax we input (better check it's right). The likelihood computations are usefull for advanced models comparisons, we can ignore them in this example.
+
+## Overall Tests
+
+Here we find inferential tests regarding the whole model. 
+
+`r pic("pics/example2/output_model1_overalltests.png")`
+
+To interpret the `r opt("Fit indices")` table, I'd suggest to use [David Kenny website](http://davidakenny.net/webinars/listpp.htm#Fit) that has clear and detailed information, and the `lavaal` [website](https://lavaan.ugent.be/tutorial/sem.html).
+
+Here we comment on the `r opt("Model tests")`: `r opt("User Model")` $\chi^2$ and `r opt("Baseline Model")` $\chi^2$ have very different interpretations. The smaller the first test, the better is our the model, the largest the second, the more relationships are in the data.
+
+*  `r opt("User Model")` $\chi^2$ tests the null-hypothesis that our model is equivalent to a fully-saturated model (all possible paths are estimated). Recall that if we do not estimate a path (or a loading, or a residual correlation), we are setting it to zero. Thus, this test is basically an overall test of significance of the paths we set to zero. Are some of the paths we did not estimate (set to zero) different from zero. If the $\chi^2$ is significant, at least some of them do not appear to be zero. Sample size, howevwer, may influence this test, so see [David Kenny comments](http://www.davidakenny.net/cm/fit.htm) on this issue. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by the model are equal to the observed covariances. This means: a large $\chi^2$ (small p-value) indicates a mis-fit.
+
+*  `r opt("Baseline Model")` $\chi^2$ tests the null-hypothesis that there are not relationships between each endogenous variable and any other variable in the model. Thus, this test is basically an overall test of significance that something is correlated with and among the endogenous variables. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by a model in which the endogenous variables do not covariate with anything are equal to the covariances impled by a fully-saturated model. This means: a larger $\chi^2$ (small p-value) indicates more relationship to capture. 
+
+This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests. 
 
 
 The first table of interest here is the `r opt("Measurement model")` table. We see that the loading of the two observed variables on their respective latent variables are set to 1. This means that observed and latent are the same variables, so we can interpret the relationship between `l__read` and `l_motiv` as the relationship between `read` and `motive`.
@@ -85,7 +129,7 @@ The `Parameter Estimates` table reports the regression coefficients. Notice that
 
 `r pic("pics/example1/output_model1_overall.png")`
 
-`Model tests` table reports the chi-square of the whole model. Because there is no fixed parameter, the user model chi-square is zero. The `Baseline model` row refers to the comparison between a fully-saturated model, that is `l_read~l_motiv` in this case, and a model in which the endogenous variables covariances are set to zero. In this case, it is simply testing that the effect of `motiv` on `read` is different from zero.
+`Model tests` table reports the chi-square of the whole model. Because there is no fixed parameter, the user model chi-square is zero. The `Baseline model` row refers to the comparison between the user model, that is `l_read~l_motiv`, and a model in which the variables covariance is set to zero. In this case, it is simply testing that the effect of `motiv` on `read` is different from zero.
 
 Fit indices are the standard indices reported is structural equation models. 
 
@@ -206,3 +250,5 @@ The $R^2$ are now two, one for each endogenous variable (see [PATHj example](htt
 `r include_examples("gui")`
 
 `r issues()`
+
+# Additional references
