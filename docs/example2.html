@@ -373,6 +373,7 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, structural equations model, lavaan </span></p>
 <p><span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="incomplete"> Incomplete version, please wait for updates </span></p>
 <p>In this example show a simple structural equation model using a classical dataset from Bollen <span class="citation">(Bollen 1989)</span>. This example can be found also in <code>lavaal</code> <a href="https://lavaan.ugent.be/tutorial/sem.html">website</a>, so the user can compare results and get information for <code>lavaan</code> tutorials.</p>
 <p>We show input for <span class="modulename">SEMLj</span> <em>interactive sub-module</em>. For <span class="modulename">SEMLj</span> <em>syntax sub-module</em> one just paste the <code>lavaan</code> syntax and gets the same results of the interactive module.</p>
 <div id="research-data" class="section level1">
@@ -426,80 +427,8 @@ div.tocify {
 <li><p><span class="option">Baseline Model</span> <span class="math inline">\(\chi^2\)</span> tests the null-hypothesis that there are not relationships between each endogenous variable and any other variable in the model. Thus, this test is basically an overall test of significance that something is correlated with and among the endogenous variables. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by a model in which the endogenous variables do not covariate with anything are equal to the covariances impled by a fully-saturated model. This means: a larger <span class="math inline">\(\chi^2\)</span> (small p-value) indicates more relationship to capture.</p></li>
 </ul>
 <p>This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests.</p>
-<p>The first table of interest here is the <span class="option">Measurement model</span> table. We see that the loading of the two observed variables on their respective latent variables are set to 1. This means that observed and latent are the same variables, so we can interpret the relationship between <code>l__read</code> and <code>l_motiv</code> as the relationship between <code>read</code> and <code>motive</code>.</p>
-<p>This relationship (the B coefficient) is found in the <span class="option">Parameters Estimates</span> table.</p>
-<p><img src=" pics/example1/output_model1_parameters.png " class="img-responsive" alt=""></p>
-<p>The <code>Parameter Estimates</code> table reports the regression coefficients. Notice that the <code>Estimate</code> is the B coefficient, and the <span class="math inline">\(\beta\)</span> is the fully standardized coefficient. In this case they are equal because the variables have the same variance (100), which implies that B and <span class="math inline">\(\beta\)</span> are equal. This table basically shows that the regression coefficient linking <code>read</code> and <code>motiv</code> is <span class="math inline">\(.530\)</span>, <span class="math inline">\(z=14.0\)</span>,<span class="math inline">\(p&lt;.001\)</span>.</p>
-<div id="overall-tests-1" class="section level3">
-<h3>Overall tests</h3>
-<p><img src=" pics/example1/output_model1_overall.png " class="img-responsive" alt=""></p>
-<p><code>Model tests</code> table reports the chi-square of the whole model. Because there is no fixed parameter, the user model chi-square is zero. The <code>Baseline model</code> row refers to the comparison between the user model, that is <code>l_read~l_motiv</code>, and a model in which the variables covariance is set to zero. In this case, it is simply testing that the effect of <code>motiv</code> on <code>read</code> is different from zero.</p>
-<p>Fit indices are the standard indices reported is structural equation models.</p>
+<p><span class="incomplete"> Incomplete version, please wait for updates </span></p>
 </div>
-<div id="r2" class="section level3">
-<h3><span class="math inline">\(R^2\)</span></h3>
-<p>To see the <span class="math inline">\(R^2\)</span> of this model, we select <span class="option">Rsquared=Endogenous</span> option in the <span class="option">Output Options</span> panel.</p>
-<p><img src=" pics/example1/input_model1_r2.png " class="img-responsive" alt=""></p>
-<p>The <span class="math inline">\(R^2\)</span> one obtains is equivalent to the <span class="math inline">\(R^2\)</span> one would get in a linear regression.</p>
-<p><img src=" pics/example1/output_model1_r2.png " class="img-responsive" alt=""></p>
-</div>
-<div id="coefficients" class="section level3">
-<h3>Coefficients</h3>
-</div>
-<div id="additional-parameters" class="section level3">
-<h3>Additional parameters</h3>
-<p><img src=" pics/example1/output_model1_variances.png " class="img-responsive" alt=""></p>
-<p>The <code>Variances and Covariances</code> table reports variables estimated parameters. As regards <code>l_read</code>, we obtain the estimated residual variance. This value (<span class="math inline">\(71.8\)</span>) is basically the Mean Square Error (<span class="math inline">\(SS_{error} / DF_{error}\)</span>) one gets in a standard regression. For <code>l_motiv</code>, we obtain the whole variance <em>estimated</em> in the sample. Variances of the observed variables are set to 0 because all their variability is captured by the latent variables.</p>
-<p>Finally, the path diagram which is indeed very simple</p>
-<p><img src=" pics/example1/output_model1_path.png " class="img-responsive" alt=""></p>
-</div>
-</div>
-</div>
-<div id="multiple-regression-model-2" class="section level1">
-<h1>Multiple regression (Model 2)</h1>
-<div id="input" class="section level2">
-<h2>Input</h2>
-<p>In model 2 we add a second predictor <code>ppsych</code>, first in the variables role panel, then to the endogenous variables model.</p>
-<p><img src=" pics/example1/input_model2_vars.png " class="img-responsive" alt=""></p>
-<p><img src=" pics/example1/input_model2_model.png " class="img-responsive" alt=""></p>
-<p>In <span class="modulename">SEMLj</span> <em>syntax sub-module</em> we achieve the same model definition with <code>lavaan</code> syntax.</p>
-<p><img src=" pics/example1/syntax_model2_model.png " class="img-responsive" alt=""></p>
-</div>
-<div id="output-1" class="section level2">
-<h2>Output</h2>
-<p>Results are in line with a standard multiple regression model. The path diagram is as follows</p>
-<p><img src=" pics/example1/output_model2_path.png " class="img-responsive" alt=""></p>
-<p>We do not go through the output again, because we would find the same tables with the same interpretation as before. However, we can do something with this model that OLS regression does not allow to do with simplicity. We test the null-hypothesis that the two predictors have the same effect. In other words, we test that the effect from <code>motiv</code> to <code>read</code> is not different from the effect from <code>ppsych</code> to <code>read</code>.</p>
-<p>Let’s look at the parameters we have just estimated.</p>
-<p><img src=" pics/example1/output_model2_parameters.png " class="img-responsive" alt=""></p>
-<p>We want to test the null-hypothesis <span class="math inline">\(.461=-.275\)</span>. This test makes sense because the two coefficients have the same scale, as indicated by the fact that <code>motiv</code> and <code>ppsych</code> have the same variance.</p>
-<p>To obtain this test, we need to restrict the two coefficients to be equal. We can refer to parameters with their label (automatically assigned by <span class="modulename">SEMLj</span>). Parameters labels are shown in the tables when <span class="option">Show parameters labels</span> option is flagged in the <span class="option">Output Options</span> panel.</p>
-<p><img src=" pics/example1/output_model2_parameters2.png " class="img-responsive" alt=""></p>
-<p>We can see that the two coefficients we want to equate are labelled <span class="math inline">\(p4\)</span> and <span class="math inline">\(p5\)</span>.</p>
-<p>Thus, in <span class="modulename">SEMLj</span> <em>interactive sub-module</em> we go to the <span class="option">Custom Model Settings</span> panel and constraints them as equal.</p>
-<p><img src=" pics/example1/input_model2_constraints.png " class="img-responsive" alt=""></p>
-<p>in <span class="modulename">SEMLj</span> <em>syntax sub-module</em> we just write the contraints syntax below the model syntax.</p>
-<p><img src=" pics/example1/syntax_model2_constraints.png " class="img-responsive" alt=""></p>
-<p>The output now reports the coefficients as equal to .093.</p>
-<p>In the output we also find a new table, <code>Constraints Score Tests</code>, which provides a chi-square test comparing the original model with the constrained model with the two coefficients set as equal (<em>equal</em> is defined as <span class="math inline">\(==\)</span>)(more examples of contraints can be obtained <span class="modulename">SEMLj</span> by selecting <span class="option">Show syntax examples</span> option in the <span class="option">Output Options</span> panel).</p>
-<p><img src=" pics/example1/output_model2_constraints.png " class="img-responsive" alt=""></p>
-<p>The test null-hypothesis is that they are equal, thus if one finds the test to be <em>significant</em>, one can reject the null-hypothesis. In this case, the coefficients can be considered as <em>statistically different</em>.</p>
-<p>We the same logic, one can test any reasonable hypothesis in a model by restricting the appropriate coefficients to be equal or to equate a specific value.</p>
-</div>
-</div>
-<div id="multivariate-regression" class="section level1">
-<h1>Multivariate regression</h1>
-<p><em>(Models 3A-E)</em></p>
-<p>We can now add some endogenous dependent variables. We add <code>arith</code> (<em>arithmetic test score</em>) as dependent variable in the model, with <code>motiv</code> and <code>ppsych</code> as predictors of <code>read</code>, and only <code>motiv</code> as predictor of <code>arith</code>. The path diagram looks like this.</p>
-<p><img src=" pics/example1/output_model3_path.png " class="img-responsive" alt=""></p>
-<p>In <span class="modulename">SEMLj</span> <em>interactive sub-module</em> we obtain this model by adding <code>l_arith</code> to the <span class="option">Latent Endogeneous Variables</span> field, filling it with the observed variable <code>arith</code>, and then defining <code>l_arith</code> predictors in the <span class="option">Endogenous Models</span> panel.</p>
-<p><img src=" pics/example1/input_model3_vars.png " class="img-responsive" alt=""> <img src=" pics/example1/input_model3_model.png " class="img-responsive" alt=""></p>
-<p>In <span class="modulename">SEMLj</span> <em>syntax sub-module</em> we add the latent variable updating the syntax.</p>
-<p><img src=" pics/example1/syntax_model3_model.png " class="img-responsive" alt=""></p>
-<p>We get exactly the same results obtained in lavaan (cf <a href="https://stats.idre.ucla.edu/r/seminars/rsem/">UCLA statistical consulting webpage</a>).</p>
-<p><img src=" pics/example1/output_model3_parameters.png " class="img-responsive" alt=""> <img src=" pics/example1/output_model3_variances.png " class="img-responsive" alt=""></p>
-<p>The <span class="math inline">\(R^2\)</span> are now two, one for each endogenous variable (see <a href="https://pathj.github.io/example1.html">PATHj example</a> for a discussion about <span class="math inline">\(R^2\)</span> in multivariate path analysis)</p>
-<p><img src=" pics/example1/output_model3_r2.png " class="img-responsive" alt=""></p>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>

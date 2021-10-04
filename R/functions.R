@@ -30,6 +30,9 @@ version<-function(ver) {
 
 draft<-'<span class="draft"> Draft version, mistakes may be around </span>'
 
+tobecontinued<-'<span class="incomplete"> Incomplete version, please wait for updates </span>'
+
+
 incomplete<-'<span class="incomplete"> Work in progress: incomplete version </span>'
 
 pic<-function(name) paste('<img src="',name,'" class="img-responsive" alt="">')
