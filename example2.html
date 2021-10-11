@@ -373,7 +373,6 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, structural equations model, lavaan </span></p>
 <p><span class="draft"> Draft version, mistakes may be around </span></p>
-<p><span class="incomplete"> Incomplete version, please wait for updates </span></p>
 <p>In this example show a simple structural equation model using a classical dataset from Bollen <span class="citation">(Bollen 1989)</span>. This example can be found also in <code>lavaal</code> <a href="https://lavaan.ugent.be/tutorial/sem.html">website</a>, so the user can compare results and get information for <code>lavaan</code> tutorials.</p>
 <p>We show input for <span class="modulename">SEMLj</span> <em>interactive sub-module</em>. For <span class="modulename">SEMLj</span> <em>syntax sub-module</em> one just paste the <code>lavaan</code> syntax and gets the same results of the interactive module.</p>
 <div id="research-data" class="section level1">
@@ -427,7 +426,26 @@ div.tocify {
 <li><p><span class="option">Baseline Model</span> <span class="math inline">\(\chi^2\)</span> tests the null-hypothesis that there are not relationships between each endogenous variable and any other variable in the model. Thus, this test is basically an overall test of significance that something is correlated with and among the endogenous variables. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by a model in which the endogenous variables do not covariate with anything are equal to the covariances impled by a fully-saturated model. This means: a larger <span class="math inline">\(\chi^2\)</span> (small p-value) indicates more relationship to capture.</p></li>
 </ul>
 <p>This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests.</p>
-<p><span class="incomplete"> Incomplete version, please wait for updates </span></p>
+</div>
+<div id="parameters-estimates" class="section level2">
+<h2>Parameters Estimates</h2>
+<p><img src=" pics/example2/output_model1_parameters.png " class="img-responsive" alt=""></p>
+<p>The <span class="option">Parameters Estimates</span> table reports the regression coefficients linking the latent variables. The <em>Estimate</em> column reports the coefficients, the <span class="math inline">\(\beta\)</span> column reports the standardized coefficients.</p>
+</div>
+<div id="measurement-model" class="section level2">
+<h2>Measurement Model</h2>
+<p><img src=" pics/example2/output_model1_measurement.png " class="img-responsive" alt=""></p>
+<p>Here we can see the factor loading of each indicator to its latent variable. We can appreciate that the scale of the latent variables is set to the scale of the first indicator (<em>Estimate</em>=1). This is the default method to set the scale of the latent variables, and can be changed in the <span class="option">Parameters Options</span> tab, fixing to 1 the residual variance of the latent variables.</p>
+</div>
+<div id="variances" class="section level2">
+<h2>Variances</h2>
+<p><img src=" pics/example2/output_model1_variances.png " class="img-responsive" alt=""></p>
+<p>Here we can find the variances and covariances of the indicators and the latent variables.</p>
+</div>
+<div id="additional-output" class="section level2">
+<h2>Additional Output</h2>
+<p>In case more information about the model is required, the <span class="option">Output options</span> provides options for that. Here we select <span class="option">R-squared</span> <span class="option">Endogenous</span> to get the <span class="math inline">\(R^2\)</span> of the model, as shown in the figure.</p>
+<p><img src=" pics/example2/output_model1_r2.png " class="img-responsive" alt=""></p>
 </div>
 </div>
 <div id="related-examples" class="section level1">

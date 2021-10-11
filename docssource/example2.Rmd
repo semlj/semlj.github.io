@@ -28,7 +28,6 @@ data<-read.csv("../data/worland5.csv")
 
 `r draft`
 
-`r tobecontinued`
 
 In this example show a simple structural equation model using a classical dataset from Bollen [@bollen1989]. This example can be found also in `lavaal` [website](https://lavaan.ugent.be/tutorial/sem.html), so the user can compare results and get information for `lavaan` tutorials.
 
@@ -118,7 +117,32 @@ Here we comment on the `r opt("Model tests")`: `r opt("User Model")` $\chi^2$ an
 
 This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests. 
 
-`r tobecontinued`
+## Parameters Estimates
+
+`r pic("pics/example2/output_model1_parameters.png")`
+
+The `r opt("Parameters Estimates")` table reports the regression coefficients linking the latent variables. The _Estimate_ column reports the coefficients, the $\beta$ column reports the standardized coefficients. 
+
+
+## Measurement Model
+
+`r pic("pics/example2/output_model1_measurement.png")`
+
+Here we can see the factor loading of each indicator to its latent variable. We can appreciate that the scale of the latent variables is set to the scale of the first indicator (_Estimate_=1). This is the default method to set the scale of the latent variables, and can be changed in the `r opt("Parameters Options")` tab, fixing to 1 the residual variance of the latent variables.
+
+## Variances
+
+`r pic("pics/example2/output_model1_variances.png")`
+
+Here we can find the variances and covariances of the indicators and the latent variables.
+
+
+## Additional Output
+
+In case more information about the model is required, the `r opt("Output options")` provides options for that. Here we select `r opt("R-squared")` `r opt("Endogenous")` to get the $R^2$ of the model, as shown in the figure.
+
+`r pic("pics/example2/output_model1_r2.png")`
+
 
 # Related examples
 `r include_examples("general")`
