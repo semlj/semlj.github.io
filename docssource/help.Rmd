@@ -40,13 +40,13 @@ The `r modulename` module is a `r jamovi` interface to `lavaan` R package [@lava
 
 Some worked out examples of the analyses carried out with jamovi PATHj are posted here (more to come)
 
-`r include_examples("semlj")`
+`r include_examples()`
 
 # Details
 
 Some more information about the module specs can be found here
 
-`r include_details("pathj")`
+`r include_details()`
 
 
 `r issues()`
