@@ -59,7 +59,6 @@ get_pages<-function(nickname=NULL,topic=NULL,category=NULL) {
     criteria["category"]<-category
   if (!is.null(nickname))
     criteria["nickname"]<-nickname
-  
   files<-get_files()
   sfiles<-searchable(files)  
   res<-lookup(sfiles,criteria)
@@ -105,9 +104,9 @@ include_details<-function(topic)  {
 
 issues<-function() {
   a<-'<h1>Comments?</h1>\n'
-  a<-paste(a,'<p>Got comments, issues or spotted a bug? Please open an issue on
-      <a href=" https://github.com/pathj/pathj/issues ">
-      PATHj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a></p>
+  a<-paste0(a,' <p>Got comments, issues or spotted a bug? Please open an issue on
+      <a href="',MODULE_LINK,'/issues ">
+      ',MODULE_NAME,' at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a></p>
   ')
   return(a)
   

@@ -5,6 +5,7 @@ MODULE_FOLDER="/home/marcello/Skinner/Forge/jamovi/semlj/semlj/"
 SOURCE_FOLDER="docs"
 TARGET_FOLDER="."
 DATALINK<-""
+MODULE_LINK="https://github.com/semlj/semlj/"
 
 # These handle the release notes from commits
 MODULE_REPO="semlj"
