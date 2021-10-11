@@ -139,7 +139,7 @@ Here we can find the variances and covariances of the indicators and the latent 
 
 ## Additional Output
 
-In case more information about the model is required, the `r opt("Output options")` provides options for that. Here we select `r opt("R-squared")` `r opt("Endogenous")` to get the $R^2$ of the model, as shown in the figure.
+In case more information about the model is required, the `r opt("Output options")` provides options for that. There we select `r opt("R-squared")` `r opt("Endogenous")` to get the $R^2$ of the model, as shown in the figure.
 
 `r pic("pics/example2/output_model1_r2.png")`
 
