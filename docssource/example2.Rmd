@@ -29,7 +29,7 @@ data<-read.csv("../data/worland5.csv")
 `r draft`
 
 
-In this example show a simple structural equation model using a classical dataset from Bollen [@bollen1989]. This example can be found also in `lavaal` [website](https://lavaan.ugent.be/tutorial/sem.html), so the user can compare results and get information for `lavaan` tutorials.
+This example shows a simple structural equation model using a classical dataset from Bollen [@bollen1989]. This example can be found also in `lavaal` [website](https://lavaan.ugent.be/tutorial/sem.html), so the user can compare results and get information for `lavaan` tutorials.
 
 We show input for  `r modulename` _interactive sub-module_. For `r modulename` _syntax sub-module_ one just paste the `lavaan` syntax and gets the same results of the interactive module.
 
