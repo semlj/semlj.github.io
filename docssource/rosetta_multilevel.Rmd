@@ -1,0 +1,50 @@
+---
+title: "Simple models"
+author: "(Marcello Gallucci)"
+nickname: rosettamultilevel
+topic: multilevel
+category: rosetta 
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/functions.R")
+data<-read.csv("../data/worland5.csv")
+```
+
+
+`r keywords("multilevel, path analysis, lavaan, lme4, jamovi, semlj")`
+
+`r draft`
+`r tobecontinued`
+
+In this page we show how `r modulename`, R package`lavaan` and R package `lme4` can be led to produce the same mixed model, and thus the same results. Although R package`lavaan` and R package `lme4` are aimed at different scopes, we choose a simple model that can be estimated with all packages and thus the results can be compared.
+
+# Research data
+
+For this example we use a simple simulated dataset available from `r jamovi` [GAMLj help page](https://gamlj.github.io/mixed_example1.html), that can be dwonloaded [here](https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data/beers_bars.csv) 
+
+# Mixed model
+
+The data simulate an hypothetical study in which the number of beers and number of smiles are measured in a sample of bar customers. We sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.
+
+We want to estimate the fixed effect of _beer_ on _smile_, allowing random intercepts and random slopes across bars, see [GAMLj help page](https://gamlj.github.io/mixed_example1.html) for details.
+
+# `r modulename`
+
+We need to use `r modulename` _syntax submodule_, which allows for multilevel models.
+
+
+# Related examples
+`r include_examples("semlj")`
+`r include_examples("general")`
+
+`r issues()`

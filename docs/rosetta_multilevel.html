@@ -12,7 +12,7 @@
 <meta name="author" content="(Marcello Gallucci)" />
 
 
-<title>Infos</title>
+<title>Simple models</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -365,38 +365,38 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Infos</h1>
+<h1 class="title toc-ignore">Simple models</h1>
 <h4 class="author">(Marcello Gallucci)</h4>
 
 </div>
 
 
-<div id="examples" class="section level1">
-<h1>Examples</h1>
-<p>Here you can find some applications of <span class="modulename">SEMLj</span> module.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> multilevel, path analysis, lavaan, lme4, jamovi, semlj </span></p>
+<p><span class="draft"> Draft version, mistakes may be around </span> <span class="incomplete"> Incomplete version, please wait for updates </span></p>
+<p>In this page we show how <span class="modulename">SEMLj</span>, R package<code>lavaan</code> and R package <code>lme4</code> can be led to produce the same mixed model, and thus the same results. Although R package<code>lavaan</code> and R package <code>lme4</code> are aimed at different scopes, we choose a simple model that can be estimated with all packages and thus the results can be compared.</p>
+<div id="research-data" class="section level1">
+<h1>Research data</h1>
+<p>For this example we use a simple simulated dataset available from <span class="jamovi">jamovi</span> <a href="https://gamlj.github.io/mixed_example1.html">GAMLj help page</a>, that can be dwonloaded <a href="https://raw.githubusercontent.com/mcfanda/gamlj_docs/master/data/beers_bars.csv">here</a></p>
+</div>
+<div id="mixed-model" class="section level1">
+<h1>Mixed model</h1>
+<p>The data simulate an hypothetical study in which the number of beers and number of smiles are measured in a sample of bar customers. We sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.</p>
+<p>We want to estimate the fixed effect of <em>beer</em> on <em>smile</em>, allowing random intercepts and random slopes across bars, see <a href="https://gamlj.github.io/mixed_example1.html">GAMLj help page</a> for details.</p>
+</div>
+<div id="semlj" class="section level1">
+<h1><span class="modulename">SEMLj</span></h1>
+<p>We need to use <span class="modulename">SEMLj</span> <em>syntax submodule</em>, which allows for multilevel models.</p>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
+<ul>
+</ul>
 <ul>
 <li>
 <a href="example1.html">Simple models</a>
 </li>
 <li>
 <a href="example2.html">SEM: Political Democracy</a>
-</li>
-</ul>
-</div>
-<div id="rosetta-store-results-across-software" class="section level1">
-<h1>Rosetta store: results across software</h1>
-<p>Comparisons with other software: Here you can find comparisons of results obtained in jamovi module, and other software, usually jamovi (jmv), pure R, and SPSS. The pages are primarily meant to test convergence between the module and well-established packages, but they can be useful also to check how to get equivalent results across different programs.</p>
-<ul>
-<li>
-<a href="rosetta_multilevel.html">Simple models</a>
-</li>
-</ul>
-</div>
-<div id="specs" class="section level1">
-<h1>Specs</h1>
-<ul>
-<li>
-<a href="compute_details.html">SEMLj computation details</a>
 </li>
 </ul>
 <h1>
