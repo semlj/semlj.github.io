@@ -113,9 +113,12 @@ Here we comment on the `r opt("Model tests")`: `r opt("User Model")` $\chi^2$ an
 
 *  `r opt("User Model")` $\chi^2$ tests the null-hypothesis that our model is equivalent to a fully-saturated model (all possible paths are estimated). Recall that if we do not estimate a path (or a loading, or a residual correlation), we are setting it to zero. Thus, this test is basically an overall test of significance of the paths we set to zero. Are some of the paths we did not estimate (set to zero) different from zero. If the $\chi^2$ is significant, at least some of them do not appear to be zero. Sample size, howevwer, may influence this test, so see [David Kenny comments](http://www.davidakenny.net/cm/fit.htm) on this issue. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by the model are equal to the observed covariances. This means: a large $\chi^2$ (small p-value) indicates a mis-fit.
 
-*  `r opt("Baseline Model")` $\chi^2$ tests the null-hypothesis that there are not relationships between each endogenous variable and any other variable in the model. Thus, this test is basically an overall test of significance that something is correlated with and among the endogenous variables. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by a model in which the endogenous variables do not covariate with anything are equal to the covariances impled by a fully-saturated model. This means: a larger $\chi^2$ (small p-value) indicates more relationship to capture. 
+*  `r opt("Baseline Model")` $\chi^2$ tests the null-hypothesis that there are not relationships between each endogenous variable and any other variable in the model. Thus, this test is basically an overall test of significance that something is correlated among variables. Technically, the test tests the null-hypothesis that all paths specified or implied by the model are zero. This means: a larger $\chi^2$ (small p-value) indicates more relationships to capture. 
 
 This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests. 
+
+**(Technical)** If you want to check out the meaning of the _baseline model_, go to the `r modulename` _syntax submodule_ and estimate this model. The baseline model $\chi^2=731$ with 55 df. Re-estimate the model with all parameters set to zero (i.e `ind60 =~ 0*x1 + 0*x2 + 0*x3, dem60 =~ 0*y1 + 0*y2 + 0*y3 + 0*y4`) and so forth. The _user model_ $\chi^2$ will be 731 when you set all coefficients to zero.
+
 
 ## Parameters Estimates
 
