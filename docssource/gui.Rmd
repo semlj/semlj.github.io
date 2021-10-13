@@ -46,7 +46,7 @@ Here we need `r opt("SEM (interactive)")`.
 
 `r pic("pics/gui/panel_vars.png")`
 
-The  pannel allows to define a set of endogenous and exogenous variables, measured by one or more observed variables. To make the interface simple and efficient, some limitations were required. Thus, at the moment (version 0.3.0), one needs to specify at least one latent endogenous variables and at leat one exogenous latern variable. This allows estimating all sort of structural equation models and path analysis (but check out the jamovi module [PATHj](https://pathj.github.io/), dedicated to path analysis). It does not allow for factor analysis models, but one can perform a CFA in jamovi with the jamovi CFA core command (in "Factor" menu), or with the `r link_pages(nickname="syntax_main")` of `r modulename`. 
+The  pannel allows to define a set of endogenous and exogenous variables, measured by one or more observed variables. To make the interface simple and efficient This allows estimating almost all sort of structural equation models and path analysis (but check out the jamovi module [PATHj](https://pathj.github.io/), dedicated to path analysis). It allows for factor analysis models, but check out the jamovi CFA core command (in "Factor" menu) for a dedicated command.
 
 Thus, the sub-module can estimate:
 
