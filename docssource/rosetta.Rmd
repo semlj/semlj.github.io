@@ -23,6 +23,6 @@ source("../R/functions.R")
 
 `r version("0.0.4")` 
 
-# Introduction
+# Comparisons with other software or modules
 
 `r list_pages(category="rosetta")`
