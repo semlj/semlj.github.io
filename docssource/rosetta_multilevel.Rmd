@@ -1,5 +1,5 @@
 ---
-title: "Simple models"
+title: "Mixed models vs multilevel SEM"
 author: "(Marcello Gallucci)"
 nickname: rosettamultilevel
 topic: multilevel
