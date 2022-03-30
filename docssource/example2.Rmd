@@ -99,7 +99,7 @@ Here we find general informations about the model.
 
 `r pic("pics/example2/output_model1_modelinfo.png")`
 
-We can see that we have 75 observations, 31 free (estimated) parameters, and that the model converged. We find the model likelihood for the user model and the unrestricted one, and the syntax we input (better check it's right). The likelihood computations are usefull for advanced models comparisons, we can ignore them in this example.
+We can see that we have 75 observations, 42 free (estimated) parameters (including the intercepts), and that the model converged. We find the model likelihood for the user model and the unrestricted one, and the syntax we input (better check it's right). The likelihood computations are usefull for advanced models comparisons, we can ignore them in this example.
 
 ## Overall Tests
 

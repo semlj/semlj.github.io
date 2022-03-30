@@ -44,11 +44,15 @@ First, we estimate a simple regression with *read* as dependent (endogenous) var
 
 Since we have only observed variables, we need to set the latent variable as equal to the observed variable. This is done simply by selecting only one observed variable per latent variable.
 
+### Interactive module
+
 In `r modulename` _interactive sub-module_ we set the variables roles in the first panel as shown here: The dependent variable goes in the `r opt("Latent Endogenous Variables")` field, and the independent variable goes in the `r opt("Latent Exogenous Variables")` field.
 
 `r pic("pics/example1/input_model1_roles.png")`
 
 We also name the latent variables `l_read` and `l_motiv` to distingish them from the observed variables.
+
+### Syntax module
 
 In `r modulename` _interactive sub-module_ we achieve the same model definition using `lavaan syntax`. We specify the endogenous variable predictor in the `r opt("Endogenous Models")` panel.
 
@@ -59,8 +63,7 @@ In `r modulename` _syntax sub-module_ we achieve the same model definition with 
 
 `r pic("pics/example1/syntax_model1_model.png")`
 
-
-
+### Path Diagram
 
 Because we want to see the path diagram of the model (although in this case is too simple to be interesting), we ask for the path diagram in the `r opt("Path Diagram")` panel.
 
@@ -119,12 +122,16 @@ Finally, the path diagram which is indeed very simple
 # Multiple regression (Model 2)
 
 ## Input
+
+### Interactive module
+
 In model 2 we add a second predictor `ppsych`, first in the variables role panel, then to the endogenous variables model.
 
 `r pic("pics/example1/input_model2_vars.png")`
 
 `r pic("pics/example1/input_model2_model.png")`
 
+### Syntax module
 
 In `r modulename` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax.
 
@@ -181,15 +188,20 @@ We can now add some endogenous dependent variables. We add `arith` (_arithmetic 
 
 `r pic("pics/example1/output_model3_path.png")`
 
+### Interactive module
 
 In `r modulename` _interactive sub-module_ we obtain this model by adding `l_arith` to the `r opt("Latent Endogeneous Variables")` field, filling it with the observed variable `arith`, and then defining `l_arith` predictors in the `r opt("Endogenous Models")` panel.
 
 `r pic("pics/example1/input_model3_vars.png")`
 `r pic("pics/example1/input_model3_model.png")`
 
+### Syntax module
+
 In `r modulename` _syntax sub-module_ we add the latent variable updating the syntax.
 
 `r pic("pics/example1/syntax_model3_model.png")`
+
+## Output
 
 We get exactly the same results obtained in lavaan (cf  [UCLA statistical consulting webpage](https://stats.idre.ucla.edu/r/seminars/rsem/)). 
 

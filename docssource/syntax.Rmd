@@ -12,7 +12,7 @@ output:
         collapsed: false
 bibliography: 
      - bib.bib
-     - bib.yaml
+    
 link-citations: true
 
 ---
@@ -94,7 +94,7 @@ Once a cluster is set, the right syntax for specifying the multilevel model shou
 
 `r pic("pics/syntax/panel_output.png")`
 
-This panel allows requesting all sort of additional information about the model results, such as the $R^2"'s, the implied and residual variances and covariances, and the modification indexes.
+This panel allows requesting all sort of additional information about the model results, such as the $R^2$'s, the implied and residual variances and covariances, and the modification indexes.
 
 ## Path Diagram
 
