@@ -14,7 +14,8 @@
 
 <title>Simple models</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -311,12 +312,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -371,8 +372,8 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> multilevel, path analysis, lavaan, lme4, jamovi, semlj </span></p>
-<p><span class="draft"> Draft version, mistakes may be around </span> <span class="incomplete"> Incomplete version, please wait for updates </span></p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> multilevel, path analysis, lavaan, lme4, jamovi, semlj, gamlj </span></p>
+<p><span class="draft"> Draft version, mistakes may be around </span></p>
 <p>In this page we show how <span class="modulename">SEMLj</span>, R package<code>lavaan</code> and R package <code>lme4</code> can be led to produce the same mixed model, and thus the same results. Although R package<code>lavaan</code> and R package <code>lme4</code> are aimed at different scopes, we choose a simple model that can be estimated with all packages and thus the results can be compared.</p>
 <div id="research-data" class="section level1">
 <h1>Research data</h1>
@@ -380,12 +381,64 @@ div.tocify {
 </div>
 <div id="mixed-model" class="section level1">
 <h1>Mixed model</h1>
-<p>The data simulate an hypothetical study in which the number of beers and number of smiles are measured in a sample of bar customers. We sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.</p>
-<p>We want to estimate the fixed effect of <em>beer</em> on <em>smile</em>, allowing random intercepts and random slopes across bars, see <a href="https://gamlj.github.io/mixed_example1.html">GAMLj help page</a> for details.</p>
+<p>The data simulate an hypothetical study in which the number of beers and number of smiles are measured in a sample of bar customers. We immagine we sampled a number of bars (15 in this example) in a city, and in each bar we measured how many beers customers consumed that evening and how many smiles they were producing for a give time unit (say every minute). The aim of the analysis is to estimate the relationship between number of beers and number of smiles, expecting a positive relationship.</p>
+<p>We want to estimate the fixed effect of <em>beer</em> on <em>smile</em>, allowing random intercepts and random slopes across bars, see <a href="https://gamlj.github.io/mixed_example1.html">GAMLj help page</a> for details. GAMLj uses <code>lmer()</code> function to estimate the mixed model, so we know where the results come from.</p>
 </div>
-<div id="semlj" class="section level1">
-<h1><span class="modulename">SEMLj</span></h1>
+<div id="module" class="section level1">
+<h1>Module</h1>
 <p>We need to use <span class="modulename">SEMLj</span> <em>syntax submodule</em>, which allows for multilevel models.</p>
+</div>
+<div id="simple-mixed-regression" class="section level1">
+<h1>Simple mixed regression</h1>
+<div id="mixed-model-1" class="section level2">
+<h2>Mixed Model</h2>
+<p>We start with the simplest mixed model: <em>smile</em> is the dependent variable, <em>beer</em> the independent variable, <em>bar</em> is the clustering variable, and we set the intercept as the random coefficient across <em>bar</em>. This corresponds to the <code>lmer()</code> model: <code>smile~1+beer+(1|bar)</code>. For the sake of comparison, in GAMLj we set the estimator equal to <code>ML</code> and the independent variable beer scaled as <code>none</code>, so no transformation is done on the variable values.</p>
+<p>Results are the following:</p>
+<p><img src=" pics/rosetta/multilevel/gamlj1.png " class="img-responsive" alt=""></p>
+<p>We want to highlight the fixed effect intercept (5.854), the slope (0.549) and its standard error (0.080), and the variance of the intercepts (5.382), with corresponding ICC=.788.</p>
+</div>
+<div id="multilevel-path-analysis" class="section level2">
+<h2>Multilevel path analysis</h2>
+<p>We know estimate the same model with <span class="modulename">SEMLj</span>, thus using R <code>lavaan</code> package. The syntax is the following:</p>
+<p><img src=" pics/rosetta/multilevel/semlj1.png " class="img-responsive" alt=""></p>
+<p>What we are saying to the software is to estimate a two levels model, in which at the <em>within</em> model (i.e. the participants level) <em>beer</em> predicts <em>smile</em>, whereas at the between level (i.e. the bars level), we estimate only the intercept. In this way, the whole effect of beer on smile is captured by the first level, like in the standard mixed model estimated above. Results are:</p>
+<p><img src=" pics/rosetta/multilevel/semlj2.png " class="img-responsive" alt=""></p>
+<p>We can appreciate that the effect of <em>beer</em> on <em>smile</em> is indeed 0.549. The intercept can be found in the <code>Intercept</code> table, in the row <code>between smile</code>, meaning the <em>fixed</em> intercept (<code>between</code> means fixed here), equal to 5.845, as in the MLM.</p>
+<p>The variance of the intercepts can be found in the <code>Variances and Covariances</code> table, at the <code>between smile smile</code> row. It is 5.382, as in the mixed model. In the multilevel SEM, you find the variance of the intercepts in this row because it is the variance of <em>smile</em> means across bars, conditioned to beer=0, which is indeed the variance of the intercepts.</p>
+</div>
+</div>
+<div id="centering-within-cluster" class="section level1">
+<h1>Centering within cluster</h1>
+<p>People often like to center their level 1 variables and include cluster means as an additional predictor. This help disentangling the within cluster effect with the between clusters effects.</p>
+<p>This means that our independent variable <em>beer</em> should be represented in the data with two variables. A cluster-centered version (<em>cbeer</em>) and a variabile which features them mean of the cluster the participant belongs to (<em>meanbear</em>).</p>
+<p>Here you can see the first rows of the data in which these new variables have been computed. The first three rows are participants from the same bar, so the share the same <em>meanbeer</em> (1.667) and their <em>cbeer</em> is the deviation <em>beer-meanbeer</em>. Equivalently for the other participants.</p>
+<p><img src=" pics/rosetta/multilevel/data1.png " class="img-responsive" alt=""></p>
+<div id="mixed-model-2" class="section level2">
+<h2>Mixed Model</h2>
+<p>We simply need to set <em>cbeer</em> and <em>meanbeer</em> as independent variables, and leave the intercept as random coefficient. GAMLj results are the following:</p>
+<p><img src=" pics/rosetta/multilevel/gamlj2.png " class="img-responsive" alt=""></p>
+<p>The within bars effect of <em>beer</em> is now 0.603, and the between bars effect is -.863. This means that if <em>bar</em> had not effect, for one more beer drunken, smiles would increase of .603 units, whereas bars that are one unit apart in the average number of beers, would show .863 average smiles less. We can also notice that the variance of the intercepts is now 1.261.</p>
+</div>
+<div id="multilevel-path-analysis-1" class="section level2">
+<h2>Multilevel path analysis</h2>
+<p>To obtain the same results of the mixed model, we need to issue the following lavaan syntax:</p>
+<p><img src=" pics/rosetta/multilevel/semlj3.png " class="img-responsive" alt=""></p>
+<p>The syntax is straightforward: At the participants level, the cluster-centered variable predict the dependent variable, at the bar level (between), the bar mean of beers predicts the mean of smiling. Results, again, are the same as in the mixed model.</p>
+<p><img src=" pics/rosetta/multilevel/semlj4.png " class="img-responsive" alt=""></p>
+<p>As expected, the regression coefficients are the same as in the mixed model, and the variance of the intercept (found in <code>Variances and Covariances</code> table, row <code>between smile smile</code>) is indeed 1.261.</p>
+</div>
+</div>
+<div id="what-does-not-match" class="section level1">
+<h1>What does not match</h1>
+<p>Parameters estimates are the same in the mixed model and the multilevel path analysis. A few indexes do not match. The first one is the ICC (intra-class correlation). In the last example, the mixed model gives a <span class="math inline">\(ICC=.466\)</span>, whereas the multilevel path analysis gives:</p>
+<p><img src=" pics/rosetta/multilevel/semlj5.png " class="img-responsive" alt=""></p>
+<p>The reason of this discrepancy is that in the mixed model, the ICC is computed as <span class="math inline">\(\sigma_I^2/(\sigma_I^2+\sigma^2)\)</span>, where <span class="math inline">\(\sigma_I^2\)</span> is the variance of the intercepts and <span class="math inline">\(\sigma^2\)</span> is the residual variance. <code>lavaan</code> uses a different definition of the variances involved in the ICC computation. If one wants to extract the mixed model ICC from the multilevel path analysis output, one can simply compute: <code>variance of smile between /(variance of smile between + variance of smile within)</code>. In our case: <span class="math inline">\(1.261/(1.261+1.448)=.465\)</span>, as in the mixed model.</p>
+<p>The other index that appears to be different in the mixed model and the multilevel SEM is the <span class="math inline">\(R^2\)</span>. GAMLj computes two <span class="math inline">\(R^2\)</span>:</p>
+<p><img src=" pics/rosetta/multilevel/gamlj3.png " class="img-responsive" alt=""></p>
+<p>The marginal R-squared is the variance explained by the fixed effects over the total variance, the conditional one is the variance explained by the whole model (fixed and random effects).</p>
+<p>The multilevel SEM computes two R-squared indexes (for endogenous variable). One for the within level, one for the between level.</p>
+<p><img src=" pics/rosetta/multilevel/semlj6.png " class="img-responsive" alt=""></p>
+<p>For a very simple model like the ones we are analyzing, the <span class="math inline">\(R2\)</span> corresponds to the squared of the standardized regression coefficient, <span class="math inline">\(R_w^2=.433^2=.187\)</span> and <span class="math inline">\(R_b^2=-.749^2=.561\)</span>.</p>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>
@@ -445,6 +498,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

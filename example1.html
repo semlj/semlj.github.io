@@ -14,7 +14,8 @@
 
 <title>Simple models</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -311,12 +312,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -386,15 +387,24 @@ div.tocify {
 <div id="input" class="section level2">
 <h2>Input</h2>
 <p>Since we have only observed variables, we need to set the latent variable as equal to the observed variable. This is done simply by selecting only one observed variable per latent variable.</p>
+<div id="interactive-module" class="section level3">
+<h3>Interactive module</h3>
 <p>In <span class="modulename">SEMLj</span> <em>interactive sub-module</em> we set the variables roles in the first panel as shown here: The dependent variable goes in the <span class="option">Latent Endogenous Variables</span> field, and the independent variable goes in the <span class="option">Latent Exogenous Variables</span> field.</p>
 <p><img src=" pics/example1/input_model1_roles.png " class="img-responsive" alt=""></p>
 <p>We also name the latent variables <code>l_read</code> and <code>l_motiv</code> to distingish them from the observed variables.</p>
+</div>
+<div id="syntax-module" class="section level3">
+<h3>Syntax module</h3>
 <p>In <span class="modulename">SEMLj</span> <em>interactive sub-module</em> we achieve the same model definition using <code>lavaan syntax</code>. We specify the endogenous variable predictor in the <span class="option">Endogenous Models</span> panel.</p>
 <p><img src=" pics/example1/input_model1_model.png " class="img-responsive" alt=""></p>
 <p>In <span class="modulename">SEMLj</span> <em>syntax sub-module</em> we achieve the same model definition with <code>lavaan</code> syntax. Note that in the <em>syntax sub-module</em> we could have used path analysis syntax (<code>read~motive</code>), but here we want to show the exact procedure used in the <em>interactive sub-module</em>.</p>
 <p><img src=" pics/example1/syntax_model1_model.png " class="img-responsive" alt=""></p>
+</div>
+<div id="path-diagram" class="section level3">
+<h3>Path Diagram</h3>
 <p>Because we want to see the path diagram of the model (although in this case is too simple to be interesting), we ask for the path diagram in the <span class="option">Path Diagram</span> panel.</p>
 <p><img src=" pics/example1/input_model1_diagram.png " class="img-responsive" alt=""></p>
+</div>
 </div>
 <div id="output" class="section level2">
 <h2>Output</h2>
@@ -435,11 +445,17 @@ div.tocify {
 <h1>Multiple regression (Model 2)</h1>
 <div id="input-1" class="section level2">
 <h2>Input</h2>
+<div id="interactive-module-1" class="section level3">
+<h3>Interactive module</h3>
 <p>In model 2 we add a second predictor <code>ppsych</code>, first in the variables role panel, then to the endogenous variables model.</p>
 <p><img src=" pics/example1/input_model2_vars.png " class="img-responsive" alt=""></p>
 <p><img src=" pics/example1/input_model2_model.png " class="img-responsive" alt=""></p>
+</div>
+<div id="syntax-module-1" class="section level3">
+<h3>Syntax module</h3>
 <p>In <span class="modulename">SEMLj</span> <em>syntax sub-module</em> we achieve the same model definition with <code>lavaan</code> syntax.</p>
 <p><img src=" pics/example1/syntax_model2_model.png " class="img-responsive" alt=""></p>
+</div>
 </div>
 <div id="output-1" class="section level2">
 <h2>Output</h2>
@@ -468,14 +484,23 @@ div.tocify {
 <p><em>(Models 3A-E)</em></p>
 <p>We can now add some endogenous dependent variables. We add <code>arith</code> (<em>arithmetic test score</em>) as dependent variable in the model, with <code>motiv</code> and <code>ppsych</code> as predictors of <code>read</code>, and only <code>motiv</code> as predictor of <code>arith</code>. The path diagram looks like this.</p>
 <p><img src=" pics/example1/output_model3_path.png " class="img-responsive" alt=""></p>
+<div id="interactive-module-2" class="section level3">
+<h3>Interactive module</h3>
 <p>In <span class="modulename">SEMLj</span> <em>interactive sub-module</em> we obtain this model by adding <code>l_arith</code> to the <span class="option">Latent Endogeneous Variables</span> field, filling it with the observed variable <code>arith</code>, and then defining <code>l_arith</code> predictors in the <span class="option">Endogenous Models</span> panel.</p>
 <p><img src=" pics/example1/input_model3_vars.png " class="img-responsive" alt=""> <img src=" pics/example1/input_model3_model.png " class="img-responsive" alt=""></p>
+</div>
+<div id="syntax-module-2" class="section level3">
+<h3>Syntax module</h3>
 <p>In <span class="modulename">SEMLj</span> <em>syntax sub-module</em> we add the latent variable updating the syntax.</p>
 <p><img src=" pics/example1/syntax_model3_model.png " class="img-responsive" alt=""></p>
+</div>
+<div id="output-2" class="section level2">
+<h2>Output</h2>
 <p>We get exactly the same results obtained in lavaan (cf <a href="https://stats.idre.ucla.edu/r/seminars/rsem/">UCLA statistical consulting webpage</a>).</p>
 <p><img src=" pics/example1/output_model3_parameters.png " class="img-responsive" alt=""> <img src=" pics/example1/output_model3_variances.png " class="img-responsive" alt=""></p>
 <p>The <span class="math inline">\(R^2\)</span> are now two, one for each endogenous variable (see <a href="https://pathj.github.io/example1.html">PATHj example</a> for a discussion about <span class="math inline">\(R^2\)</span> in multivariate path analysis)</p>
 <p><img src=" pics/example1/output_model3_r2.png " class="img-responsive" alt=""></p>
+</div>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>
@@ -535,6 +560,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

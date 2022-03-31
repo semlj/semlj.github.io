@@ -2,7 +2,6 @@ library(yaml)
 library(rmarkdown)
 library(Rsearchable)
 library(gh)
-
 jamovi<-paste0('<span class="jamovi">jamovi</span>')
 
 
@@ -61,7 +60,7 @@ get_pages<-function(nickname=NULL,topic=NULL,category=NULL) {
     criteria["nickname"]<-nickname
   files<-get_files()
   sfiles<-searchable(files)  
-  res<-lookup(sfiles,criteria)
+  res<-lookup.searchable(sfiles,criteria)
   res
 }
 

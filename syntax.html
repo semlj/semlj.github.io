@@ -13,7 +13,8 @@
 
 <title>SEM via lavaan syntax in jamovi</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -67,6 +68,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -310,12 +333,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -374,7 +397,7 @@ div.tocify {
 <p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.3.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(Rosseel <a href="#ref-lavaan">2012</a>)</span>. The module offers a syntax interface in which lavaan syntax for the model definition can be passed to the module. Almost everything you can pass in lavaan, you can pass it to <span class="modulename">SEMLj</span>. All the available options are in the foldable panels below the syntax field. Thus, it is recomended that the user takes a look at <code>lavaan</code> <a href="https://lavaan.ugent.be/index.html">website</a> for details.</p>
+<p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(<a href="#ref-lavaan" role="doc-biblioref">Rosseel 2012</a>)</span>. The module offers a syntax interface in which lavaan syntax for the model definition can be passed to the module. Almost everything you can pass in lavaan, you can pass it to <span class="modulename">SEMLj</span>. All the available options are in the foldable panels below the syntax field. Thus, it is recomended that the user takes a look at <code>lavaan</code> <a href="https://lavaan.ugent.be/index.html">website</a> for details.</p>
 </div>
 <div id="user-interface" class="section level1">
 <h1>User Interface</h1>
@@ -422,12 +445,12 @@ div.tocify {
 <div id="output-options" class="section level2">
 <h2>Output Options</h2>
 <p><img src=" pics/syntax/panel_output.png " class="img-responsive" alt=""></p>
-<p>This panel allows requesting all sort of additional information about the model results, such as the $R^2&quot;’s, the implied and residual variances and covariances, and the modification indexes.</p>
+<p>This panel allows requesting all sort of additional information about the model results, such as the <span class="math inline">\(R^2\)</span>’s, the implied and residual variances and covariances, and the modification indexes.</p>
 </div>
 <div id="path-diagram" class="section level2">
 <h2>Path Diagram</h2>
 <p><img src=" pics/syntax/panel_diagram.png " class="img-responsive" alt=""></p>
-<p>This panel produces the path diagram graph and allow for some change in shapes and orientation of the diagram. The digram is produced using R <a href="http://sachaepskamp.com/semPlot">semPlot module</a>, see also <span class="citation">(Epskamp <a href="#ref-semplot">2015</a>)</span></p>
+<p>This panel produces the path diagram graph and allow for some change in shapes and orientation of the diagram. The digram is produced using R <a href="http://sachaepskamp.com/semPlot">semPlot module</a>, see also <span class="citation">(<a href="#ref-semplot" role="doc-biblioref">Epskamp 2015</a>)</span></p>
 </div>
 </div>
 <div id="examples" class="section level1">
@@ -454,13 +477,13 @@ Comments?
 Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/semlj/semlj//issues "> SEMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 <div id="references" class="section level2 unnumbered">
-<h2>References</h2>
-<div id="refs" class="references">
-<div id="ref-semplot">
-<p>Epskamp, Sacha. 2015. “SemPlot: Unified Visualizations of Structural Equation Models.” <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 22 (3). Taylor &amp; Francis: 474–83.</p>
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-semplot" class="csl-entry">
+Epskamp, Sacha. 2015. <span>“semPlot: Unified Visualizations of Structural Equation Models.”</span> <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 22 (3): 474–83.
 </div>
-<div id="ref-lavaan">
-<p>Rosseel, Yves. 2012. “lavaan: An R Package for Structural Equation Modeling.” <em>Journal of Statistical Software</em> 48 (2): 1–36. <a href="https://www.jstatsoft.org/v48/i02/">https://www.jstatsoft.org/v48/i02/</a>.</p>
+<div id="ref-lavaan" class="csl-entry">
+Rosseel, Yves. 2012. <span>“<span class="nocase">lavaan</span>: An <span>R</span> Package for Structural Equation Modeling.”</span> <em>Journal of Statistical Software</em> 48 (2): 1–36. <a href="https://www.jstatsoft.org/v48/i02/">https://www.jstatsoft.org/v48/i02/</a>.
 </div>
 </div>
 </div>
@@ -504,6 +527,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
