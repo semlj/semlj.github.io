@@ -403,15 +403,15 @@ div.tocify {
 <p><img src=" pics/rosetta/multilevel/semlj1.png " class="img-responsive" alt=""></p>
 <p>What we are saying to the software is to estimate a two levels model, in which at the <em>within</em> model (i.e. the participants level) <em>beer</em> predicts <em>smile</em>, whereas at the between level (i.e. the bars level), we estimate only the intercept. In this way, the whole effect of beer on smile is captured by the first level, like in the standard mixed model estimated above. Results are:</p>
 <p><img src=" pics/rosetta/multilevel/semlj2.png " class="img-responsive" alt=""></p>
-<p>We can appreciate that the effect of <em>beer</em> on <em>smile</em> is indeed 0.549. The intercept can be found in the <code>Intercept</code> table, in the row <code>between smile</code>, meaning the <em>fixed</em> intercept (<code>between</code> means fixed here), equal to 5.845, as in the MLM.</p>
+<p>We can appreciate that the effect of <em>beer</em> on <em>smile</em> is indeed 0.549. The intercept can be found in the <code>Intercept</code> table, in the row <code>between smile</code>, meaning the <em>fixed</em> intercept, equal to 5.845, as in the LMM.</p>
 <p>The variance of the intercepts can be found in the <code>Variances and Covariances</code> table, at the <code>between smile smile</code> row. It is 5.382, as in the mixed model. In the multilevel SEM, you find the variance of the intercepts in this row because it is the variance of <em>smile</em> means across bars, conditioned to beer=0, which is indeed the variance of the intercepts.</p>
 </div>
 </div>
 <div id="centering-within-cluster" class="section level1">
 <h1>Centering within cluster</h1>
-<p>People often like to center their level 1 variables and include cluster means as an additional predictor. This help disentangling the within cluster effect with the between clusters effects.</p>
-<p>This means that our independent variable <em>beer</em> should be represented in the data with two variables. A cluster-centered version (<em>cbeer</em>) and a variabile which features them mean of the cluster the participant belongs to (<em>meanbear</em>).</p>
-<p>Here you can see the first rows of the data in which these new variables have been computed. The first three rows are participants from the same bar, so the share the same <em>meanbeer</em> (1.667) and their <em>cbeer</em> is the deviation <em>beer-meanbeer</em>. Equivalently for the other participants.</p>
+<p>People often like to center their level 1 variables and include cluster means as an additional predictor. This help disentangling the within cluster effect and the between clusters effects.</p>
+<p>This means that our independent variable <em>beer</em> should be represented in the data with two variables. A cluster-centered version (<em>cbeer</em>) and a variabile which features the mean of the cluster the participant belongs to (<em>meanbear</em>).</p>
+<p>Here you can see the first rows of the data in which these new variables have been computed. The first three rows are participants from the same bar, so they share the same <em>meanbeer</em> (1.667) and their <em>cbeer</em> is the deviation <em>beer-meanbeer</em>. the same goes for the other participants.</p>
 <p><img src=" pics/rosetta/multilevel/data1.png " class="img-responsive" alt=""></p>
 <div id="mixed-model-2" class="section level2">
 <h2>Mixed Model</h2>
@@ -423,7 +423,7 @@ div.tocify {
 <h2>Multilevel path analysis</h2>
 <p>To obtain the same results of the mixed model, we need to issue the following lavaan syntax:</p>
 <p><img src=" pics/rosetta/multilevel/semlj3.png " class="img-responsive" alt=""></p>
-<p>The syntax is straightforward: At the participants level, the cluster-centered variable predict the dependent variable, at the bar level (between), the bar mean of beers predicts the mean of smiling. Results, again, are the same as in the mixed model.</p>
+<p>The syntax is straightforward: At the participants level, the cluster-centered variable predicts the dependent variable, at the bar level (between), the bar mean of beers predicts the mean of smiling. Results, again, are the same as in the mixed model.</p>
 <p><img src=" pics/rosetta/multilevel/semlj4.png " class="img-responsive" alt=""></p>
 <p>As expected, the regression coefficients are the same as in the mixed model, and the variance of the intercept (found in <code>Variances and Covariances</code> table, row <code>between smile smile</code>) is indeed 1.261.</p>
 </div>
