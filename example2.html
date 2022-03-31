@@ -14,7 +14,8 @@
 
 <title>SEM: Political Democracy</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -68,6 +69,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -311,12 +334,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -387,7 +410,7 @@ div.tocify {
 <div id="model-input" class="section level1">
 <h1>Model Input</h1>
 <p>We need to define the three latent variables <code>ind60</code>, <code>dem60</code>, and <code>dem65</code>, each measured with the corresponding observed variables.</p>
-<p>For each latent variable, we define its name in place of “Endogenous 1”, “Endogenous 2” etc, and put the observed variables in the corresponding field.</p>
+<p>For each latent variable, we define its name in place of “Endogenous 1,” “Endogenous 2” etc, and put the observed variables in the corresponding field.</p>
 <p><img src=" pics/example2/input_model1_vars.png " class="img-responsive" alt=""></p>
 <p>In details, we have the variables role panels defined as follows:</p>
 <p><img src=" pics/example2/input_model1_vars2.png " class="img-responsive" alt=""> <img src=" pics/example2/input_model1_vars3.png " class="img-responsive" alt=""> <img src=" pics/example2/input_model1_vars4.png " class="img-responsive" alt=""></p>
@@ -413,7 +436,7 @@ div.tocify {
 <h2>Model info</h2>
 <p>Here we find general informations about the model.</p>
 <p><img src=" pics/example2/output_model1_modelinfo.png " class="img-responsive" alt=""></p>
-<p>We can see that we have 75 observations, 31 free (estimated) parameters, and that the model converged. We find the model likelihood for the user model and the unrestricted one, and the syntax we input (better check it’s right). The likelihood computations are usefull for advanced models comparisons, we can ignore them in this example.</p>
+<p>We can see that we have 75 observations, 42 free (estimated) parameters (including the intercepts), and that the model converged. We find the model likelihood for the user model and the unrestricted one, and the syntax we input (better check it’s right). The likelihood computations are usefull for advanced models comparisons, we can ignore them in this example.</p>
 </div>
 <div id="overall-tests" class="section level2">
 <h2>Overall Tests</h2>
@@ -469,10 +492,10 @@ Got comments, issues or spotted a bug? Please open an issue on <a href="https://
 </p>
 </div>
 <div id="additional-references" class="section level1 unnumbered">
-<h1>Additional references</h1>
-<div id="refs" class="references">
-<div id="ref-bollen1989">
-<p>Bollen, Kenneth A. 1989. <em>Structural Equations with Latent Variables</em>. Vol. 210. John Wiley &amp; Sons.</p>
+<h1 class="unnumbered">Additional references</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bollen1989" class="csl-entry">
+Bollen, Kenneth A. 1989. <em>Structural Equations with Latent Variables</em>. Vol. 210. John Wiley &amp; Sons.
 </div>
 </div>
 </div>
@@ -515,6 +538,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
