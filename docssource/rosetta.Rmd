@@ -26,3 +26,8 @@ source("../R/functions.R")
 # Comparisons with other software or modules
 
 `r list_pages(category="rosetta")`
+
+# Examples
+
+`r include_examples()`
+
