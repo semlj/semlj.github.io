@@ -12,7 +12,7 @@
 <meta name="author" content="(Marcello Gallucci)" />
 
 
-<title>Infos</title>
+<title>Ordinal observed variables</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -366,15 +366,68 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Infos</h1>
+<h1 class="title toc-ignore">Ordinal observed variables</h1>
 <h4 class="author">(Marcello Gallucci)</h4>
 
 </div>
 
 
-<div id="examples" class="section level1">
-<h1>Examples</h1>
-<p>Here you can find some applications of <span class="modulename">SEMLj</span> module.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, ordinal variables, ordered variables, categorical variables, lavaan, SEMLj </span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.5.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<p>In this example we show how to estimate a SEM with ordered observed variable using <span class="modulename">SEMLj</span>.</p>
+<p>We show input of both <span class="modulename">SEMLj</span> <em>interactive (GUI) sub-module</em> and the <em>syntax sub-module</em>. Outputs are the same for the two sub-modules.</p>
+<p>Much of the output that <span class="modulename">SEMLj</span> produces is labeled as it is in lavaan R package output, so lots of information can be found in <a href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and tutorials</a></p>
+<div id="the-data" class="section level1">
+<h1>The data</h1>
+<p>For this example we are going to use a simulated dataset, present in the jamovi data library after installing <span class="modulename">SEMLj</span>, in which we found six items. They are supposed to reflect two latent variables. As you open the data, <span class="jamovi">jamovi</span> recognizes the items as categorical variable, as shown by the little icon in the column name label.</p>
+<p><img src=" pics/example3/input_data.png " class="img-responsive" alt=""></p>
+<p>These items will be transformed automatically in ordered variables by <span class="modulename">SEMLj</span>. In general, <span class="modulename">SEMLj</span> considers as ordered variables (ordinal) all observed variables that are defined as <em>nominal</em> or <em>ordinal</em> in the datasheet. If one has a variable that <span class="jamovi">jamovi</span> recognizes as continuous and wishes to treat it as ordinal in SEM, one simply changes its type in “Ordinal” in <span class="jamovi">jamovi</span> data tab.</p>
+</div>
+<div id="the-model" class="section level1">
+<h1>The model</h1>
+<p>We start with a measurement model (CFA), in which item 1 to 3 load to the first latent variable (<span class="math inline">\(Y\)</span>), and item 4 to 6 load to the second latent variable (<span class="math inline">\(X\)</span>).</p>
+<div id="interactive" class="section level2">
+<h2>Interactive</h2>
+<p>In <span class="modulename">SEMLj</span> <em>interactive</em> module, we define the two latent variables and fill their fields with the corresponding observed variables, as for any other SEM with latent and observed variables.</p>
+<p><img src=" pics/example3/input_gui1.png " class="img-responsive" alt=""></p>
+</div>
+<div id="syntax" class="section level2">
+<h2>Syntax</h2>
+<p>In <span class="modulename">SEMLj</span> <em>syntax</em> module, we issue the following lavaan syntax.</p>
+<p><img src=" pics/example3/input_syntax1.png " class="img-responsive" alt=""></p>
+</div>
+</div>
+<div id="output" class="section level1">
+<h1>Output</h1>
+<p>As soon as we set the input, we obtain the whole set of results tables. It is interesting to check the <code>Info Table</code>.</p>
+<p><img src=" pics/example3/output_info.png " class="img-responsive" alt=""></p>
+<p>First, notice that the note informs us that items 1 to 6 type has been changed in <code>ordered</code>, which is another way to say <code>ordinal</code>. Thus, the module knows that the variables are not to be considered continuous, and thus the appropriate estimation method is used. Indeed, we can see in the <code>Estimation Method</code> row of the table that <code>lavaan</code> used the <code>DWLS</code> method, meaning <em>Diagonally weighted least squares</em>. The method is appropriated for ordinal observed variables, implying that the estimates are based upon polychoric correlations. Furthermore, a scaled chi-square test is used as the omnibus test. Which scaled test is used is indicated in the <code>Scaled test</code> row. By default, it is the <em>Mean adjusted scaled and shift</em> test <a href="https://lavaan.ugent.be/tutorial/est.html">here details from lavaan</a>. Finally, we can see that the standard errors are computed as robust standard errors.</p>
+<p>This is the automatic setup one obtains when the model involves ordered variables. Possible changes in the combination of estimation method, scaled omnibus test and standard errors can be done by changing the estimation method and standard errors method in the input panel (see <a href="compute_details.html">SEMLj computation details</a> for more details).</p>
+<p><img src=" pics/example3/input_estimator.png " class="img-responsive" alt=""></p>
+<div id="model-fit" class="section level2">
+<h2>Model Fit</h2>
+<p><img src=" pics/example3/output_fit.png " class="img-responsive" alt=""></p>
+<p>As compared with a standard SEM, with ordinal variables we obtain the classical omnibus test and the scaled test. They are repeated for the user model and the baseline model (<code>Model Tests</code>). We also get different fit indices, namely the robust version and the scaled version. The scaled version is computed using the same scaling mechanism used for the omnibus chi-square.</p>
+</div>
+<div id="structural-parameters" class="section level2">
+<h2>Structural parameters</h2>
+<p><img src=" pics/example3/output_params.png " class="img-responsive" alt=""></p>
+<p>Parameters estimates tables are not affected by the presence of ordinal variables. That is, the parameters are estimated with the appropriate method, but our interpretation does not really change because of ordinal variables.</p>
+</div>
+<div id="thresholds" class="section level2">
+<h2>Thresholds</h2>
+<p>The other table that is affected by the presence of ordinal variables is the intercepts and thresholds table.</p>
+<p><img src=" pics/example3/output_thresholds.png " class="img-responsive" alt=""></p>
+<p>Intercepts are set to zero, because ordinal variables have thresholds. Thresholds, for each variable, are intercepts computed for each step of the ordinal observed variable. For an observed variables with 4 steps (levels), we have 3 thresholds. Their interpretation is usually not crucial in SEM.</p>
+</div>
+<div id="reliabilities" class="section level2">
+<h2>Reliabilities</h2>
+<p><img src=" pics/example3/output_reliability.png " class="img-responsive" alt=""></p>
+<p>Finally, in the presence of ordinal observed variables and latent variables, the reliability table offers an additional index, namely <em>Ordinal</em> <span class="math inline">\(\alpha\)</span>. Details can be found in <a href="https://rdrr.io/cran/semTools/man/reliability.html">semTools help page</a>.</p>
+</div>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
 <ul>
 <li>
 <a href="example1.html">Simple models</a>
@@ -386,22 +439,7 @@ div.tocify {
 <a href="example3.html">Ordinal observed variables</a>
 </li>
 </ul>
-</div>
-<div id="rosetta-store-results-across-software" class="section level1">
-<h1>Rosetta store: results across software</h1>
-<p>Comparisons with other software: Here you can find comparisons of results obtained in jamovi module, and other software, usually jamovi (jmv), pure R, and SPSS. The pages are primarily meant to test convergence between the module and well-established packages, but they can be useful also to check how to get equivalent results across different programs.</p>
 <ul>
-<li>
-<a href="rosetta_multilevel.html">Mixed models vs multilevel SEM</a>
-</li>
-</ul>
-</div>
-<div id="specs" class="section level1">
-<h1>Specs</h1>
-<ul>
-<li>
-<a href="compute_details.html">SEMLj computation details</a>
-</li>
 </ul>
 <h1>
 Comments?

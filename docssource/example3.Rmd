@@ -1,0 +1,103 @@
+---
+title: "Ordinal observed variables"
+author: "(Marcello Gallucci)"
+nickname: ordered
+topic: general
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/constants.R")
+source("../R/functions.R")
+
+```
+
+
+`r keywords("SEM, ordinal variables, ordered variables, categorical variables, lavaan, SEMLj")`
+
+`r version("0.5.0")`
+`r draft`
+
+In this example we show how to estimate a SEM with ordered observed variable using `r modulename`. 
+
+We show input of both `r modulename` _interactive (GUI) sub-module_ and the _syntax sub-module_. Outputs are the same for the two sub-modules.
+
+Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
+
+# The data
+
+For this example we are going to use a simulated dataset, present in the jamovi data library after installing `r modulename`, in which we found six items. They are supposed to reflect two latent variables. As you open the data, `r jamovi` recognizes the items as categorical variable, as shown by the little icon in the column name label.
+
+`r pic("pics/example3/input_data.png")`
+
+These items will be transformed automatically in ordered variables by `r modulename`. In general, `r modulename` considers as ordered variables (ordinal) all observed variables that are defined as _nominal_ or _ordinal_ in the datasheet. If one has a variable that `r jamovi` recognizes as continuous and wishes to treat it as ordinal in SEM, one simply changes its type in "Ordinal" in `r jamovi` data tab.
+
+# The model
+
+We start with a measurement model (CFA), in which item 1 to 3 load to the first latent variable ($Y$), and item 4 to 6 load to the second latent variable ($X$).
+
+## Interactive
+
+In `r modulename` _interactive_ module, we define the two latent variables and fill their fields with the corresponding observed variables, as for any other SEM with latent and observed variables.
+
+`r pic("pics/example3/input_gui1.png")`
+
+## Syntax
+
+In `r modulename` _syntax_ module, we issue the following lavaan syntax.
+
+`r pic("pics/example3/input_syntax1.png")`
+
+
+# Output
+
+As soon as we set the input, we obtain the whole set of results tables. It is interesting to check the `Info Table`.
+
+`r pic("pics/example3/output_info.png")`
+
+First, notice that the note informs us that items 1 to 6 type has been changed in `ordered`, which is another way to say `ordinal`. Thus, the module knows that the variables are not to be considered continuous, and thus the appropriate estimation method is used. Indeed, we can see in the `Estimation Method` row of the table that `lavaan` used the `DWLS` method, meaning _Diagonally weighted least squares_. The method is appropriated for ordinal observed variables, implying that the estimates are based upon polychoric correlations. Furthermore, a scaled chi-square test is used as the omnibus test. Which scaled test is used is indicated in the `Scaled test` row. By default, it is the _Mean adjusted scaled and shift_ test [here details from lavaan](https://lavaan.ugent.be/tutorial/est.html).   Finally, we can see that the standard errors are computed as robust standard errors.
+
+This is the automatic setup one obtains when the model involves ordered variables. Possible changes in the combination of estimation method, scaled omnibus test and standard errors can be done by changing the estimation method and standard errors method in the input panel (see `r link_pages(nickname="computation_details")` for more details).
+
+`r pic("pics/example3/input_estimator.png")`
+
+## Model Fit
+
+`r pic("pics/example3/output_fit.png")`
+
+As compared with a standard SEM, with ordinal variables we obtain the classical omnibus test and the scaled test. They are repeated for the user model and the baseline model (`Model Tests`). We also get different fit indices, namely the robust version and the scaled version. The scaled version is computed using the same scaling mechanism used for the omnibus chi-square.
+
+## Structural parameters
+
+`r pic("pics/example3/output_params.png")`
+
+Parameters estimates tables are not affected by the presence of ordinal variables. That is, the parameters are estimated with the appropriate method, but our interpretation does not really change because of ordinal variables.
+
+## Thresholds
+
+The other table that is affected by the presence of ordinal variables is the intercepts and thresholds table. 
+
+`r pic("pics/example3/output_thresholds.png")`
+
+Intercepts are set to zero, because ordinal variables have thresholds. Thresholds, for each variable, are intercepts computed for each step of the ordinal observed variable. For an observed variables with 4 steps (levels), we have 3 thresholds. Their interpretation is usually not crucial in SEM.
+
+## Reliabilities
+
+`r pic("pics/example3/output_reliability.png")`
+
+Finally, in the presence of ordinal observed variables and latent variables, the reliability table offers an additional index, namely _Ordinal_ $\alpha$. Details can be found in [semTools help page](https://rdrr.io/cran/semTools/man/reliability.html).
+
+# Related examples
+`r include_examples("general")`
+`r include_examples("gui")`
+
+`r issues()`
