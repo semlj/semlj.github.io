@@ -21,7 +21,7 @@ source("../R/functions.R")
 
 ```
 
-`r version("0.0.4")` 
+`r version("0.5.0")` 
 
 # Comparisons with other software or modules
 
