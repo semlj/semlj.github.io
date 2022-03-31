@@ -26,7 +26,7 @@ data<-read.csv("../data/worland5.csv")
 
 `r draft`
 
-In this page we show how `r modulename`, R package`lavaan` and R package `lme4` can be led to produce the same mixed model, and thus the same results. Although R package`lavaan` and R package `lme4` are aimed at different scopes, we choose a simple model that can be estimated with all packages and thus the results can be compared.
+In this page we show how `r modulename` (and thus R package`lavaan`) and GAMLj jamovi module (and thus R package `lme4`) can be led to produce the same mixed model, and thus the same results. We choose a very simple model that can be estimated with all packages and thus the results can be compared.
 
 # Research data
 
