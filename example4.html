@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="(Marcello Gallucci)" />
 
 
-<title>SEM analysis for jamovi</title>
+<title>Multigroup multilevel models</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -68,28 +69,6 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-/* for pandoc --citeproc since 2.11 */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -387,21 +366,51 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">SEM analysis for jamovi</h1>
+<h1 class="title toc-ignore">Multigroup multilevel models</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
 
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> pathj,jamovi, path analyis </span></p>
-<p><strong>SEMLj</strong> module of Structural Equation Models in jamovi</p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.2.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(<a href="#ref-lavaan" role="doc-biblioref">Rosseel 2012</a>)</span>. # User Interface</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, multilevel, multigroup, lavaan, SEMLj, jamovi </span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.5.0 </span> <span class="draft"> Draft version, mistakes may be around </span> <span class="incomplete"> Incomplete version, please wait for updates </span></p>
+<p>In this example we show how to estimate a multilevel, multigroup path analysis using <span class="modulename">SEMLj</span>.</p>
+<p>We show input of <span class="modulename">SEMLj</span> <em>syntax sub-module</em>, because multilevel models can be run in <span class="modulename">SEMLj</span> only in the syntax sub-module.</p>
+<p>Much of the output that <span class="modulename">SEMLj</span> produces is labeled as it is in lavaan R package output, so lots of information can be found in <a href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and tutorials</a>.</p>
+<p>Obviously, one can run the models discussed here directly in R using <code>lavaan</code> package, if <span class="jamovi">jamovi</span> is not the software one is using at the moment.</p>
+<div id="the-data" class="section level1">
+<h1>The data</h1>
+<p>For this example we are going to use the <code>Demo.twolevel</code> dataset present in <code>lavaan</code> R package, which is useful for estimating a multilevel model, with a small modification. The dataset contains 200 clusters, within each 6 items (y1-y2) and 3 continuous variables (x1-x3) are measured. Across clusters (between level) are measured two covariates (w1 and w2).</p>
+<p>We now imagine that the 200 clusters are evenly divided in two groups, <code>g1</code> and <code>g2</code>. Had this dataset been based on a survey in 200 school classes, one can imagine that 100 classes came from one state (<code>g1</code>) and the other 100 from another state. We created the <code>group</code> variable on the spot for the sake of this exercise.</p>
+<p><img src=" pics/example4/input_data1.png " class="img-responsive" alt=""></p>
+<p>We want to estimate the multilevel model (cf <a href="https://lavaan.ugent.be/tutorial/multilevel.html">lavaan help page</a>), in the whole sample, then separated for the two groups, and test some differences in parameters between the two groups.</p>
 </div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
-<p>Some worked out examples of the analyses carried out with jamovi <span class="modulename">SEMLj</span> are posted here (more to come)</p>
+<div id="the-model-whole-sample" class="section level1">
+<h1>The model (whole sample)</h1>
+<p>The model has a latent variable measured within clusters (<code>fw</code>) with 3 items <code>y1,y2,y3</code>. At the within-cluster level, the latent variable is predicted by the three covariates <code>x1</code>, <code>x2</code> and <code>x3</code>.</p>
+<p>At the between-cluster level, the same latent variable is present measured with the same items (<code>fb=y1+y2+y3</code>), but it is predicted by the two between-cluster covariates (<code>w1</code> and <code>w2</code>). Here is the model for the whole sample.</p>
+<pre class="r"><code>    level: within
+        fw =~ y1 + y2 + y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2</code></pre>
+</div>
+<div id="output" class="section level1">
+<h1>Output</h1>
+<p>As soon as we set the input, we obtain the whole set of results tables. We do not go through the results now, because this is not the model we are focusing on, but we need to be sure that the estimation converges in the whole sample, so we are ready for the multigroup analysis.</p>
+<p><img src=" pics/example4/output_info1.png " class="img-responsive" alt=""></p>
+</div>
+<div id="multigroup-model" class="section level1">
+<h1>Multigroup model</h1>
+<p>We now set the multigroup analysis on top of the multilevel model. The model syntax needs to be repeated for the two groups explicitly. <strong>Important point</strong>: whereas standard multigroup analysis only requires to define a grouping variable in the <code>Multi-group analysis</code> panel, here we need to specify a grouping variable in the <code>Multigroup analysis</code> panel and the grouping structure in the syntax.</p>
+<p>There you go: First, we set the multigroup variable</p>
+<p><img src=" pics/example4/input_group.png " class="img-responsive" alt=""></p>
+<p>and then we issue the following syntax:</p>
+<p><img src=" pics/example4/input_syntax2.png " class="img-responsive" alt=""></p>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
 <ul>
 <li>
 <a href="example1.html">Simple models</a>
@@ -416,29 +425,12 @@ div.tocify {
 <a href="example4.html">Multigroup multilevel models</a>
 </li>
 </ul>
-</div>
-<div id="details" class="section level1">
-<h1>Details</h1>
-<p>Some more information about the module specs can be found here</p>
-<ul>
-<li>
-<a href="compute_details.html">SEMLj computation details</a>
-</li>
-</ul>
 <h1>
 Comments?
 </h1>
 <p>
 Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/semlj/semlj//issues "> SEMLj at github“</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
-<div id="references" class="section level2 unnumbered">
-<h2 class="unnumbered">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-lavaan" class="csl-entry">
-Rosseel, Yves. 2012. <span>“<span class="nocase">lavaan</span>: An <span>R</span> Package for Structural Equation Modeling.”</span> <em>Journal of Statistical Software</em> 48 (2): 1–36. <a href="https://www.jstatsoft.org/v48/i02/">https://www.jstatsoft.org/v48/i02/</a>.
-</div>
-</div>
-</div>
 </div>
 
 
