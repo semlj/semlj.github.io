@@ -87,6 +87,7 @@ and then we issue the following syntax:
 
 `r pic("pics/example4/input_syntax2.png")`
 
+`r tobecontinued`
 
 
 
