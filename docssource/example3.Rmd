@@ -27,9 +27,9 @@ source("../R/functions.R")
 `r version("0.5.0")`
 `r draft`
 
-In this example we show how to estimate a SEM with ordered observed variable using `r modulename`. 
+In this example we show how to estimate a SEM with ordered observed variables using `r modulename`. 
 
-We show input of both `r modulename` _interactive (GUI) sub-module_ and the _syntax sub-module_. Outputs are the same for the two sub-modules.
+We show input of both `r modulename` _interactive (GUI) sub-module_ and the _syntax sub-module_. Output tables are the same for the two sub-modules.
 
 Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
 
@@ -40,6 +40,8 @@ For this example we are going to use a simulated dataset, present in the jamovi 
 `r pic("pics/example3/input_data.png")`
 
 These items will be transformed automatically in ordered variables by `r modulename`. In general, `r modulename` considers as ordered variables (ordinal) all observed variables that are defined as _nominal_ or _ordinal_ in the datasheet. If one has a variable that `r jamovi` recognizes as continuous and wishes to treat it as ordinal in SEM, one simply changes its type in "Ordinal" in `r jamovi` data tab.
+
+`r pic("pics/example3/input_data2.png")`
 
 # The model
 
@@ -64,11 +66,17 @@ As soon as we set the input, we obtain the whole set of results tables. It is in
 
 `r pic("pics/example3/output_info.png")`
 
-First, notice that the note informs us that items 1 to 6 type has been changed in `ordered`, which is another way to say `ordinal`. Thus, the module knows that the variables are not to be considered continuous, and thus the appropriate estimation method is used. Indeed, we can see in the `Estimation Method` row of the table that `lavaan` used the `DWLS` method, meaning _Diagonally weighted least squares_. The method is appropriated for ordinal observed variables, implying that the estimates are based upon polychoric correlations. Furthermore, a scaled chi-square test is used as the omnibus test. Which scaled test is used is indicated in the `Scaled test` row. By default, it is the _Mean adjusted scaled and shift_ test [here details from lavaan](https://lavaan.ugent.be/tutorial/est.html).   Finally, we can see that the standard errors are computed as robust standard errors.
+First, notice that the note informs us that items 1 to 6 type has been changed into `ordered` type, which is another way to say `ordinal`. Thus, the module knows that the variables are not to be considered continuous measures, and thus the appropriate estimation method is used. Indeed, we can see in the `Estimation Method` row of the table that `lavaan` used the `DWLS` method, meaning _Diagonally weighted least squares_. The method is appropriated for ordinal observed variables, implying that the estimates are based upon polychoric correlations. Furthermore, a scaled chi-square test is used as the omnibus test. Which scaled test is used is indicated in the `Scaled test` row. By default, it is the _Mean adjusted scaled and shift_ test [here details from lavaan](https://lavaan.ugent.be/tutorial/est.html).   Finally, we can see that the standard errors are computed as robust standard errors.
 
 This is the automatic setup one obtains when the model involves ordered variables. Possible changes in the combination of estimation method, scaled omnibus test and standard errors can be done by changing the estimation method and standard errors method in the input panel (see `r link_pages(nickname="computation_details")` for more details).
 
 `r pic("pics/example3/input_estimator.png")`
+
+For instance, selecting _Robust Weighted Least Squared (WLSM)_ implies robust standard errors and the Satorra-Bentler mean adjusted omnibus test. The adjusted test is always referred to as "Scaled test" in the `Model Tests` table, but the `Info` table signals which test is used depending on the estimation method selected.
+
+If an estimation method is selected and it is not appropriate, like `ML` for ordered variables, an error is issued.
+
+In order to let `lavaan` choose the appropriate combination of estimator, standard errors method and scaled test, it is recommended to leave the standard errors method equal to `automatic`. Obviously, if you know what you're doing, you are free to set the options as you like.
 
 ## Model Fit
 
