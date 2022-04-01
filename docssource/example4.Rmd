@@ -38,9 +38,9 @@ Obviously, one can run the models discussed here directly in R using `lavaan` pa
 
 # The data
 
-For this example we are going to use the `Demo.twolevel` dataset present in `lavaan` R package, which is useful for estimating a multilevel model, with a small modification. The dataset contains 200 clusters, within each 6 items (y1-y2) and 3 continuous variables (x1-x3) are measured. Across clusters (between level) are measured two covariates (w1 and w2). 
+For this example we are going to use the `Demo.twolevel` dataset present in `lavaan` R package, which is useful for estimating a multilevel model, with a small modification. The dataset contains 200 clusters, within each 6 items (y1-y2) and 3 continuous variables (x1-x3) are measured. Across clusters (between level) two covariates (w1 and w2) are measured . 
 
-We now imagine that the 200 clusters are evenly divided in two groups, `g1` and `g2`. Had this dataset been based on a survey in 200 school classes, one can imagine that 100 classes came from one state (`g1`) and the other 100 from another state.  We created the `group` variable on the spot for the sake of this exercise.
+We now imagine that the 200 clusters are evenly divided in two groups, `g1` and `g2`. Had this dataset been based on a survey in 200 school classes, for instance, one can imagine that 100 classes came from one state (`g1`) and the other 100 from another state.  We created the `group` variable on the spot for the sake of this exercise.
 
 `r pic("pics/example4/input_data1.png")`
 
@@ -70,7 +70,7 @@ At the between-cluster level, the same latent variable is present measured with 
 
 # Output
 
-As soon as we set the input, we obtain the whole set of results tables. We do not go through the results now, because this is not the model we are focusing on, but we need to be sure that the estimation converges in the whole sample, so we are ready for the multigroup analysis.
+As soon as we set the input, we obtain the whole set of results tables. We do not go through the results now, because this is not the model we are focusing on, but we need to be sure that the estimation converges in the whole sample, so we are ready for the multigroup analysis. In fact, if the model does not converge in the whole sample, it is difficult to make it converge in multigroup analysis.
 
 `r pic("pics/example4/output_info1.png")`
 
