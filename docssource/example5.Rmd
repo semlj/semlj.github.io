@@ -208,6 +208,36 @@ The diagram is not great, but at least you see the model and can check that ever
 In future versions we will try to embellish the diagram for this type of models.
 
 
+# Alternative models 
+
+
+Let now assume that our mediation model has only one second order factor, the mediator, whereas the exogenous factor (`bigX`) and the endogenous factor (`bigY`) are first order latent variables. Say we want to estimate the following model:
+
+`r pic("pics/example5/model2.png")`
+
+As regards the definition of `bigM`, nothing changes. We defined the three facets, `fm1`, `fm2` and `fm3`, and then a second order factor in the `Second Order Factors` panel, as we did before.
+
+`r pic("pics/example5/input_model2_second1.png")`
+
+
+As regards the definition of `bigX`, it will be now defined in the input variables field, because it represent an exogenous latent variable. 
+
+`r pic("pics/example5/input_model2_exo1.png")`
+
+As regards the definition of `bigY`, it will be now defined in the input variables field, but as an endogenous latent variable. This is because we later need it to be predicted by the other latent variables.
+
+`r pic("pics/example5/input_model2_endo1.png")`
+
+We then go to the `r opt("Endogenous models")` and fill in the regressions as before.
+
+`r pic("pics/example5/input_model2_regression1.png")`
+
+We have set up a model with two latent variables and one second order mediator factor. 
+
+`r pic("pics/example5/output_diag2.png")`
+
+
+
 
 # Related examples
 `r include_examples()`
