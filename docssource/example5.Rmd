@@ -195,8 +195,17 @@ As expected, the results are the same as the ones obtained with the indirect eff
 
 `r pic("pics/example5/output_indirect2.png")`
 
+# PATH Diagram
 
+If you ask for a path diagram of this model, you get a pretty ugly picture. Default settings, in fact, are not optimal for second order factors models. I better view of the model can be achieved by selecting `r opt("Spring")` in the layout options. 
 
+`r pic("pics/example5/input_diag1.png")`
+
+The diagram is not great, but at least you see the model and can check that everything is as intended.
+
+`r pic("pics/example5/output_diag1.png")`
+
+In future versions we will try to embellish the diagram for this type of models.
 
 
 
