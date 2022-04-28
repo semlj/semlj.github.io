@@ -197,11 +197,11 @@ As expected, the results are the same as the ones obtained with the indirect eff
 
 # PATH Diagram
 
-If you ask for a path diagram of this model, you get a pretty ugly picture. Default settings, in fact, are not optimal for second order factors models. I better view of the model can be achieved by selecting `r opt("Spring")` in the layout options. 
+If you ask for a path diagram of this model, you get a pretty ugly picture. Default settings, in fact, are not optimal for second order factors models. A better view of the model can be achieved by selecting `r opt("Spring")` in the layout options. 
 
 `r pic("pics/example5/input_diag1.png")`
 
-The diagram is not great, but at least you see the model and can check that everything is as intended.
+The diagram is no _Mona Lisa_, but at least you see the model and can check that everything is as intended.
 
 `r pic("pics/example5/output_diag1.png")`
 
@@ -220,11 +220,11 @@ As regards the definition of `bigM`, nothing changes. We defined the three facet
 `r pic("pics/example5/input_model2_second1.png")`
 
 
-As regards the definition of `bigX`, it will be now defined in the input variables field, because it represent an exogenous latent variable. 
+As regards the definition of `bigX`, it will now be defined in the input variables field, because it represents an exogenous latent variable. 
 
 `r pic("pics/example5/input_model2_exo1.png")`
 
-As regards the definition of `bigY`, it will be now defined in the input variables field, but as an endogenous latent variable. This is because we later need it to be predicted by the other latent variables.
+As regards the definition of `bigY`, it will now be  defined in the input variables field, but as an endogenous latent variable. This is because we later need it to be predicted by the other latent variables.
 
 `r pic("pics/example5/input_model2_endo1.png")`
 
