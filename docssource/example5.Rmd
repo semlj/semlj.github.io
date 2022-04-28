@@ -146,7 +146,7 @@ As soon as we set the input, we obtain the whole set of results tables. We do no
 
 `r pic("pics/example5/output_info1.png")`
 
-The info table gives some detail about the estimation, and lists the syntax resulting from our setup in the interactive input panel. We can notice that the resulting syntax is identical to the one we used before in the _syntax sub-module_, so we can be sure that the results are the same.
+The info table gives some detail about the estimation, and lists the syntax resulting from our setup in the interactive input panel. We can notice that the resulting syntax is identical to the one we used before in the _syntax sub-module_, so we can rest assured that the results are going to be the same.
 
 `r pic("pics/example5/output_measure1.png")`
 
@@ -155,6 +155,7 @@ The measurement model table indicates the associations between the observed vari
 We can also ask for the reliability of the first order factors
 
 `r pic("pics/example5/input_options1.png")`
+`r pic("pics/example5/output_reliability1.png")`
 
 and check they have all a pretty good alpha and omega. At the moment, reliability is not available for second order factors (we'll see how to improve this in future versions).
 
@@ -164,6 +165,8 @@ The other interesting table is the regression coefficients table.
 
 We can see that `bigX` has a positive and significant effect on `bigM`, which in turn has an effect on `bigY`. So, mediation is warranted.
 
+# Mediated effect
+
 But what about the mediated effect? Well, that can be asked in the `r opt("Parameters Options")` panel by selecting `r opt("Indirect Effects")`.
 
 `r pic("pics/example5/input_options2.png")`
@@ -172,7 +175,7 @@ The results are straightforward
 
 `r pic("pics/example5/output_indirect1.png")`
 
-The mediated effect amounts to .964, corresponding to .523 in the standardized scale.
+The mediated effect amounts to 1.992, corresponding to .513 in the standardized scale.
 
 The same result can be obtained by specifying new parameters in the `r opt("Custom model settings")`. Let's try: First, we ask for the parameters labels, so we can refer to the coefficients with their labels.
 
@@ -182,9 +185,9 @@ Then we look up in the regression table the labels of the coefficients we need
 
 `r pic("pics/example5/output_regression2.png")`
 
-We want to multiply bigX->bigM, `p37`, with bigM->bigY, so p38. In addition, we add `p39` to the mediated effect so we get also the total effect. 
+We want to multiply bigX->bigM, `p37`, with bigM->bigY, so `p38`. In addition, we add `p39` to the mediated effect so we get also the total effect. 
 
-In the `r opt("Custom model settings")`, we preceed as follows:
+In the `r opt("Custom model settings")`, we preceed in defining the mediated effect (ME), the total effect (TOT), and since I'm lazy, I ask to compute also the proportion of mediated effect (pME), rather than using and hand calculator:
 
 `r pic("pics/example5/input_dp1.png")`
 

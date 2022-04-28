@@ -445,26 +445,29 @@ bigy~bigm+bigx</code></pre>
 <h1>Output</h1>
 <p>As soon as we set the input, we obtain the whole set of results tables. We do not go through the results in detail, but it is interesting to see the basic results</p>
 <p><img src=" pics/example5/output_info1.png " class="img-responsive" alt=""></p>
-<p>The info table gives some detail about the estimation, and lists the syntax resulting from our setup in the interactive input panel. We can notice that the resulting syntax is identical to the one we used before in the <em>syntax sub-module</em>, so we can be sure that the results are the same.</p>
+<p>The info table gives some detail about the estimation, and lists the syntax resulting from our setup in the interactive input panel. We can notice that the resulting syntax is identical to the one we used before in the <em>syntax sub-module</em>, so we can rest assured that the results are going to be the same.</p>
 <p><img src=" pics/example5/output_measure1.png " class="img-responsive" alt=""></p>
 <p>The measurement model table indicates the associations between the observed variables and the facets, and then the associations between facets and second order factors. Factor loadings are all quite large, thus the model makes sense in terms of measures.</p>
 <p>We can also ask for the reliability of the first order factors</p>
-<p><img src=" pics/example5/input_options1.png " class="img-responsive" alt=""></p>
+<p><img src=" pics/example5/input_options1.png " class="img-responsive" alt=""> <img src=" pics/example5/output_reliability1.png " class="img-responsive" alt=""></p>
 <p>and check they have all a pretty good alpha and omega. At the moment, reliability is not available for second order factors (we’ll see how to improve this in future versions).</p>
 <p>The other interesting table is the regression coefficients table.</p>
 <p><img src=" pics/example5/output_regression1.png " class="img-responsive" alt=""></p>
 <p>We can see that <code>bigX</code> has a positive and significant effect on <code>bigM</code>, which in turn has an effect on <code>bigY</code>. So, mediation is warranted.</p>
+</div>
+<div id="mediated-effect" class="section level1">
+<h1>Mediated effect</h1>
 <p>But what about the mediated effect? Well, that can be asked in the <span class="option">Parameters Options</span> panel by selecting <span class="option">Indirect Effects</span>.</p>
 <p><img src=" pics/example5/input_options2.png " class="img-responsive" alt=""></p>
 <p>The results are straightforward</p>
 <p><img src=" pics/example5/output_indirect1.png " class="img-responsive" alt=""></p>
-<p>The mediated effect amounts to .964, corresponding to .523 in the standardized scale.</p>
+<p>The mediated effect amounts to 1.992, corresponding to .513 in the standardized scale.</p>
 <p>The same result can be obtained by specifying new parameters in the <span class="option">Custom model settings</span>. Let’s try: First, we ask for the parameters labels, so we can refer to the coefficients with their labels.</p>
 <p><img src=" pics/example5/input_options3.png " class="img-responsive" alt=""></p>
 <p>Then we look up in the regression table the labels of the coefficients we need</p>
 <p><img src=" pics/example5/output_regression2.png " class="img-responsive" alt=""></p>
-<p>We want to multiply bigX-&gt;bigM, <code>p37</code>, with bigM-&gt;bigY, so p38. In addition, we add <code>p39</code> to the mediated effect so we get also the total effect.</p>
-<p>In the <span class="option">Custom model settings</span>, we preceed as follows:</p>
+<p>We want to multiply bigX-&gt;bigM, <code>p37</code>, with bigM-&gt;bigY, so <code>p38</code>. In addition, we add <code>p39</code> to the mediated effect so we get also the total effect.</p>
+<p>In the <span class="option">Custom model settings</span>, we preceed in defining the mediated effect (ME), the total effect (TOT), and since I’m lazy, I ask to compute also the proportion of mediated effect (pME), rather than using and hand calculator:</p>
 <p><img src=" pics/example5/input_dp1.png " class="img-responsive" alt=""></p>
 <p>As expected, the results are the same as the ones obtained with the indirect effects option.</p>
 <p><img src=" pics/example5/output_indirect2.png " class="img-responsive" alt=""></p>
