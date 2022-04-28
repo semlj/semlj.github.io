@@ -1,0 +1,203 @@
+---
+title: "Second order mediation analysis"
+author: "(Marcello Gallucci)"
+nickname: secondorder
+topic: general
+category: example
+output: 
+  html_document:
+     includes:
+         in_header: ganalytics.txt
+     toc: true
+     toc_float:
+        collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE,results='hide'}
+source("../R/constants.R")
+source("../R/functions.R")
+
+```
+
+
+`r keywords("SEM, second order factor analysis, mediation, lavaan, SEMLj, jamovi")`
+
+`r version("0.7.0")`
+`r draft`
+
+In this example we show how to estimate a second order factor analysis and mediation among second order latent variables in `r modulename`. 
+
+We show input of `r modulename` _syntax sub-module_ and  _interactive sub-module_, with particular focus on the latter one. We focus more on the setup of the model (how to run it) and less on the interpretation of the results, as we think that when you have run such a model, you know how to interpret it.
+
+Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf).
+
+
+# The data
+
+For this example we are going to use the `secondorder` dataset present in `r jamovi` data library after installing `r modulename`. The data are generated to feature 27 observed variables for 200 cases. 
+
+# The model
+
+Assume we have three latent variables, `bigX`, `bigM` and `bigY`, such that `bigX` predicts `bigY`, and its effect is mediated by `bigM`, which functions as a mediator. Assume that each of these latent variables is measured by three facets, `fx1`,`fx2` and`fx3` for `bigX`, `fy1`,`fy2` and`fy3` for `bigY`, and `fm1`,`fm2` and`fm3` for `bigM`. Each facet, in turn, is measured by three observed variables, named `x[i][j]`,`y[i][j]`, and `m[i][j]` where _i_ is the facet, _j_ is the item indices.  
+
+Basically, we want to estimate the following model:
+
+`r pic("pics/example5/model.png")`
+
+
+
+# Syntax 
+
+Let's start with the syntax. First, we want to define the nine facets in terms of their indicators
+
+```{r, eval=FALSE}
+
+fx1=~x11+x12+x13
+fx2=~x21+x22+x23
+fx3=~x31+x32+x33
+
+fm1=~m11+m12+m13
+fm2=~m21+m22+m23
+fm3=~m31+m32+m33
+
+fy1=~y11+y12+y13
+fy2=~y21+y22+y23
+fy3=~y31+y32+y33
+
+
+```
+
+and then, we want to define the three second order latent variables as measured by the corresponding facets.
+
+
+```{r, eval=FALSE}
+
+bigx=~fx1+fx2+fx3
+bigm=~fm1+fm2+fm3
+bigy=~fy1+fy2+fy3
+
+
+```
+
+We can now add the regression model among the second order latent variables:
+
+
+```{r, eval=FALSE}
+
+bigm~bigx
+bigy~bigm+bigx
+
+
+```
+
+Putting all together in the `r modulename` _syntax sub-module_, we run this:
+
+`r pic("pics/example5/input_syn_model1.png")`
+
+# Interactive (GUI) 
+
+## Facets
+
+For the interactive module, we start setting each facet as an exogenous latent variable (notice that setting them as endogenous would give exactly the same results). For `fx1` and `fx2` we proceed as follows:
+
+`r pic("pics/example5/input_gui_fx1.png")`
+
+and we keep defining the facets with their indicators
+
+`r pic("pics/example5/input_gui_fy3.png")`
+
+until we have nine of them.
+
+## Second order factors
+
+We now open the `r opt("Second Order Factors")` panel.
+
+`r pic("pics/example5/input_gui_so1.png")`
+
+On the left we find the latent facets we have defined before. We change the name `Factor 1` into a name that suits us, like `bigX`, and define the indicator of the second order factor.
+
+`r pic("pics/example5/input_gui_so2.png")`
+
+By pressing `Add New Latent` we can repeat the operation for the other two second order factors.
+
+`r pic("pics/example5/input_gui_so3.png")`
+
+Please notice that as soon as you define a new second order factor, it appears also in the input field on the left. This allows for defining third, fourth etc. order factors. We do not need this now, but it is good to know that's possible.
+
+## Regression model
+
+We can now open the `r opt("Endogenous models")` panel to define the structural relationships among the second order factors. 
+
+`r pic("pics/example5/input_gui_regression1.png")`
+
+The software already set up one slot for each latent factor. This means that we are free to decide which factor is exogenous (it will have no predictors) and which is endogenous (it will have at least one predictor). We only need to specify which factor predicts the other. 
+
+According to our theoretical model, we set the mediation as follows:
+
+`r pic("pics/example5/input_gui_regression2.png")`
+
+And we have done. The model is estimated.
+
+# Output
+
+As soon as we set the input, we obtain the whole set of results tables. We do not go through the results in detail, but it is interesting to see the basic results
+
+`r pic("pics/example5/output_info1.png")`
+
+The info table gives some detail about the estimation, and lists the syntax resulting from our setup in the interactive input panel. We can notice that the resulting syntax is identical to the one we used before in the _syntax sub-module_, so we can be sure that the results are the same.
+
+`r pic("pics/example5/output_measure1.png")`
+
+The measurement model table indicates the associations between the observed variables and the facets, and then the associations between facets and second order factors. Factor loadings are all quite large, thus the model makes sense in terms of measures. 
+
+We can also ask for the reliability of the first order factors
+
+`r pic("pics/example5/input_options1.png")`
+
+and check they have all a pretty good alpha and omega. At the moment, reliability is not available for second order factors (we'll see how to improve this in future versions).
+
+The other interesting table is the regression coefficients table.
+
+`r pic("pics/example5/output_regression1.png")`
+
+We can see that `bigX` has a positive and significant effect on `bigM`, which in turn has an effect on `bigY`. So, mediation is warranted.
+
+But what about the mediated effect? Well, that can be asked in the `r opt("Parameters Options")` panel by selecting `r opt("Indirect Effects")`.
+
+`r pic("pics/example5/input_options2.png")`
+
+The results are straightforward
+
+`r pic("pics/example5/output_indirect1.png")`
+
+The mediated effect amounts to .964, corresponding to .523 in the standardized scale.
+
+The same result can be obtained by specifying new parameters in the `r opt("Custom model settings")`. Let's try: First, we ask for the parameters labels, so we can refer to the coefficients with their labels.
+
+`r pic("pics/example5/input_options3.png")`
+
+Then we look up in the regression table the labels of the coefficients we need
+
+`r pic("pics/example5/output_regression2.png")`
+
+We want to multiply bigX->bigM, `p37`, with bigM->bigY, so p38. In addition, we add `p39` to the mediated effect so we get also the total effect. 
+
+In the `r opt("Custom model settings")`, we preceed as follows:
+
+`r pic("pics/example5/input_dp1.png")`
+
+As expected, the results are the same as the ones obtained with the indirect effects option.
+
+`r pic("pics/example5/output_indirect2.png")`
+
+
+
+
+
+
+# Related examples
+`r include_examples()`
+
+`r issues()`

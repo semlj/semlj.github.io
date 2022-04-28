@@ -2,6 +2,7 @@ library(yaml)
 library(rmarkdown)
 library(Rsearchable)
 library(gh)
+
 jamovi<-paste0('<span class="jamovi">jamovi</span>')
 
 
