@@ -65,6 +65,11 @@ One can define as many latent variables one needs by clicking on `r opt("Add New
 
 At the right bottom of the panel we find also the `r opt("Multigroup Analysis Factor")`, in which one puts the categorical variable defining groups for multi-groups analyses.
 
+## Second Order Factors
+
+`r pic("pics/gui/input_gui_so1.png")`
+
+This panel is useful to define second order factors, that is latent variables that are measured by other latent variables. See `r link_pages(nickname="secondorder")` for an example of usage.
 
 ## Endogenous models
 
