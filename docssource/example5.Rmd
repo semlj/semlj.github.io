@@ -187,7 +187,7 @@ Then we look up in the regression table the labels of the coefficients we need
 
 We want to multiply bigX->bigM, `p37`, with bigM->bigY, so `p38`. In addition, we add `p39` to the mediated effect so we get also the total effect. 
 
-In the `r opt("Custom model settings")`, we preceed in defining the mediated effect (ME), the total effect (TOT), and since I'm lazy, I ask to compute also the proportion of mediated effect (pME), rather than using and hand calculator:
+In the `r opt("Custom model settings")`, we preceed in defining the mediated effect (ME), the total effect (TOT), and since I'm lazy, I ask to compute also the proportion of mediated effect (pME), rather than using a hand calculator:
 
 `r pic("pics/example5/input_dp1.png")`
 
