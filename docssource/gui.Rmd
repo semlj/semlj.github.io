@@ -67,7 +67,7 @@ At the right bottom of the panel we find also the `r opt("Multigroup Analysis Fa
 
 ## Type of variables
 
-To obtain a standard SEM model, please be sure that the observed variables are marked as `continuous variable` in the dataset. You see a little _ruler_ icon at the left of the variable name, like this:
+To obtain a standard SEM model, please be sure that the observed variables are marked as `continuous variable` in the dataset. You see a little _ruler_ icon on the left of the variable name, like this:
 
 `r pic("pics/gui/input_type1.png")`
 
