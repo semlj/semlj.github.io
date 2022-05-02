@@ -65,6 +65,20 @@ One can define as many latent variables one needs by clicking on `r opt("Add New
 
 At the right bottom of the panel we find also the `r opt("Multigroup Analysis Factor")`, in which one puts the categorical variable defining groups for multi-groups analyses.
 
+## Type of variables
+
+To obtain a standard SEM model, please be sure that the observed variables are marked as `continuous variable` in the dataset. You see a little _ruler_ icon at the left of the variable name, like this:
+
+`r pic("pics/gui/input_type1.png")`
+
+When variables are defined as `continuous`, they are considered continuous variables in `r modulename`. 
+
+Categorical variables can be analyzed if they are defined as dichotomous or ordinal variable. `r modulename` treats variables as ordered variables if they are defined as `Nominal` or `Ordinal` in the dataset, like this:
+
+`r pic("pics/gui/input_type2.png")`
+
+When indicators are ordinal or nominal, Diagonal Weighted Least Squares is used for estimation, with robust standard error. Please refer to [lavaan documentation](https://lavaan.ugent.be/tutorial/cat.html) for more details.
+
 ## Second Order Factors
 
 `r pic("pics/gui/input_gui_so1.png")`

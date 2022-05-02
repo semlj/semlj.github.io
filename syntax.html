@@ -418,6 +418,15 @@ div.tocify {
 <li>free and fixing parameters via model syntax (i.e x~~x or a~0*1)</li>
 </ul>
 </div>
+<div id="type-of-variables" class="section level2">
+<h2>Type of variables</h2>
+<p>To obtain a standard SEM model, please be sure that the observed variables are marked as <code>continuous variable</code> in the dataset. You see a little <em>ruler</em> icon at the left of the variable name, like this:</p>
+<p><img src=" pics/syntax/input_type1.png " class="img-responsive" alt=""></p>
+<p>When variables are defined as <code>continuous</code>, they are considered continuous variables in <span class="modulename">SEMLj</span>.</p>
+<p>Categorical variables can be analyzed if they are defined as dichotomous or ordinal variable. <span class="modulename">SEMLj</span> treats variables as ordered variables if they are defined as <code>Nominal</code> or <code>Ordinal</code> in the dataset, like this:</p>
+<p><img src=" pics/syntax/input_type2.png " class="img-responsive" alt=""></p>
+<p>When indicators are ordinal or nominal, Diagonal Weighted Least Squares is used for estimation, with robust standard error. Please refer to <a href="https://lavaan.ugent.be/tutorial/cat.html">lavaan documentation</a> for more details.</p>
+</div>
 <div id="model-options" class="section level2">
 <h2>Model Options</h2>
 <p><img src=" pics/syntax/panel_model.png " class="img-responsive" alt=""></p>
