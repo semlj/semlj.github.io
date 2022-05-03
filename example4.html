@@ -373,7 +373,7 @@ div.tocify {
 
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, multilevel, multigroup, lavaan, SEMLj, jamovi </span></p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.5.0 </span> <span class="draft"> Draft version, mistakes may be around </span> <span class="incomplete"> Incomplete version, please wait for updates </span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.8.0 </span> <span class="draft"> Draft version, mistakes may be around </span> <span class="incomplete"> Incomplete version, please wait for updates </span></p>
 <p>In this example we show how to estimate a multilevel, multigroup path analysis using <span class="modulename">SEMLj</span>.</p>
 <p>We show input of <span class="modulename">SEMLj</span> <em>syntax sub-module</em>, because multilevel models can be run in <span class="modulename">SEMLj</span> only in the syntax sub-module.</p>
 <p>Much of the output that <span class="modulename">SEMLj</span> produces is labeled as it is in lavaan R package output, so lots of information can be found in <a href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and tutorials</a>.</p>
@@ -407,8 +407,51 @@ div.tocify {
 <p>There you go: First, we set the multigroup variable</p>
 <p><img src=" pics/example4/input_group.png " class="img-responsive" alt=""></p>
 <p>and then we issue the following syntax:</p>
+<pre class="r"><code>group: g1
+    level: within
+        fw =~ y1 + y2 + y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2
+group: g2
+    level: within
+        fw =~ y1 + y2 + y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2</code></pre>
 <p><img src=" pics/example4/input_syntax2.png " class="img-responsive" alt=""></p>
-<p><span class="incomplete"> Incomplete version, please wait for updates </span></p>
+<p>At this point, we have all our estimated parameters, for the within and the between level, divided by group.</p>
+<p><img src=" pics/example4/output_mlmg1.png " class="img-responsive" alt=""></p>
+<p>If the model works, we can start testing equality constraints across groups. However, for this particular model, the <span class="option">Equality constraints</span> options in the input panel cannot be used to quickly set the constraints. We need to use the syntax. But before, let’s ask for the parameter labels, so we can identify parameters in the output.</p>
+<p><img src=" pics/example4/input_label1.png " class="img-responsive" alt=""></p>
+</div>
+<div id="constraints-across-groups" class="section level1">
+<h1>Constraints across groups</h1>
+<p>Assume we want to test that measurement model at the within level is the same across groups. So we want to test that <code>fw =~ y1 + y2 + y3</code> is equivalent across groups. We need to set this syntax (notice the labels <code>a2</code> and <code>a3</code>):</p>
+<pre class="r"><code>group: g1
+    level: within
+        fw =~ y1 + a2*y2 + a3*y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2
+group: g2
+    level: within
+        fw =~ y1 + a2*y2 + a3*y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2</code></pre>
+<p>By setting the same coefficients across groups (<code>a2</code>,<code>a3</code>), we set the parameters as constrained to be equal across groups. We do not need to fix <code>y1</code> because it is already fixed to 1 to give the latent variable a scale.</p>
+<p>Passing this syntax produces in the output the tests for these constraints.</p>
+<p><img src=" pics/example4/output_cont1.png " class="img-responsive" alt=""></p>
+<p>To clearly understand what is going on, please check the parameter labels in the tables.</p>
+<p><img src=" pics/example4/output_label1.png " class="img-responsive" alt=""></p>
+<p>The loading fw-&gt;y2 has a label <code>a2 (p2)</code> for group 1 and <code>a2 (p43)</code> for group 2. This means that the user declared the label <code>a1</code> for both, and each is uniquely referred to as <code>p2</code> for group 1 and <code>p43</code> for group 2. The same goes for <code>a3</code>.</p>
+<p>Now, in the constraints tests table, we see the test for the equality of <code>a2</code>, because the test is comparing <code>p2</code> vs <code>p43</code>, and for <code>a3</code>, because the test is comparing <code>p3</code> with <code>p44</code>. We also get the overall test <code>Total</code>.</p>
+<p>With this method, we can test any constraint we wish.</p>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>

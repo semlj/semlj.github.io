@@ -24,7 +24,7 @@ source("../R/functions.R")
 
 `r keywords("SEM, multilevel, multigroup, lavaan, SEMLj, jamovi")`
 
-`r version("0.5.0")`
+`r version("0.8.0")`
 `r draft`
 `r tobecontinued`
 
@@ -85,9 +85,73 @@ There you go: First, we set the multigroup variable
 
 and then we issue the following syntax:
 
+```{r, eval=FALSE}
+
+group: g1
+    level: within
+        fw =~ y1 + y2 + y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2
+group: g2
+    level: within
+        fw =~ y1 + y2 + y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2
+```
+
 `r pic("pics/example4/input_syntax2.png")`
 
-`r tobecontinued`
+At this point, we have all our estimated parameters, for the within and the between level, divided by group.
+
+`r pic("pics/example4/output_mlmg1.png")`
+
+If the model works, we can start testing equality constraints across groups. However, for this particular model, the `r opt("Equality constraints")` options in the input panel cannot be used to quickly set the constraints. We need to use the syntax. But before, let's ask for the parameter labels, so we can identify parameters in the output.
+
+`r pic("pics/example4/input_label1.png")`
+
+# Constraints across groups
+
+Assume we want to test that measurement model at the within level is the same across groups. So we want to test that `fw =~ y1 + y2 + y3` is equivalent across groups. We need to set this syntax (notice the labels  `a2` and `a3`):
+
+```{r, eval=FALSE}
+
+group: g1
+    level: within
+        fw =~ y1 + a2*y2 + a3*y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2
+group: g2
+    level: within
+        fw =~ y1 + a2*y2 + a3*y3
+        fw ~ x1 + x2 + x3
+    level: between
+        fb =~ y1 + y2 + y3
+        fb ~ w1 + w2
+```
+
+By setting the same coefficients across groups (`a2`,`a3`), we set the parameters as constrained to be equal across groups. We do not need to fix `y1` because it is already fixed to 1 to give the latent variable a scale. 
+
+Passing this syntax produces in the output     the tests for these constraints. 
+
+`r pic("pics/example4/output_cont1.png")`
+
+To clearly understand what is going on, please check the parameter labels in the tables.
+
+
+`r pic("pics/example4/output_label1.png")`
+
+The loading fw->y2 has a label `a2 (p2)` for group 1 and `a2 (p43)` for group 2. This means that the user declared the label `a1` for both, and each is uniquely referred to as `p2` for group 1 and `p43` for group 2. The same goes for `a3`. 
+
+Now, in the constraints tests table, we see the test for the equality of `a2`, because the test is comparing `p2` vs `p43`, and for `a3`, because the test is comparing `p3` with `p44`. We also get the overall test `Total`. 
+
+With this method, we can test any constraint we wish.
+
 
 
 
