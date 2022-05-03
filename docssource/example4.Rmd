@@ -26,7 +26,6 @@ source("../R/functions.R")
 
 `r version("0.8.0")`
 `r draft`
-`r tobecontinued`
 
 In this example we show how to estimate a multilevel, multigroup path analysis using `r modulename`. 
 
@@ -151,9 +150,6 @@ The loading fw->y2 has a label `a2 (p2)` for group 1 and `a2 (p43)` for group 2.
 Now, in the constraints tests table, we see the test for the equality of `a2`, because the test is comparing `p2` vs `p43`, and for `a3`, because the test is comparing `p3` with `p44`. We also get the overall test `Total`. 
 
 With this method, we can test any constraint we wish.
-
-
-
 
 
 
