@@ -133,7 +133,7 @@ The `r opt("Estimation Method")` allows choosing the right estimation method ava
 
 ## Type of models
 
-Users familiar with `lavaan` or with lavaan documentations may want to distinguish between different types of models, namely, `cfa` (confirmatory factor analysis), `sem` (structural equation models) and `growth` (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to `lavaan`. In `r modulename`, one can obtain the same results as `sem` and `cfa` setup using the default options settings (unless you know you need some change). For `growth` model type, one needs to set `r opt("Intercepts->Observed variables")` to false (unselect it), and `r opt("Intercepts->Latent variables")` to true (select it) in the `r opt("Parameters Options")` panel. 
+Users familiar with `lavaan` or with lavaan documentations may want to distinguish between different types of models, namely, `cfa` (confirmatory factor analysis), `sem` (structural equation models) and `growth` (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to `lavaan`. In `r modulename`, one can obtain the same results as `sem` and `cfa` setup using the default options settings (unless you know you need some change). For `growth` model type, one needs to set `r opt("Intercepts->Observed variables")` to false (unselect it), and `r opt("Intercepts->Latent variables")` to true (select it) in the `r opt("Parameters Options")` panel, and you're a happy camper. 
 
 ## Model parameters 
 
