@@ -394,7 +394,7 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> semlj,jamovi, lavaan, SEM </span></p>
 <p><strong>SEMLj</strong> lavaan syntax module of the SEMLj suite for jamovi</p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.7.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.8.* </span> <span class="draft"> Draft version, mistakes may be around </span></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>The <span class="modulename">SEMLj</span> module is a <span class="jamovi">jamovi</span> interface to <code>lavaan</code> R package <span class="citation">(<a href="#ref-lavaan" role="doc-biblioref">Rosseel 2012</a>)</span>. The module offers a syntax interface in which lavaan syntax for the model definition can be passed to the module. Almost everything you can pass in lavaan, you can pass it to <span class="modulename">SEMLj</span>. All the available options are in the foldable panels below the syntax field. Thus, it is recomended that the user takes a look at <code>lavaan</code> <a href="https://lavaan.ugent.be/index.html">website</a> for details.</p>
@@ -426,6 +426,30 @@ div.tocify {
 <p>Categorical variables can be analyzed if they are defined as dichotomous or ordinal variable. <span class="modulename">SEMLj</span> treats variables as ordered variables if they are defined as <code>Nominal</code> or <code>Ordinal</code> in the dataset, like this:</p>
 <p><img src=" pics/syntax/input_type2.png " class="img-responsive" alt=""></p>
 <p>When indicators are ordinal or nominal, Diagonal Weighted Least Squares is used for estimation, with robust standard error. Please refer to <a href="https://lavaan.ugent.be/tutorial/cat.html">lavaan documentation</a> for more details.</p>
+</div>
+<div id="parameters-labels" class="section level2">
+<h2>Parameters labels</h2>
+<p>Any coefficient can be labeled in the syntax following <code>lavaan</code> syntax standard:</p>
+<pre class="r"><code>      x =~ a1*x1 + a2*x2 + a3*x3
+      y =~ y1 + y2 +y3  </code></pre>
+<p>This would attach the labels <code>a1</code>, <code>a2</code> and <code>a3</code> to the corresponding coefficient.</p>
+<p><img src=" pics/syntax/output_labels1.png " class="img-responsive" alt=""></p>
+<p><span class="modulename">SEMLj</span> automatically assigns a label to any coefficient, naming them <code>pN</code>, where <code>N</code> is an increasing integer. So, for <code>y1</code>, <code>y2</code> and <code>y3</code> in the example, a label of <code>p4</code>, <code>p5</code> and <code>p6</code> are assigned. User defined and automatically assigned labels can be used in the syntax in the same way. For instance:</p>
+<pre class="r"><code>      x =~ a1*x1 + a2*x2 + a3*x3
+      y =~ y1 + y2 +y3  
+      a1==p4
+      a2==a3
+      p5==p6</code></pre>
+<p>produced the desired constraints and relative tests.</p>
+<p><img src=" pics/syntax/output_cont2.png " class="img-responsive" alt=""> <img src=" pics/syntax/output_cont1.png " class="img-responsive" alt=""></p>
+<p>For used defined labels, the tables show also the internal automatic label uniquely assigned to the coefficients, with dots. <code>a1 (.p1.)</code> means the coefficient labelled by the user as <code>a1</code> but internally referred to as <code>.p1.</code>. This additional information regarding the internal label is usefull in some cases of equality constraints.</p>
+<p>Consider this syntax:</p>
+<pre class="r"><code>  y =~ y1 + a*y2 + a*y3 + a*y4</code></pre>
+<p>This asks for a latent variable scaled at <code>y1</code>, but with the loading of <code>y2</code>,<code>y3</code> and <code>y4</code> estimated as equal.</p>
+<p><img src=" pics/syntax/output_cont3.png " class="img-responsive" alt=""></p>
+<p>This also produces the tests for the pairwise comparisons of the coefficients.</p>
+<p><img src=" pics/syntax/output_cont4.png " class="img-responsive" alt=""></p>
+<p>By comparing the uniquely assigned label (<code>p2</code>, <code>p3</code>, <code>p4</code>), we know which comparison is tested.</p>
 </div>
 <div id="model-options" class="section level2">
 <h2>Model Options</h2>

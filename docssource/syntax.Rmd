@@ -27,7 +27,7 @@ source("../R/functions.R")
 
 **SEMLj** lavaan syntax module of the SEMLj suite for jamovi
 
-`r version("0.7.*")` 
+`r version("0.8.*")` 
 `r draft`
 
 
@@ -72,6 +72,55 @@ Categorical variables can be analyzed if they are defined as dichotomous or ordi
 `r pic("pics/syntax/input_type2.png")`
 
 When indicators are ordinal or nominal, Diagonal Weighted Least Squares is used for estimation, with robust standard error. Please refer to [lavaan documentation](https://lavaan.ugent.be/tutorial/cat.html) for more details.
+
+
+## Parameters labels
+
+Any coefficient can be labeled in the syntax following `lavaan` syntax standard:
+
+```{r, eval=FALSE}
+      x =~ a1*x1 + a2*x2 + a3*x3
+      y =~ y1 + y2 +y3  
+
+```
+
+This would attach the labels `a1`, `a2` and `a3` to the corresponding coefficient.
+
+`r pic("pics/syntax/output_labels1.png")`
+
+`r modulename` automatically assigns a label to any coefficient, naming them `pN`, where `N` is an increasing integer. So, for `y1`, `y2` and `y3` in the example, a label of `p4`, `p5` and `p6` are assigned. User defined and automatically assigned labels can be used in the syntax in the same way. For instance:
+
+```{r, eval=FALSE}
+      x =~ a1*x1 + a2*x2 + a3*x3
+      y =~ y1 + y2 +y3  
+      a1==p4
+      a2==a3
+      p5==p6
+```
+
+produced the desired constraints and relative tests.
+
+`r pic("pics/syntax/output_cont2.png")`
+`r pic("pics/syntax/output_cont1.png")`
+
+For used defined labels, the tables show also the internal automatic label uniquely  assigned to the coefficients, with dots. `a1 (.p1.)` means the coefficient labelled by the user as `a1` but internally referred to as `.p1.`. This additional information regarding the internal label is usefull in some cases of equality constraints. 
+
+Consider this syntax:
+
+```{r, eval=FALSE}
+  y =~ y1 + a*y2 + a*y3 + a*y4
+
+```
+
+This asks for a latent variable scaled at `y1`, but with the loading of `y2`,`y3` and `y4` estimated as equal. 
+
+`r pic("pics/syntax/output_cont3.png")`
+
+This also produces the tests for the pairwise comparisons of the coefficients. 
+
+`r pic("pics/syntax/output_cont4.png")`
+
+By comparing the uniquely assigned label (`p2`, `p3`, `p4`), we know which comparison is tested.
 
 
 ## Model Options
