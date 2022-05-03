@@ -452,14 +452,15 @@ div.tocify {
 <p>Syntax examples can be seen by selecting <span class="option">Show syntax examples</span> in the <span class="option">Output options</span>, which returns in output the following table of examples:</p>
 <p><img src=" pics/gui/output_examples.png " class="img-responsive" alt=""></p>
 </div>
-<div id="parameters-labels" class="section level2">
-<h2>Parameters labels</h2>
-</div>
 <div id="model-options" class="section level2">
 <h2>Model Options</h2>
 <p><img src=" pics/syntax/panel_model.png " class="img-responsive" alt=""></p>
 <p>The <span class="option">Estimation Method</span> allows choosing the right estimation method available for a model. The <span class="option">Automatic</span> option (default) lets <code>lavaan</code> choose the right method depending to the type of model one is estimating.</p>
 <p><span class="option">Constraints tests</span> computes the <span class="math inline">\(\chi^2\)</span> test for contrainted coefficients (if any). In case one has more than one contraints, each constraint is tested uniquely (if <span class="option">Univariate</span> is flagged) and in addition to the previous ones (if <span class="option">Cumulative</span> is flagged).</p>
+</div>
+<div id="type-of-models" class="section level2">
+<h2>Type of models</h2>
+<p>Users familiar with <code>lavaan</code> or with lavaan documentations may want to distinguish between different types of models, namely, <code>cfa</code> (confirmatory factor analysis), <code>sem</code> (structural equation models) and <code>growth</code> (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to <code>lavaan</code>. In <span class="modulename">SEMLj</span>, one can obtain the same results as <code>sem</code> and <code>cfa</code> setup using the default options settings (unless you know you need some change). For <code>growth</code> model type, one needs to set <span class="option">Intercepts-&gt;Observed variables</span> to false (unselect it), and <span class="option">Intercepts-&gt;Latent variables</span> to true (select it).</p>
 </div>
 <div id="model-parameters" class="section level2">
 <h2>Model parameters</h2>

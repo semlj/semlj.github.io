@@ -118,6 +118,10 @@ The `r opt("Estimation Method")` allows choosing the right estimation method ava
 
 `r opt("Constraints tests")` computes the $\chi^2$ test for contrainted coefficients (if any). In case one has more than one contraints, each constraint is tested uniquely (if `r opt("Univariate")` is flagged) and in addition to the previous ones (if `r opt("Cumulative")` is flagged).
 
+## Type of models
+
+Users familiar with `lavaan` or with lavaan documentations may want to distinguish between different types of models, namely, `cfa` (confirmatory factor analysis), `sem` (structural equation models) and `growth` (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to `lavaan`. In `r modulename`, one can obtain the same results as `sem` and `cfa` setup using the default options settings (unless you know you need some change). For `growth` model type, one needs to set `r opt("Intercepts->Observed variables")` to false (unselect it), and `r opt("Intercepts->Latent variables")` to true (select it) in the `r opt("Parameters Options")` panel. 
+
 ## Model parameters 
 
 `r pic("pics/syntax/panel_parameters.png")`
