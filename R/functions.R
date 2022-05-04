@@ -168,7 +168,7 @@ get_commits<-function() {
 
 
 
-write_commits<-function(commits) {
+write_commits<-function(commits, fresh=FALSE) {
 
   sel<-list()
   j<-1
@@ -199,9 +199,10 @@ write_commits<-function(commits) {
   coms<-do.call("rbind",sel)
   for (i in seq_along(versions)) {
     rel<-""
+    if (fresh) {
     if (i==1) rel<-"(future)"
     if (i==2) rel<-"(current)"
-    
+    }
     cat(paste("##",versions[i],rel,"\n\n"))
     cs<-coms[coms[,2]==versions[i],1]
     for (j in cs)

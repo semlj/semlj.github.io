@@ -10,7 +10,7 @@ MODULE_LINK="https://github.com/semlj/semlj/"
 # These handle the release notes from commits
 MODULE_REPO="semlj"
 MODULE_REPO_OWNER="semlj"
-FIRST_VERSION="Version.0.2.0"
+FIRST_VERSION="Version.0.6.1"
 BANNED_COMMITS=list("initialize","fix commits","remove some marks")
 BANNED_COMMITS_GREP=list("^#","^!","^Merge branch","spelling")
 

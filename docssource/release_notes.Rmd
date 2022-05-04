@@ -23,9 +23,12 @@ source(paste0(where,"R/secrets.R"))
 source(paste0(where,"R/functions.R"))
 #source("../R/functions.R")
 #source("../R/functions.R")
-#commits<-get_commits()
+## old commits
+commits<-get_commits()
+write_commits(commits,fresh=TRUE)
 load(paste0(where,"resources/commits.Rda"))
-write_commits(commits)
+write_commits(commits,fresh=FALSE)
+## new commits
 
 ```
 
