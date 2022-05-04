@@ -2,6 +2,8 @@
 .Rhistory
 .Rapp.history
 R/secrets.R
+resources/
+resources/*
 local/
 local/*
 # Session Data files

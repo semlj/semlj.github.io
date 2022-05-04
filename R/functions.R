@@ -168,8 +168,8 @@ get_commits<-function() {
 
 
 
-write_commits<-function() {
-  commits<-get_commits()
+write_commits<-function(commits) {
+
   sel<-list()
   j<-1
   for (i in 1:dim(commits)[1]) {
