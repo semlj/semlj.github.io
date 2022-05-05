@@ -18,8 +18,9 @@ link-citations: true
 
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
+
 ```
 
 `r keywords("pathj,jamovi, path analyis")`
@@ -32,13 +33,13 @@ source("../R/functions.R")
 
 # Introduction
 
-The `r modulename` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. 
+The `r modulename()` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. 
 # User Interface
 
 
 # Examples
 
-Some worked out examples of the analyses carried out with jamovi `r modulename` are posted here (more to come)
+Some worked out examples of the analyses carried out with jamovi `r modulename()` are posted here (more to come)
 
 `r include_examples(topic="general")`
 

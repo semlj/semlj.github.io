@@ -15,9 +15,15 @@ editor_options:
   chunk_output_type: console
 ---
 
+
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
+
+```
+
+
+```{r echo=FALSE,results='hide'}
 data<-read.csv("../data/worland5.csv")
 ```
 
@@ -26,7 +32,7 @@ data<-read.csv("../data/worland5.csv")
 
 `r draft`
 
-In this page we show how `r modulename` (and thus R package`lavaan`) and GAMLj jamovi module (and thus R package `lme4`) can be led to produce the same mixed model, and thus the same results. We choose a very simple model that can be estimated with all packages and thus the results can be compared.
+In this page we show how `r modulename()` (and thus R package`lavaan`) and GAMLj jamovi module (and thus R package `lme4`) can be led to produce the same mixed model, and thus the same results. We choose a very simple model that can be estimated with all packages and thus the results can be compared.
 
 # Research data
 
@@ -40,7 +46,7 @@ We want to estimate the fixed effect of _beer_ on _smile_, allowing random inter
 
 # Module
 
-We need to use `r modulename` _syntax submodule_, which allows for multilevel models.
+We need to use `r modulename()` _syntax submodule_, which allows for multilevel models.
 
 # Simple mixed regression
 
@@ -56,7 +62,7 @@ We want to highlight the fixed effect intercept (5.854), the slope (0.549) and i
 
 ## Multilevel path analysis
 
-We know estimate the same model with `r modulename`, thus using R `lavaan` package. The syntax is the following:
+We know estimate the same model with `r modulename()`, thus using R `lavaan` package. The syntax is the following:
 
 `r pic("pics/rosetta/multilevel/semlj1.png")`
 

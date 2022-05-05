@@ -15,9 +15,8 @@ editor_options:
 
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
-
 
 ```
 

@@ -18,12 +18,14 @@ link-citations: true
 
 
 ```{r echo=FALSE,results='hide'}
-source("../R/functions.R")
+library(mcdocs)
+source("../R/constants.R")
+
 ```
 
 
 # Examples
-Here you can find some applications of `r modulename` module.
+Here you can find some applications of `r modulename()` module.
 
 
 `r include_examples()`

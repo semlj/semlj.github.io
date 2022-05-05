@@ -16,22 +16,21 @@ editor_options:
 ---
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
 
 ```
-
 
 `r keywords("SEM, multilevel, multigroup, lavaan, SEMLj, jamovi")`
 
 `r version("0.8.0")`
 `r draft`
 
-In this example we show how to estimate a multilevel, multigroup path analysis using `r modulename`. 
+In this example we show how to estimate a multilevel, multigroup path analysis using `r modulename()`. 
 
-We show input of `r modulename` _syntax sub-module_, because multilevel models can be run in `r modulename` only in the syntax sub-module.
+We show input of `r modulename()` _syntax sub-module_, because multilevel models can be run in `r modulename()` only in the syntax sub-module.
 
-Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf).
+Much of the output that `r modulename()` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf).
 
 Obviously, one can run the models discussed here directly in R using `lavaan` package, if `r jamovi` is not the software one is using at the moment.
 

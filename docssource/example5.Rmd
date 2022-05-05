@@ -15,9 +15,10 @@ editor_options:
   chunk_output_type: console
 ---
 
+
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
 
 ```
 
@@ -27,16 +28,16 @@ source("../R/functions.R")
 `r version("0.7.0")`
 `r draft`
 
-In this example we show how to estimate a second order factor analysis and mediation among second order latent variables in `r modulename`. 
+In this example we show how to estimate a second order factor analysis and mediation among second order latent variables in `r modulename()`. 
 
-We show input of `r modulename` _syntax sub-module_ and  _interactive sub-module_, with particular focus on the latter one. We focus more on the setup of the model (how to run it) and less on the interpretation of the results, as we think that when you have run such a model, you know how to interpret it.
+We show input of `r modulename()` _syntax sub-module_ and  _interactive sub-module_, with particular focus on the latter one. We focus more on the setup of the model (how to run it) and less on the interpretation of the results, as we think that when you have run such a model, you know how to interpret it.
 
-Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf).
+Much of the output that `r modulename()` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf).
 
 
 # The data
 
-For this example we are going to use the `secondorder` dataset present in `r jamovi` data library after installing `r modulename`. The data are generated to feature 27 observed variables for 200 cases. 
+For this example we are going to use the `secondorder` dataset present in `r jamovi` data library after installing `r modulename()`. The data are generated to feature 27 observed variables for 200 cases. 
 
 # The model
 
@@ -92,7 +93,7 @@ bigy~bigm+bigx
 
 ```
 
-Putting all together in the `r modulename` _syntax sub-module_, we run this:
+Putting all together in the `r modulename()` _syntax sub-module_, we run this:
 
 `r pic("pics/example5/input_syn_model1.png")`
 

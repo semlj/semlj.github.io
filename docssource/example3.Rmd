@@ -16,8 +16,8 @@ editor_options:
 ---
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
 
 ```
 
@@ -27,19 +27,19 @@ source("../R/functions.R")
 `r version("0.5.0")`
 `r draft`
 
-In this example we show how to estimate a SEM with ordered observed variables using `r modulename`. 
+In this example we show how to estimate a SEM with ordered observed variables using `r modulename()`. 
 
-We show input of both `r modulename` _interactive (GUI) sub-module_ and the _syntax sub-module_. Output tables are the same for the two sub-modules.
+We show input of both `r modulename()` _interactive (GUI) sub-module_ and the _syntax sub-module_. Output tables are the same for the two sub-modules.
 
-Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
+Much of the output that `r modulename()` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
 
 # The data
 
-For this example we are going to use a simulated dataset, present in the jamovi data library after installing `r modulename`, in which we found six items. They are supposed to reflect two latent variables. As you open the data, `r jamovi` recognizes the items as categorical variable, as shown by the little icon in the column name label.
+For this example we are going to use a simulated dataset, present in the jamovi data library after installing `r modulename()`, in which we found six items. They are supposed to reflect two latent variables. As you open the data, `r jamovi` recognizes the items as categorical variable, as shown by the little icon in the column name label.
 
 `r pic("pics/example3/input_data.png")`
 
-These items will be transformed automatically in ordered variables by `r modulename`. In general, `r modulename` considers as ordered variables (ordinal) all observed variables that are defined as _nominal_ or _ordinal_ in the datasheet. If one has a variable that `r jamovi` recognizes as continuous and wishes to treat it as ordinal in SEM, one simply changes its type in "Ordinal" in `r jamovi` data tab.
+These items will be transformed automatically in ordered variables by `r modulename()`. In general, `r modulename()` considers as ordered variables (ordinal) all observed variables that are defined as _nominal_ or _ordinal_ in the datasheet. If one has a variable that `r jamovi` recognizes as continuous and wishes to treat it as ordinal in SEM, one simply changes its type in "Ordinal" in `r jamovi` data tab.
 
 `r pic("pics/example3/input_data2.png")`
 
@@ -49,13 +49,13 @@ We start with a measurement model (CFA), in which item 1 to 3 load to the first 
 
 ## Interactive
 
-In `r modulename` _interactive_ module, we define the two latent variables and fill their fields with the corresponding observed variables, as for any other SEM with latent and observed variables.
+In `r modulename()` _interactive_ module, we define the two latent variables and fill their fields with the corresponding observed variables, as for any other SEM with latent and observed variables.
 
 `r pic("pics/example3/input_gui1.png")`
 
 ## Syntax
 
-In `r modulename` _syntax_ module, we issue the following lavaan syntax.
+In `r modulename()` _syntax_ module, we issue the following lavaan syntax.
 
 `r pic("pics/example3/input_syntax1.png")`
 

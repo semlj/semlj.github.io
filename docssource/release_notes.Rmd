@@ -18,16 +18,16 @@ editor_options:
 ```{r, echo=FALSE,results='asis', warning=FALSE,message=FALSE}
 where<-"../"
 #where=""
-source(paste0(where,"R/constants.R"))
-source(paste0(where,"R/secrets.R"))
-source(paste0(where,"R/functions.R"))
+#source(paste0(where,"R/constants.R"))
+#source(paste0(where,"R/secrets.R"))
+#source(paste0(where,"R/functions.R"))
 #source("../R/functions.R")
 #source("../R/functions.R")
 ## old commits
-commits<-get_commits()
-write_commits(commits,fresh=TRUE)
-load(paste0(where,"resources/commits.Rda"))
-write_commits(commits,fresh=FALSE)
+#commits<-get_commits()
+#write_commits(commits,fresh=TRUE)
+#load(paste0(where,"resources/commits.Rda"))
+#write_commits(commits,fresh=FALSE)
 ## new commits
 
 ```

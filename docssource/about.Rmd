@@ -1,7 +1,12 @@
 ---
   title: "About"
 ---
+```{r echo=FALSE,results='hide'}
+library(mcdocs)
+source("../R/constants.R")
+
+```
   
-PATHj is awesome. 
+`r modulename()` is awesome. 
 
 

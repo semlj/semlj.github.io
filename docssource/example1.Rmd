@@ -16,8 +16,13 @@ editor_options:
 ---
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
+
+```
+
+
+```{r echo=FALSE,results='hide'}
 data<-read.csv("../data/worland5.csv")
 ```
 
@@ -25,11 +30,11 @@ data<-read.csv("../data/worland5.csv")
 `r keywords("multiple regression, path analysis, lavaan, multivatiate regression,jamovi,semlj")`
 
 
-In this example we show how to estimate simple regression models with `r modulename`. The aim is threefold: first, it may help seeing how the SEM module can estimate path analysis, and see how path analysis encompasses models usually estimated with the General Linear Model (but look at [GAMLj module](https://gamlj.github.io/) for a specialized module in `r jamovi`). Second, we are going to estimate some models discussed in [UCLA statistical consulting webpage](https://stats.idre.ucla.edu/r/seminars/rsem/), so one can compare the results obtained in `lavaan` with the ones obtained in `r modulename`. Third, we show how to add some interesting test and twist to simple regression models.
+In this example we show how to estimate simple regression models with `r modulename()`. The aim is threefold: first, it may help seeing how the SEM module can estimate path analysis, and see how path analysis encompasses models usually estimated with the General Linear Model (but look at [GAMLj module](https://gamlj.github.io/) for a specialized module in `r jamovi`). Second, we are going to estimate some models discussed in [UCLA statistical consulting webpage](https://stats.idre.ucla.edu/r/seminars/rsem/), so one can compare the results obtained in `lavaan` with the ones obtained in `r modulename()`. Third, we show how to add some interesting test and twist to simple regression models.
 
-We show input of both `r modulename` _interactive (GUI) sub-module_ and the _syntax sub-module_. Outputs are the same for the two sub-modules.
+We show input of both `r modulename()` _interactive (GUI) sub-module_ and the _syntax sub-module_. Outputs are the same for the two sub-modules.
 
-Much of the output that `r modulename` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
+Much of the output that `r modulename()` produces is labeled as it is in lavaan R package output, so lots of information can be found in [lavaan help and tutorials](https://lavaan.ugent.be/tutorial/tutorial.pdf)
 
 # Research data
 
@@ -45,7 +50,7 @@ Since we have only observed variables, we need to set the latent variable as equ
 
 ### Interactive module
 
-In `r modulename` _interactive sub-module_ we set the variables roles in the first panel as shown here: The dependent variable goes in the `r opt("Latent Endogenous Variables")` field, and the independent variable goes in the `r opt("Latent Exogenous Variables")` field.
+In `r modulename()` _interactive sub-module_ we set the variables roles in the first panel as shown here: The dependent variable goes in the `r opt("Latent Endogenous Variables")` field, and the independent variable goes in the `r opt("Latent Exogenous Variables")` field.
 
 `r pic("pics/example1/input_model1_roles.png")`
 
@@ -53,12 +58,12 @@ We also name the latent variables `l_read` and `l_motiv` to distingish them from
 
 ### Syntax module
 
-In `r modulename` _interactive sub-module_ we achieve the same model definition using `lavaan syntax`. We specify the endogenous variable predictor in the `r opt("Endogenous Models")` panel.
+In `r modulename()` _interactive sub-module_ we achieve the same model definition using `lavaan syntax`. We specify the endogenous variable predictor in the `r opt("Endogenous Models")` panel.
 
 `r pic("pics/example1/input_model1_model.png")`
 
 
-In `r modulename` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax. Note that in the _syntax sub-module_ we could have used path analysis syntax (`read~motive`), but here we want to show the exact procedure used in the _interactive sub-module_.
+In `r modulename()` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax. Note that in the _syntax sub-module_ we could have used path analysis syntax (`read~motive`), but here we want to show the exact procedure used in the _interactive sub-module_.
 
 `r pic("pics/example1/syntax_model1_model.png")`
 
@@ -132,7 +137,7 @@ In model 2 we add a second predictor `ppsych`, first in the variables role panel
 
 ### Syntax module
 
-In `r modulename` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax.
+In `r modulename()` _syntax sub-module_ we achieve the same model definition with `lavaan` syntax.
 
 `r pic("pics/example1/syntax_model2_model.png")`
 
@@ -152,17 +157,17 @@ Let's look at the parameters we have just estimated.
 
 We want to test the null-hypothesis $.461=-.275$. This test makes sense because the two coefficients have the same scale, as indicated by the fact that `motiv` and `ppsych` have the same variance.
 
-To obtain this test, we need to restrict the two coefficients to be equal. We can refer to parameters with their label (automatically assigned by `r modulename`). Parameters labels are shown in the tables when `r opt("Show parameters labels")` option is flagged in the `r opt("Output Options")` panel.
+To obtain this test, we need to restrict the two coefficients to be equal. We can refer to parameters with their label (automatically assigned by `r modulename()`). Parameters labels are shown in the tables when `r opt("Show parameters labels")` option is flagged in the `r opt("Output Options")` panel.
 
 `r pic("pics/example1/output_model2_parameters2.png")`
 
 We can see that the two coefficients we want to equate are labelled $p4$ and $p5$. 
 
-Thus, in `r modulename` _interactive sub-module_ we go to the `r opt ("Custom Model Settings")` panel and constraints them as equal.
+Thus, in `r modulename()` _interactive sub-module_ we go to the `r opt ("Custom Model Settings")` panel and constraints them as equal.
 
 `r pic("pics/example1/input_model2_constraints.png")`
 
-in `r modulename` _syntax sub-module_ we just write the contraints syntax below the model syntax.
+in `r modulename()` _syntax sub-module_ we just write the contraints syntax below the model syntax.
 
 `r pic("pics/example1/syntax_model2_constraints.png")`
 
@@ -170,7 +175,7 @@ in `r modulename` _syntax sub-module_ we just write the contraints syntax below 
 
 The output now reports the coefficients as equal to .093. 
 
-In the output we also find a new table, `Constraints Score Tests`, which provides a chi-square test comparing the original model with the constrained model with the two coefficients set as equal (_equal_ is defined as $==$)(more examples of contraints can be obtained `r modulename` by selecting `r opt("Show syntax examples")` option in the `r opt("Output Options")` panel). 
+In the output we also find a new table, `Constraints Score Tests`, which provides a chi-square test comparing the original model with the constrained model with the two coefficients set as equal (_equal_ is defined as $==$)(more examples of contraints can be obtained `r modulename()` by selecting `r opt("Show syntax examples")` option in the `r opt("Output Options")` panel). 
 
 `r pic("pics/example1/output_model2_constraints.png")`
 
@@ -189,14 +194,14 @@ We can now add some endogenous dependent variables. We add `arith` (_arithmetic 
 
 ### Interactive module
 
-In `r modulename` _interactive sub-module_ we obtain this model by adding `l_arith` to the `r opt("Latent Endogeneous Variables")` field, filling it with the observed variable `arith`, and then defining `l_arith` predictors in the `r opt("Endogenous Models")` panel.
+In `r modulename()` _interactive sub-module_ we obtain this model by adding `l_arith` to the `r opt("Latent Endogeneous Variables")` field, filling it with the observed variable `arith`, and then defining `l_arith` predictors in the `r opt("Endogenous Models")` panel.
 
 `r pic("pics/example1/input_model3_vars.png")`
 `r pic("pics/example1/input_model3_model.png")`
 
 ### Syntax module
 
-In `r modulename` _syntax sub-module_ we add the latent variable updating the syntax.
+In `r modulename()` _syntax sub-module_ we add the latent variable updating the syntax.
 
 `r pic("pics/example1/syntax_model3_model.png")`
 

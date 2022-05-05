@@ -17,8 +17,9 @@ link-citations: true
 
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
+
 ```
 
 `r keywords("semlj,jamovi, lavaan, SEM")`
@@ -31,7 +32,8 @@ source("../R/functions.R")
 
 # Introduction
 
-The `r modulename` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. The module offers a Graphical User Interface (point-and-click)  to build a model, which is translated in lavaan syntax and passed to R lavaan functions . All the available options are in the foldable panels below the variable definition fields. Thus, it is recomended that the user takes a look at `lavaan` [website](https://lavaan.ugent.be/index.html) for details.
+
+The `r modulename()` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. The module offers a Graphical User Interface (point-and-click)  to build a model, which is translated in lavaan syntax and passed to R lavaan functions . All the available options are in the foldable panels below the variable definition fields. Thus, it is recomended that the user takes a look at `lavaan` [website](https://lavaan.ugent.be/index.html) for details.
 
 # User Interface
 
@@ -71,9 +73,9 @@ To obtain a standard SEM model, please be sure that the observed variables are m
 
 `r pic("pics/gui/input_type1.png")`
 
-When variables are defined as `continuous`, they are considered continuous variables in `r modulename`. 
+When variables are defined as `continuous`, they are considered continuous variables in `r modulename()`. 
 
-Categorical variables can be analyzed if they are defined as dichotomous or ordinal variable. `r modulename` treats variables as ordered variables if they are defined as `Nominal` or `Ordinal` in the dataset, like this:
+Categorical variables can be analyzed if they are defined as dichotomous or ordinal variable. `r modulename()` treats variables as ordered variables if they are defined as `Nominal` or `Ordinal` in the dataset, like this:
 
 `r pic("pics/gui/input_type2.png")`
 
@@ -101,7 +103,7 @@ In this panel one specifies the variances and covariances to estimate (set free)
 
 `r pic("pics/gui/panel_custom.png")`
 
-In this panel one specifies additional model settings, such as free variances or defined parameters by passing `lavaan` syntax, one directive per row. In the picture, for instance, the users frees the variance of $y7$ with the `y7~~y7` syntax, and define a new coefficient to estimate `a` as the square of the `p1` coefficient. The `pN` notation is the label of a coefficient that `r modulename` automatically assigns to each estimated coefficient. To see what they are, simply select `r opt("Show parameters labels")` in the `r opt("Output options")` panel.
+In this panel one specifies additional model settings, such as free variances or defined parameters by passing `lavaan` syntax, one directive per row. In the picture, for instance, the users frees the variance of $y7$ with the `y7~~y7` syntax, and define a new coefficient to estimate `a` as the square of the `p1` coefficient. The `pN` notation is the label of a coefficient that `r modulename()` automatically assigns to each estimated coefficient. To see what they are, simply select `r opt("Show parameters labels")` in the `r opt("Output options")` panel.
 
 Syntax examples can be seen by selecting  `r opt("Show syntax examples")` in the `r opt("Output options")`, which returns in output the following table of examples:
 
@@ -120,7 +122,7 @@ The `r opt("Estimation Method")` allows choosing the right estimation method ava
 
 ## Type of models
 
-Users familiar with `lavaan` or with lavaan documentations may want to distinguish between different types of models, namely, `cfa` (confirmatory factor analysis), `sem` (structural equation models) and `growth` (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to `lavaan`. In `r modulename`, one can obtain the same results as `sem` and `cfa` setup using the default options settings (unless you know you need some change). For `growth` model type, one needs to set `r opt("Intercepts->Observed variables")` to false (unselect it), and `r opt("Intercepts->Latent variables")` to true (select it) in the `r opt("Parameters Options")` panel, and you're a happy camper. 
+Users familiar with `lavaan` or with lavaan documentations may want to distinguish between different types of models, namely, `cfa` (confirmatory factor analysis), `sem` (structural equation models) and `growth` (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to `lavaan`. In `r modulename()`, one can obtain the same results as `sem` and `cfa` setup using the default options settings (unless you know you need some change). For `growth` model type, one needs to set `r opt("Intercepts->Observed variables")` to false (unselect it), and `r opt("Intercepts->Latent variables")` to true (select it) in the `r opt("Parameters Options")` panel, and you're a happy camper. 
 
 ## Model parameters 
 
@@ -139,7 +141,7 @@ Once a multi-group factor is set in the variable definition (see above), in this
 
 ## Multilevel Analysis 
 
-Multilevel models are not available in the GUI version of `r modulename`. To estimate these models in `r jamovi`, please use `r link_pages(nickname="syntax_main")`
+Multilevel models are not available in the GUI version of `r modulename()`. To estimate these models in `r jamovi`, please use `r link_pages(nickname="syntax_main")`
 
 ## Output Options
 
@@ -155,7 +157,7 @@ This panel produces the path diagram graph  and allow for some change in shapes 
 
 # Examples
 
-Some worked out examples of the analyses carried out with jamovi `r modulename` are posted here (more to come)
+Some worked out examples of the analyses carried out with jamovi `r modulename()` are posted here (more to come)
 
 `r include_examples()`
 

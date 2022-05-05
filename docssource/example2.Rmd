@@ -18,8 +18,12 @@ editor_options:
 ---
 
 ```{r echo=FALSE,results='hide'}
+library(mcdocs)
 source("../R/constants.R")
-source("../R/functions.R")
+
+```
+
+```{r echo=FALSE,results='hide'}
 data<-read.csv("../data/worland5.csv")
 ```
 
@@ -31,7 +35,7 @@ data<-read.csv("../data/worland5.csv")
 
 This example shows a simple structural equation model using a classical dataset from Bollen [@bollen1989]. This example can be found also in `lavaal` [website](https://lavaan.ugent.be/tutorial/sem.html), so the user can compare results and get information for `lavaan` tutorials.
 
-We show input for  `r modulename` _interactive sub-module_. For `r modulename` _syntax sub-module_ one just paste the `lavaan` syntax and gets the same results of the interactive module.
+We show input for  `r modulename()` _interactive sub-module_. For `r modulename()` _syntax sub-module_ one just paste the `lavaan` syntax and gets the same results of the interactive module.
 
 
 # Research data
@@ -64,7 +68,7 @@ In details, we have the variables role panels defined as follows:
 `r pic("pics/example2/input_model1_vars3.png")`
 `r pic("pics/example2/input_model1_vars4.png")`
 
-When we set the variables like we did, `r modulename` knows our model has three latent variables, two endogenuous and one exogenous, and it knows what are the indicators of each latent variable.
+When we set the variables like we did, `r modulename()` knows our model has three latent variables, two endogenuous and one exogenous, and it knows what are the indicators of each latent variable.
 
 We now need to specify the relationships between variables. `dem60` is predicted by `ind60`, and `dem65` is predicted by `ind60` and `dem60`. We declare that in the `r opt("Endogenous models")`.
 
@@ -117,7 +121,7 @@ Here we comment on the `r opt("Model tests")`: `r opt("User Model")` $\chi^2$ an
 
 This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests. 
 
-**(Technical)** If you want to check out the meaning of the _baseline model_, go to the `r modulename` _syntax submodule_ and estimate this model. The baseline model $\chi^2=731$ with 55 df. Re-estimate the model with all parameters set to zero (i.e `ind60 =~ 0*x1 + 0*x2 + 0*x3, dem60 =~ 0*y1 + 0*y2 + 0*y3 + 0*y4`) and so forth. The _user model_ $\chi^2$ will be 731 when you set all coefficients to zero.
+**(Technical)** If you want to check out the meaning of the _baseline model_, go to the `r modulename()` _syntax submodule_ and estimate this model. The baseline model $\chi^2=731$ with 55 df. Re-estimate the model with all parameters set to zero (i.e `ind60 =~ 0*x1 + 0*x2 + 0*x3, dem60 =~ 0*y1 + 0*y2 + 0*y3 + 0*y4`) and so forth. The _user model_ $\chi^2$ will be 731 when you set all coefficients to zero.
 
 
 ## Parameters Estimates
