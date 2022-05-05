@@ -16,6 +16,8 @@ editor_options:
 
 
 ```{r, echo=FALSE,results='asis', warning=FALSE,message=FALSE}
+library(mcdocs)
+get_current_commits()
 where<-"../"
 #where=""
 #source(paste0(where,"R/constants.R"))

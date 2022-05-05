@@ -3,6 +3,8 @@
 MODULE_NAME="SEMLj"
 MODULE_FOLDER="/home/marcello/Skinner/Forge/jamovi/semlj/semlj"
 ## where the source Rmd are, it is the forlder where _site.yaml is. 
+PROJECT_FOLDER="/home/marcello/Skinner/Forge/jamovi/semlj/semlj.github.io"
+## where the Rmd files will go.
 SOURCE_FOLDER="docssource"
 ## target forlder. Cannot be the root of the project
 STORE_FOLDER="docs"
