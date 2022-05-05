@@ -18,7 +18,7 @@ MODULE_EMAIL="mcfanda@gmail.com"
 # These handle the release notes from commits
 MODULE_REPO="semlj"
 MODULE_REPO_OWNER="semlj"
-FIRST_VERSION="Version.0.6.1"
+FIRST_VERSION="Version.0.0.0"
 BANNED_COMMITS=list("initialize","fix commits","remove some marks")
 BANNED_COMMITS_GREP=list("^#","^!","^Merge branch","spelling")
 
