@@ -17,6 +17,7 @@ editor_options:
 
 ```{r, echo=FALSE,results='asis', warning=FALSE,message=FALSE}
 library(mcdocs)
+mcdocs_init()
 write_commits(get_commits())
 
 ```

@@ -21,7 +21,7 @@ editor_options:
 
 ```{r echo=FALSE,results='hide'}
 library(mcdocs)
-source("../R/constants.R")
+mcdocs_init()
 ```
 
 `r keywords("semlj,jamovi,Structural Equation Model ,lavaan,path analysis")`
