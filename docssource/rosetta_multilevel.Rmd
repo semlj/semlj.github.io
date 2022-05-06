@@ -78,7 +78,7 @@ The variance of the intercepts can be found in the `Variances and Covariances` t
 
 People often like to center their level 1 variables and include cluster means as an additional predictor. This help  disentangling the within cluster effect and the between clusters effects. 
 
-This means that our independent variable _beer_ should be represented in the data with two variables. A cluster-centered version (_cbeer_) and a variabile which features the mean of the cluster the participant belongs to (_meanbear_).
+This means that our independent variable _beer_ should be represented in the data with two variables. A cluster-centered version (_cbeer_) and a variabile which features the mean of the cluster the participant belongs to (_meanbeer_).
 
 Here you can see the first rows of the data in which these new variables have been computed. The first three rows are participants from the same bar, so they share the same _meanbeer_ (1.667) and their _cbeer_ is the deviation _beer-meanbeer_. the same goes for the other participants.
 
