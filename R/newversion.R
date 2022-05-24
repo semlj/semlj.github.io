@@ -1,3 +1,4 @@
+#remotes::install_github("mcfanda/mcdocs")
 library(mcdocs)
 mcdocs_init()
 ## this renders the website
