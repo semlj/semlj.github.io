@@ -178,3 +178,13 @@ span.option {
 code {
   color: black;
 }
+
+.options {
+  border-collapse: separate;
+  border-spacing: 10px;
+  margin-bottom: 20px;
+
+}
+tr {
+  vertical-align: top;
+}
