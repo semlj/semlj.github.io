@@ -460,6 +460,41 @@ div.tocify {
 <p><img src=" pics/syntax/panel_model.png " class="img-responsive" alt=""></p>
 <p>The <span class="option">Estimation Method</span> allows choosing the right estimation method available for a model. The <span class="option">Automatic</span> option (default) lets <code>lavaan</code> choose the right method depending to the type of model one is estimating.</p>
 <p><span class="option">Constraints tests</span> computes the <span class="math inline">\(\chi^2\)</span> test for contrainted coefficients (if any). In case one has more than one contraints, each constraint is tested uniquely (if <span class="option">Univariate</span> is flagged) and in addition to the previous ones (if <span class="option">Cumulative</span> is flagged).</p>
+<p>Options are:</p>
+<table class="options">
+<tr>
+<td>
+<span class="option">Method</span>
+</td>
+<td>
+The estimator to be used (cf. lavaan R package). Can be one of the following: “ML” for maximum likelihood, “GLS” for (normal theory) generalized least squares, “WLS” for weighted least squares (sometimes called ADF estimation), “ULS” for unweighted least squares, “DWLS” for diagonally weighted least squares, and “DLS” for distributionally-weighted least squares. These are the main options that affect the estimation. For convenience, the “ML” option can be extended as “MLM,” “MLMV,” “MLMVS,” “MLF,” and “MLR.” The estimation will still be plain “ML,” but now with robust standard errors and a robust (scaled) test statistic. For “MLM,” “MLMV,” “MLMVS,” classic robust standard errors are used (se=“robust.sem”); for “MLF,” standard errors are based on first-order derivatives (information = “first.order”); for “MLR,” `Huber-White’ robust standard errors are used (se=“robust.huber.white”). In addition, “MLM” will compute a Satorra-Bentler scaled (mean adjusted) test statistic (test=“satorra.bentler”), “MLMVS” will compute a mean and variance adjusted test statistic (Satterthwaite style) (test=“mean.var.adjusted”), “MLMV” will compute a mean and variance adjusted test statistic (scaled and shifted) (test=“scaled.shifted”), and “MLR” will compute a test statistic which is asymptotically equivalent to the Yuan-Bentler T2-star test statistic (test=“yuan.bentler.mplus”). Analogously, the estimators “WLSM” and “WLSMV” imply the “DWLS” estimator (not the “WLS” estimator) with robust standard errors and a mean or mean and variance adjusted test statistic. Estimators “ULSM” and “ULSMV” imply the “ULS” estimator with robust standard errors and a mean or mean and variance adjusted test statistic.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">ML likelihood approach</span>
+</td>
+<td>
+Only relevant for ML estimation. If “Wishart,” the Wishart likelihood approach is used. In this approach, the covariance matrix has been divided by N-1, and both standard errors and test statistics are based on N-1. If “Normal” or “Automatic,” the normal likelihood approach is used. Here, the covariance matrix has been divided by N, and both standard errors and test statistics are based on N.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Univariate</span>
+</td>
+<td>
+Score test (or Lagrange Multiplier test) for fixed or constrained parameters in model.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Cumulative</span>
+</td>
+<td>
+Score test for all fixed or constrained parameters in model (overall test).
+</td>
+</tr>
+</table>
 </div>
 <div id="type-of-models" class="section level2">
 <h2>Type of models</h2>
@@ -470,12 +505,170 @@ div.tocify {
 <p><img src=" pics/syntax/panel_parameters.png " class="img-responsive" alt=""></p>
 <p>This panel offers many options to be passed to <code>lavaan</code> for specify parameters charateristics, such as how to compute their standard errors, their confidence intervals, or how to fix scales of latent variables.</p>
 <p>In addition, it offers the <span class="option">Indirect Effects</span> option which computes and estimate all possible indirect effects (from exogenous to endogenous variables) present in the model.</p>
+<p>The options are:</p>
+<table class="options">
+<tr>
+<td>
+<span class="option">Standard errors</span>
+</td>
+<td>
+Standard error method.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Bootstrap C.I</span>
+</td>
+<td>
+Choose the confidence interval type (“perc” - percentiles [default], “bca.simple” - adjusted bias-corrected, “norm” - normal, “basic” - basic).
+</td>
+</tr>
+<tr>
+<td>
+<span class="option"></span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), show confidence intervals
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Fix exogenous covariates</span>
+</td>
+<td>
+If <code>TRUE</code>, the exogenous covariates are considered fixed variables and the means, variances and covariances of these variables are fixed to their sample values. If <code>FALSE</code>, they are considered random, and the means, variances and covariances are free parameters. If “default,” the value is set depending on the mimic option.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Mean structure</span>
+</td>
+<td>
+If TRUE, the means of the observed variables enter the model. Required for calculating the intercepts of the estimates.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Observed variables</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), calculate intercepts for observed variables
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Latent variables</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), calculate intercepts for latent variables
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Indirect Effects</span>
+</td>
+<td>
+compute the indirect effect by finding all paths from exogenous to endogenous variables, and multiply the coefficients along the path.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Scale / stand. latent vars.</span>
+</td>
+<td>
+If <code>Fix first indicator</code> (default), the factor loading of the first indicator is set to 1.0 for every latent variable. If <code>Fix residual variances</code>, the metric of each latent variable is determined by fixing their (residual) variances to 1.0. If there are multiple groups, <code>Fix residual variances</code> is chosen and “loadings” is included in the group.label argument, then only the latent variances i of the first group will be fixed to 1.0, while the latent variances of other groups are set free.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Observed vars.: Standardize before estimation</span>
+</td>
+<td>
+If set, all observed variables are standardized before entering the analysis.
+</td>
+</tr>
+</table>
 </div>
 <div id="multi-group-analysis" class="section level2">
 <h2>Multi-group Analysis</h2>
 <p><img src=" pics/syntax/panel_multigroup.png " class="img-responsive" alt=""></p>
 <p>This panel allows for specifying a categorical variable (factor) defining groups of multi-group analysis. One simply writes the name of the factor variable in the <span class="option">Factor for multi-group analysis</span> field.</p>
 <p>Once a multi-group analysis is set, one can choose which parameter to fix as equal across groups.</p>
+<p>The options are:</p>
+<table class="options">
+<tr>
+<td>
+<span class="option">Loadings</span>
+</td>
+<td>
+constrain the factor loadings to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Intercepts</span>
+</td>
+<td>
+constrain the intercepts of the observed variables to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Means</span>
+</td>
+<td>
+constrain the intercepts / means of the latent variables to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Threshold</span>
+</td>
+<td>
+constrain the sample-based thresholds (means for continuous observed mvariables) to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Residuals</span>
+</td>
+<td>
+constrain the residual variances of the observed variables to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Residual covariances</span>
+</td>
+<td>
+constrain the residual covariances of the observed variables to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Regressions</span>
+</td>
+<td>
+constrain all regression coefficients in the model to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Latent variances</span>
+</td>
+<td>
+constrain the (residual) variances of the latent variables to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Latent covariances</span>
+</td>
+<td>
+constrain the (residual) covariances of the latent variables to be equal across groups (when conducting multi-group analyses)
+</td>
+</tr>
+</table>
 </div>
 <div id="multilevel-analysis" class="section level2">
 <h2>Multilevel Analysis</h2>
@@ -488,11 +681,201 @@ div.tocify {
 <p><img src=" pics/syntax/panel_output.png " class="img-responsive" alt=""></p>
 <p>This panel allows requesting all sort of additional information about the model results, such as the <span class="math inline">\(R^2\)</span>’s, the implied and residual variances and covariances, and the modification indexes.</p>
 <p>It is worth mentioning the option to save the predicted and residuals in the dataset. The <span class="option">Predicted</span> option saves, for each participant, the model based predicted values of the observed variables involved in the measurement of purely endogenous dependent variables. The predicted values computation is based on <span class="citation"><a href="#ref-predict" role="doc-biblioref">Rooij et al.</a> (<a href="#ref-predict" role="doc-biblioref">2022</a>)</span>, and the implementation is adpted from <a href="https://github.com/mjderooij/SEMpredict">github SEMpredict</a></p>
+<p>The other options are:</p>
+<table class="options">
+<tr>
+<td>
+<span class="option">Show parameters labels</span>
+</td>
+<td>
+show the labels of the parameters in the model
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Show syntax examples</span>
+</td>
+<td>
+show examples of the lavaan model syntax
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Additional fit measures</span>
+</td>
+<td>
+show additional fit measures (e.g., CFI, TLI, etc.)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Mardia’s coefficients</span>
+</td>
+<td>
+show Mardia’s coefficients for multivariate skewness and kurtosis
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Reliability indices</span>
+</td>
+<td>
+shows additional reliability indices
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">R-squared</span>
+</td>
+<td>
+compute R-squared for all endogenous variables (<code>Endogenous</code>) or for all variables in the model (<code>All</code>). <code>None</code> for no R-squared.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Observed</span>
+</td>
+<td>
+show the covariances and correlations between the observed values of the (manifest) variables
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Model-implied (fitted)</span>
+</td>
+<td>
+show the covariances and correlations between the model-implied / fitted values of the (manifest) variables
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Residual</span>
+</td>
+<td>
+show the covariances and correlations between the residuals of the (manifest) variables.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Combined into one table</span>
+</td>
+<td>
+combine the (up to) three covariance / correlation tables into one table (i.e., showing observed, model-implied and residual values for each variable combination underneath each other)
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Model-implied latent</span>
+</td>
+<td>
+show model-implied latent covariances
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Modification indices</span>
+</td>
+<td>
+show modification indices for if certain terms were removed from the model
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Hide low indices</span>
+</td>
+<td>
+hide modification indices below a certain threshold.
+</td>
+</tr>
+</table>
 </div>
 <div id="path-diagram" class="section level2">
 <h2>Path Diagram</h2>
 <p><img src=" pics/syntax/panel_diagram.png " class="img-responsive" alt=""></p>
 <p>This panel produces the path diagram graph and allow for some change in shapes and orientation of the diagram. The digram is produced using R <a href="http://sachaepskamp.com/semPlot">semPlot module</a>, see also <span class="citation">(<a href="#ref-semplot" role="doc-biblioref">Epskamp 2015</a>)</span></p>
+<p>The options are:</p>
+<table class="options">
+<tr>
+<td>
+<span class="option">Path diagram</span>
+</td>
+<td>
+produce a path diagram.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">show residuals</span>
+</td>
+<td>
+show the residuals (for the observed variables).
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">show intercepts</span>
+</td>
+<td>
+show the variable intercepts.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Paths Labels</span>
+</td>
+<td>
+Choose the values shown along the paths.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Type</span>
+</td>
+<td>
+Choose the layout of the path diagram: <code>Tree</code>, <code>Tree2</code>,<code>Circle</code>,<code>Circle2</code> , <code>Spring</code>).
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Rotate</span>
+</td>
+<td>
+Choose the rotation of the path diagram in terms of placement of the exog. variables.
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Node Size</span>
+</td>
+<td>
+Choose the node size for the variables (default: “medium”).
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Manifest shapes</span>
+</td>
+<td>
+Choose the shape for the manifest variables (default: “rectangle”).
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Latent shapes</span>
+</td>
+<td>
+Choose the shape for the latent variables (default: “circle”).
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Abbreviate</span>
+</td>
+<td>
+Choose the length (characters) of the variable name abbreviations (default: 5).
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div id="examples" class="section level1">
