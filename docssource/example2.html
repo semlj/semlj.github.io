@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="(Marcello Gallucci)" />
+
+
+<title>SEM: Political Democracy</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T6FJPHN9QT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2YGWBQCQK3');
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SEMLj</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="help.html">Help</a>
+</li>
+<li>
+  <a href="syntax.html">SEMLj Syntax</a>
+</li>
+<li>
+  <a href="gui.html">SEMLj GUI</a>
+</li>
+<li>
+  <a href="examples.html">Examples</a>
+</li>
+<li>
+  <a href="rosetta.html">Rosetta Store</a>
+</li>
+<li>
+  <a href="release_notes.html">Release Notes</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/semlj/semlj">View on Github</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">SEM: Political Democracy</h1>
+<h4 class="author">(Marcello Gallucci)</h4>
+
+</div>
+
+
+<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, structural equations model, lavaan </span></p>
+<p><span class="draft"> Draft version, mistakes may be around </span></p>
+<p>This example shows a simple structural equation model using a classical dataset from Bollen <span class="citation">(Bollen 1989)</span>. This example can be found also in <code>lavaal</code> <a href="https://lavaan.ugent.be/tutorial/sem.html">website</a>, so the user can compare results and get information for <code>lavaan</code> tutorials.</p>
+<p>We show input for <span class="modulename">SEMLj</span> <em>interactive sub-module</em>. For <span class="modulename">SEMLj</span> <em>syntax sub-module</em> one just paste the <code>lavaan</code> syntax and gets the same results of the interactive module.</p>
+<div id="research-data" class="section level1">
+<h1>Research data</h1>
+<p>The dataset contains various measures of political democracy and industrialization in developing countries. For what concerns us, observed variables <span class="math inline">\(y1\)</span> to <span class="math inline">\(y4\)</span> refer to democracy indicator in 1960, observed variables <span class="math inline">\(y5\)</span> to <span class="math inline">\(y8\)</span> refer to democracy indicator in 1965, whereas indicators <span class="math inline">\(x1\)</span> to <span class="math inline">\(x3\)</span> are indistrialization indicators in 1960.</p>
+<p>The model we want to estimate is basically a mediation model in which (latent) indistrialization level in 1960 influences (latent) democracy in 1960, which in turn influences (latent) democracy in 1965.</p>
+<p>The path diagram should be the following.</p>
+<p><img src=" pics/example2/output_model1_path.png " class="img-responsive" alt=""></p>
+<p>It is worth noticing that this model requires the latent relations we mentioned, and some correlations between observed variables. In particular, we want the following pairs of observed variables to be correlated: <span class="math inline">\(r(y1,y5)\)</span>, <span class="math inline">\(r(y2,y4)\)</span>, <span class="math inline">\(r(y2,y6)\)</span>, <span class="math inline">\(r(y3,y7)\)</span>,<span class="math inline">\(r(y4,y8)\)</span>, and <span class="math inline">\(r(y6,y8)\)</span>. Those are correlations among residuals of the observed variables, after removing their loadings on the latent variables. In factor analysis terms, the correlations among uniquenesses.</p>
+<p><img src=" pics/example2/input_model1_variances.png " class="img-responsive" alt=""></p>
+</div>
+<div id="model-input" class="section level1">
+<h1>Model Input</h1>
+<p>We need to define the three latent variables <code>ind60</code>, <code>dem60</code>, and <code>dem65</code>, each measured with the corresponding observed variables.</p>
+<p>For each latent variable, we define its name in place of “Endogenous 1,” “Endogenous 2” etc, and put the observed variables in the corresponding field.</p>
+<p><img src=" pics/example2/input_model1_vars.png " class="img-responsive" alt=""></p>
+<p>In details, we have the variables role panels defined as follows:</p>
+<p><img src=" pics/example2/input_model1_vars2.png " class="img-responsive" alt=""> <img src=" pics/example2/input_model1_vars3.png " class="img-responsive" alt=""> <img src=" pics/example2/input_model1_vars4.png " class="img-responsive" alt=""></p>
+<p>When we set the variables like we did, <span class="modulename">SEMLj</span> knows our model has three latent variables, two endogenuous and one exogenous, and it knows what are the indicators of each latent variable.</p>
+<p>We now need to specify the relationships between variables. <code>dem60</code> is predicted by <code>ind60</code>, and <code>dem65</code> is predicted by <code>ind60</code> and <code>dem60</code>. We declare that in the <span class="option">Endogenous models</span>.</p>
+<p><img src=" pics/example2/input_model1_model.png " class="img-responsive" alt=""></p>
+<p>If we run this model like this, we would obtain the following structural model.</p>
+<p><img src=" pics/example2/output_model1_path2.png " class="img-responsive" alt=""></p>
+<p>We can notice that this model, as compared with the intented model seen before, lacks the correlations between the observed variables. We can easily free them (meaning estimate them), in the <span class="option">Variances and covariances</span> panel. We select the pairs of variables we wants to be correlated.</p>
+<p><img src=" pics/example2/input_model1_variances.png " class="img-responsive" alt=""></p>
+<p>Because we want to see the path diagram of the model, we ask for the path diagram in the <span class="option">Path Diagram</span> panel.</p>
+<p><img src=" pics/example1/input_model1_diagram.png " class="img-responsive" alt=""></p>
+<div id="output" class="section level2">
+<h2>Output</h2>
+</div>
+<div id="path-diagram" class="section level2">
+<h2>Path diagram</h2>
+<p>We check the path diagram to be sure we set the model as we intended, and we did.</p>
+<p><img src=" pics/example2/output_model1_path3.png " class="img-responsive" alt=""></p>
+<p>For now on, we discuss the output tables in the order they appear in the output.</p>
+</div>
+<div id="model-info" class="section level2">
+<h2>Model info</h2>
+<p>Here we find general informations about the model.</p>
+<p><img src=" pics/example2/output_model1_modelinfo.png " class="img-responsive" alt=""></p>
+<p>We can see that we have 75 observations, 42 free (estimated) parameters (including the intercepts), and that the model converged. We find the model likelihood for the user model and the unrestricted one, and the syntax we input (better check it’s right). The likelihood computations are usefull for advanced models comparisons, we can ignore them in this example.</p>
+</div>
+<div id="overall-tests" class="section level2">
+<h2>Overall Tests</h2>
+<p>Here we find inferential tests regarding the whole model.</p>
+<p><img src=" pics/example2/output_model1_overalltests.png " class="img-responsive" alt=""></p>
+<p>To interpret the <span class="option">Fit indices</span> table, I’d suggest to use <a href="http://davidakenny.net/webinars/listpp.htm#Fit">David Kenny website</a> that has clear and detailed information, and the <code>lavaal</code> <a href="https://lavaan.ugent.be/tutorial/sem.html">website</a>.</p>
+<p>Here we comment on the <span class="option">Model tests</span>: <span class="option">User Model</span> <span class="math inline">\(\chi^2\)</span> and <span class="option">Baseline Model</span> <span class="math inline">\(\chi^2\)</span> have very different interpretations. The smaller the first test, the better is our the model, the largest the second, the more relationships are in the data.</p>
+<ul>
+<li><p><span class="option">User Model</span> <span class="math inline">\(\chi^2\)</span> tests the null-hypothesis that our model is equivalent to a fully-saturated model (all possible paths are estimated). Recall that if we do not estimate a path (or a loading, or a residual correlation), we are setting it to zero. Thus, this test is basically an overall test of significance of the paths we set to zero. Are some of the paths we did not estimate (set to zero) different from zero? If the <span class="math inline">\(\chi^2\)</span> is significant, at least some of them do not appear to be zero. Sample size, howevwer, may influence this test, so see <a href="http://www.davidakenny.net/cm/fit.htm">David Kenny comments</a> on this issue. Technically, the test tests the null-hypothesis that the covariances among observed variables implied by the model are equal to the observed covariances. This means: a large <span class="math inline">\(\chi^2\)</span> (small p-value) indicates a mis-fit.</p></li>
+<li><p><span class="option">Baseline Model</span> <span class="math inline">\(\chi^2\)</span> tests the null-hypothesis that there are not relationships between each endogenous variable and any other variable in the model. Thus, this test is basically an overall test of significance that something is correlated among variables. Technically, the test tests the null-hypothesis that all paths specified or implied by the model are zero. This means: a larger <span class="math inline">\(\chi^2\)</span> (small p-value) indicates more relationships to capture.</p></li>
+</ul>
+<p>This reasoning may get more complicated by means and intercepts, but in our model they are free to be estimated, so they do not participate in the model fit tests.</p>
+<p><strong>(Technical)</strong> If you want to check out the meaning of the <em>baseline model</em>, go to the <span class="modulename">SEMLj</span> <em>syntax submodule</em> and estimate this model. The baseline model <span class="math inline">\(\chi^2=731\)</span> with 55 df. Re-estimate the model with all parameters set to zero (i.e <code>ind60 =~ 0*x1 + 0*x2 + 0*x3, dem60 =~ 0*y1 + 0*y2 + 0*y3 + 0*y4</code>) and so forth. The <em>user model</em> <span class="math inline">\(\chi^2\)</span> will be 731 when you set all coefficients to zero.</p>
+</div>
+<div id="parameters-estimates" class="section level2">
+<h2>Parameters Estimates</h2>
+<p><img src=" pics/example2/output_model1_parameters.png " class="img-responsive" alt=""></p>
+<p>The <span class="option">Parameters Estimates</span> table reports the regression coefficients linking the latent variables. The <em>Estimate</em> column reports the coefficients, the <span class="math inline">\(\beta\)</span> column reports the standardized coefficients.</p>
+</div>
+<div id="measurement-model" class="section level2">
+<h2>Measurement Model</h2>
+<p><img src=" pics/example2/output_model1_measurement.png " class="img-responsive" alt=""></p>
+<p>Here we can see the factor loading of each indicator to its latent variable. We can appreciate that the scale of the latent variables is set to the scale of the first indicator (<em>Estimate</em>=1). This is the default method to set the scale of the latent variables, and can be changed in the <span class="option">Parameters Options</span> tab, fixing to 1 the residual variance of the latent variables.</p>
+</div>
+<div id="variances" class="section level2">
+<h2>Variances</h2>
+<p><img src=" pics/example2/output_model1_variances.png " class="img-responsive" alt=""></p>
+<p>Here we can find the variances and covariances of the indicators and the latent variables.</p>
+</div>
+<div id="additional-output" class="section level2">
+<h2>Additional Output</h2>
+<p>In case more information about the model is required, the <span class="option">Output options</span> provides options for that. There we select <span class="option">R-squared</span> <span class="option">Endogenous</span> to get the <span class="math inline">\(R^2\)</span> of the model, as shown in the figure.</p>
+<p><img src=" pics/example2/output_model1_r2.png " class="img-responsive" alt=""></p>
+</div>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
+<ul>
+<li>
+<a href="example1.html">Simple models</a>
+</li>
+<li>
+<a href="example2.html">SEM: Political Democracy</a>
+</li>
+<li>
+<a href="example3.html">Ordinal observed variables</a>
+</li>
+<li>
+<a href="example4.html">Multigroup multilevel models</a>
+</li>
+<li>
+<a href="example5.html">Second order mediation analysis</a>
+</li>
+</ul>
+<ul>
+</ul>
+<h1>
+Comments?
+</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+</div>
+<div id="additional-references" class="section level1 unnumbered">
+<h1 class="unnumbered">Additional references</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bollen1989" class="csl-entry">
+Bollen, Kenneth A. 1989. <em>Structural Equations with Latent Variables</em>. Vol. 210. John Wiley &amp; Sons.
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

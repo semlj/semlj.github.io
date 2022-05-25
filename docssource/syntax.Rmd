@@ -131,6 +131,11 @@ The `r opt("Estimation Method")` allows choosing the right estimation method ava
 
 `r opt("Constraints tests")` computes the $\chi^2$ test for contrainted coefficients (if any). In case one has more than one contraints, each constraint is tested uniquely (if `r opt("Univariate")` is flagged) and in addition to the previous ones (if `r opt("Cumulative")` is flagged).
 
+Options are:
+
+`r panel_options("semljgui","panel_modeloptions")`
+
+
 ## Type of models
 
 Users familiar with `lavaan` or with lavaan documentations may want to distinguish between different types of models, namely, `cfa` (confirmatory factor analysis), `sem` (structural equation models) and `growth` (individual growth models). These models enjoy the same underlying estimation procedure, but they are different in the options passed to `lavaan`. In `r modulename()`, one can obtain the same results as `sem` and `cfa` setup using the default options settings (unless you know you need some change). For `growth` model type, one needs to set `r opt("Intercepts->Observed variables")` to false (unselect it), and `r opt("Intercepts->Latent variables")` to true (select it) in the `r opt("Parameters Options")` panel, and you're a happy camper. 
@@ -143,6 +148,11 @@ This panel offers many options to be passed to `lavaan` for specify parameters c
 
 In addition, it offers the `r opt("Indirect Effects")` option which computes and estimate all possible indirect effects (from exogenous to endogenous variables) present in the model.
 
+The options are:
+
+`r panel_options("semljgui","parameters_options")`
+
+
 ## Multi-group Analysis 
 
 `r pic("pics/syntax/panel_multigroup.png")`
@@ -150,6 +160,11 @@ In addition, it offers the `r opt("Indirect Effects")` option which computes and
 This panel allows for specifying a categorical variable (factor) defining groups of multi-group analysis. One simply writes the name of the factor variable in the `r opt("Factor for multi-group analysis")` field.
 
 Once a multi-group analysis is set, one can choose which parameter to fix as equal across groups.
+
+The options are:
+
+`r panel_options("semljgui","panel_multigroup")`
+
 
 ## Multilevel Analysis 
 
@@ -167,6 +182,10 @@ This panel allows requesting all sort of additional information about the model 
 
 It is worth mentioning the option to save the predicted and residuals in the dataset. The `r opt("Predicted")` option saves, for each participant, the model based predicted values of the observed variables involved in the measurement of purely endogenous dependent variables. The predicted values computation is based on @predict, and the implementation is adpted from [github SEMpredict](https://github.com/mjderooij/SEMpredict) 
 
+The other options are:
+
+`r panel_options("semljgui","output_options")`
+
 
 
 ## Path Diagram
@@ -174,6 +193,11 @@ It is worth mentioning the option to save the predicted and residuals in the dat
 `r pic("pics/syntax/panel_diagram.png")`
 
 This panel produces the path diagram graph  and allow for some change in shapes and orientation of the diagram. The digram is produced using R [semPlot module](http://sachaepskamp.com/semPlot), see also [@semplot]
+
+The options are:
+
+`r panel_options("semljgui","panel_pathdiagram")`
+
 
 # Examples
 

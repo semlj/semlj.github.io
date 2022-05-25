@@ -109,8 +109,6 @@ Syntax examples can be seen by selecting  `r opt("Show syntax examples")` in the
 `r pic("pics/gui/output_examples.png")`
 
 
-
-
 ## Model Options
 
 `r pic("pics/syntax/panel_model.png")`
