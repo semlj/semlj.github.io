@@ -21,6 +21,7 @@ link-citations: true
 ```{r echo=FALSE,results='hide'}
 library(mcdocs)
 mcdocs_init()
+
 ```
 
 `r keywords("semlj,jamovi, lavaan, SEM")`
@@ -133,7 +134,7 @@ The `r opt("Estimation Method")` allows choosing the right estimation method ava
 
 Options are:
 
-`r panel_options("semljgui","panel_modeloptions")`
+`r panel_options("semljgui","model_options")`
 
 
 ## Type of models
@@ -163,7 +164,7 @@ Once a multi-group analysis is set, one can choose which parameter to fix as equ
 
 The options are:
 
-`r panel_options("semljgui","panel_multigroup")`
+`r panel_options("semljgui","multigroup_options")`
 
 
 ## Multilevel Analysis 
@@ -186,7 +187,11 @@ The other options are:
 
 `r panel_options("semljgui","output_options")`
 
+As regards predicted values, there are three possible types of predicted values that can be saved to the datasheet.
 
+`r format_outputs("semljgui")`
+
+The name of the new variables saved in the datasheet are indicated in a footnote of the `Info Table`.
 
 ## Path Diagram
 
@@ -196,7 +201,7 @@ This panel produces the path diagram graph  and allow for some change in shapes 
 
 The options are:
 
-`r panel_options("semljgui","panel_pathdiagram")`
+`r panel_options("semljgui","pathdiagram_options")`
 
 
 # Examples

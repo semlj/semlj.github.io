@@ -160,7 +160,12 @@ Multilevel models are not available in the GUI version of `r modulename()`. To e
 
 This panel allows requesting all sort of additional information about the model results, such as the $R^2$'s, the implied and residual variances and covariances, and the modification indexes.
 
-It is worth mentioning the option to save the predicted and residuals in the dataset. The `r opt("Predicted")` option saves, for each participant, the model based predicted values of the observed variables involved in the measurement of purely endogenous dependent variables. The predicted values computation is based on @predict, and the implementation is adpted from [github SEMpredict](https://github.com/mjderooij/SEMpredict)
+As regards predicted values, there are three possible types of predicted values that can be saved to the datasheet.
+
+`r format_outputs("semljgui")`
+
+The name of the new variables saved in the datasheet are indicated in a footnote of the `Info Table`.
+
 
 The options are:
 
