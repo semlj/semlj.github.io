@@ -376,24 +376,53 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, second order factor analysis, mediation, lavaan, SEMLj, jamovi </span></p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.7.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<p>In this example we show how to estimate a second order factor analysis and mediation among second order latent variables in <span class="modulename">SEMLj</span>.</p>
-<p>We show input of <span class="modulename">SEMLj</span> <em>syntax sub-module</em> and <em>interactive sub-module</em>, with particular focus on the latter one. We focus more on the setup of the model (how to run it) and less on the interpretation of the results, as we think that when you have run such a model, you know how to interpret it.</p>
-<p>Much of the output that <span class="modulename">SEMLj</span> produces is labeled as it is in lavaan R package output, so lots of information can be found in <a href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and tutorials</a>.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM,
+second order factor analysis, mediation, lavaan, SEMLj, jamovi
+</span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥
+</span> 0.7.0 </span> <span class="draft"> Draft version, mistakes may
+be around </span></p>
+<p>In this example we show how to estimate a second order factor
+analysis and mediation among second order latent variables in <span
+class="modulename">SEMLj</span>.</p>
+<p>We show input of <span class="modulename">SEMLj</span> <em>syntax
+sub-module</em> and <em>interactive sub-module</em>, with particular
+focus on the latter one. We focus more on the setup of the model (how to
+run it) and less on the interpretation of the results, as we think that
+when you have run such a model, you know how to interpret it.</p>
+<p>Much of the output that <span class="modulename">SEMLj</span>
+produces is labeled as it is in lavaan R package output, so lots of
+information can be found in <a
+href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and
+tutorials</a>.</p>
 <div id="the-data" class="section level1">
 <h1>The data</h1>
-<p>For this example we are going to use the <code>secondorder</code> dataset present in <span class="jamovi">jamovi</span> data library after installing <span class="modulename">SEMLj</span>. The data are generated to feature 27 observed variables for 200 cases.</p>
+<p>For this example we are going to use the <code>secondorder</code>
+dataset present in <span class="jamovi">jamovi</span> data library after
+installing <span class="modulename">SEMLj</span>. The data are generated
+to feature 27 observed variables for 200 cases.</p>
 </div>
 <div id="the-model" class="section level1">
 <h1>The model</h1>
-<p>Assume we have three latent variables, <code>bigX</code>, <code>bigM</code> and <code>bigY</code>, such that <code>bigX</code> predicts <code>bigY</code>, and its effect is mediated by <code>bigM</code>, which functions as a mediator. Assume that each of these latent variables is measured by three facets, <code>fx1</code>,<code>fx2</code> and<code>fx3</code> for <code>bigX</code>, <code>fy1</code>,<code>fy2</code> and<code>fy3</code> for <code>bigY</code>, and <code>fm1</code>,<code>fm2</code> and<code>fm3</code> for <code>bigM</code>. Each facet, in turn, is measured by three observed variables, named <code>x[i][j]</code>,<code>y[i][j]</code>, and <code>m[i][j]</code> where <em>i</em> is the facet, <em>j</em> is the item indices.</p>
+<p>Assume we have three latent variables, <code>bigX</code>,
+<code>bigM</code> and <code>bigY</code>, such that <code>bigX</code>
+predicts <code>bigY</code>, and its effect is mediated by
+<code>bigM</code>, which functions as a mediator. Assume that each of
+these latent variables is measured by three facets,
+<code>fx1</code>,<code>fx2</code> and<code>fx3</code> for
+<code>bigX</code>, <code>fy1</code>,<code>fy2</code> and<code>fy3</code>
+for <code>bigY</code>, and <code>fm1</code>,<code>fm2</code>
+and<code>fm3</code> for <code>bigM</code>. Each facet, in turn, is
+measured by three observed variables, named
+<code>x[i][j]</code>,<code>y[i][j]</code>, and <code>m[i][j]</code>
+where <em>i</em> is the facet, <em>j</em> is the item indices.</p>
 <p>Basically, we want to estimate the following model:</p>
 <p><img src=" pics/example5/model.png " class="img-responsive" alt=""></p>
 </div>
 <div id="syntax" class="section level1">
 <h1>Syntax</h1>
-<p>Let’s start with the syntax. First, we want to define the nine facets in terms of their indicators</p>
+<p>Let’s start with the syntax. First, we want to define the nine facets
+in terms of their indicators</p>
 <pre class="r"><code>fx1=~x11+x12+x13
 fx2=~x21+x22+x23
 fx3=~x31+x32+x33
@@ -405,21 +434,27 @@ fm3=~m31+m32+m33
 fy1=~y11+y12+y13
 fy2=~y21+y22+y23
 fy3=~y31+y32+y33</code></pre>
-<p>and then, we want to define the three second order latent variables as measured by the corresponding facets.</p>
+<p>and then, we want to define the three second order latent variables
+as measured by the corresponding facets.</p>
 <pre class="r"><code>bigx=~fx1+fx2+fx3
 bigm=~fm1+fm2+fm3
 bigy=~fy1+fy2+fy3</code></pre>
-<p>We can now add the regression model among the second order latent variables:</p>
+<p>We can now add the regression model among the second order latent
+variables:</p>
 <pre class="r"><code>bigm~bigx
 bigy~bigm+bigx</code></pre>
-<p>Putting all together in the <span class="modulename">SEMLj</span> <em>syntax sub-module</em>, we run this:</p>
+<p>Putting all together in the <span class="modulename">SEMLj</span>
+<em>syntax sub-module</em>, we run this:</p>
 <p><img src=" pics/example5/input_syn_model1.png " class="img-responsive" alt=""></p>
 </div>
 <div id="interactive-gui" class="section level1">
 <h1>Interactive (GUI)</h1>
 <div id="facets" class="section level2">
 <h2>Facets</h2>
-<p>For the interactive module, we start setting each facet as an exogenous latent variable (notice that setting them as endogenous would give exactly the same results). For <code>fx1</code> and <code>fx2</code> we proceed as follows:</p>
+<p>For the interactive module, we start setting each facet as an
+exogenous latent variable (notice that setting them as endogenous would
+give exactly the same results). For <code>fx1</code> and
+<code>fx2</code> we proceed as follows:</p>
 <p><img src=" pics/example5/input_gui_fx1.png " class="img-responsive" alt=""></p>
 <p>and we keep defining the facets with their indicators</p>
 <p><img src=" pics/example5/input_gui_fy3.png " class="img-responsive" alt=""></p>
@@ -427,76 +462,135 @@ bigy~bigm+bigx</code></pre>
 </div>
 <div id="second-order-factors" class="section level2">
 <h2>Second order factors</h2>
-<p>We now open the <span class="option">Second Order Factors</span> panel.</p>
+<p>We now open the <span class="option">Second Order Factors</span>
+panel.</p>
 <p><img src=" pics/example5/input_gui_so1.png " class="img-responsive" alt=""></p>
-<p>On the left we find the latent facets we have defined before. We change the name <code>Factor 1</code> into a name that suits us, like <code>bigX</code>, and define the indicator of the second order factor.</p>
+<p>On the left we find the latent facets we have defined before. We
+change the name <code>Factor 1</code> into a name that suits us, like
+<code>bigX</code>, and define the indicator of the second order
+factor.</p>
 <p><img src=" pics/example5/input_gui_so2.png " class="img-responsive" alt=""></p>
-<p>By pressing <code>Add New Latent</code> we can repeat the operation for the other two second order factors.</p>
+<p>By pressing <code>Add New Latent</code> we can repeat the operation
+for the other two second order factors.</p>
 <p><img src=" pics/example5/input_gui_so3.png " class="img-responsive" alt=""></p>
-<p>Please notice that as soon as you define a new second order factor, it appears also in the input field on the left. This allows for defining third, fourth etc. order factors. We do not need this now, but it is good to know that’s possible.</p>
+<p>Please notice that as soon as you define a new second order factor,
+it appears also in the input field on the left. This allows for defining
+third, fourth etc. order factors. We do not need this now, but it is
+good to know that’s possible.</p>
 </div>
 <div id="regression-model" class="section level2">
 <h2>Regression model</h2>
-<p>We can now open the <span class="option">Endogenous models</span> panel to define the structural relationships among the second order factors.</p>
+<p>We can now open the <span class="option">Endogenous models</span>
+panel to define the structural relationships among the second order
+factors.</p>
 <p><img src=" pics/example5/input_gui_regression1.png " class="img-responsive" alt=""></p>
-<p>The software already set up one slot for each latent factor. This means that we are free to decide which factor is exogenous (it will have no predictors) and which is endogenous (it will have at least one predictor). We only need to specify which factor predicts the other.</p>
-<p>According to our theoretical model, we set the mediation as follows:</p>
+<p>The software already set up one slot for each latent factor. This
+means that we are free to decide which factor is exogenous (it will have
+no predictors) and which is endogenous (it will have at least one
+predictor). We only need to specify which factor predicts the other.</p>
+<p>According to our theoretical model, we set the mediation as
+follows:</p>
 <p><img src=" pics/example5/input_gui_regression2.png " class="img-responsive" alt=""></p>
 <p>And we have done. The model is estimated.</p>
 </div>
 </div>
 <div id="output" class="section level1">
 <h1>Output</h1>
-<p>As soon as we set the input, we obtain the whole set of results tables. We do not go through the results in detail, but it is interesting to see the basic results</p>
+<p>As soon as we set the input, we obtain the whole set of results
+tables. We do not go through the results in detail, but it is
+interesting to see the basic results</p>
 <p><img src=" pics/example5/output_info1.png " class="img-responsive" alt=""></p>
-<p>The info table gives some detail about the estimation, and lists the syntax resulting from our setup in the interactive input panel. We can notice that the resulting syntax is identical to the one we used before in the <em>syntax sub-module</em>, so we can rest assured that the results are going to be the same.</p>
+<p>The info table gives some detail about the estimation, and lists the
+syntax resulting from our setup in the interactive input panel. We can
+notice that the resulting syntax is identical to the one we used before
+in the <em>syntax sub-module</em>, so we can rest assured that the
+results are going to be the same.</p>
 <p><img src=" pics/example5/output_measure1.png " class="img-responsive" alt=""></p>
-<p>The measurement model table indicates the associations between the observed variables and the facets, and then the associations between facets and second order factors. Factor loadings are all quite large, thus the model makes sense in terms of measures.</p>
+<p>The measurement model table indicates the associations between the
+observed variables and the facets, and then the associations between
+facets and second order factors. Factor loadings are all quite large,
+thus the model makes sense in terms of measures.</p>
 <p>We can also ask for the reliability of the first order factors</p>
-<p><img src=" pics/example5/input_options1.png " class="img-responsive" alt=""> <img src=" pics/example5/output_reliability1.png " class="img-responsive" alt=""></p>
-<p>and check they have all a pretty good alpha and omega. At the moment, reliability is not available for second order factors (we’ll see how to improve this in future versions).</p>
+<p><img src=" pics/example5/input_options1.png " class="img-responsive" alt="">
+<img src=" pics/example5/output_reliability1.png " class="img-responsive" alt=""></p>
+<p>and check they have all a pretty good alpha and omega. At the moment,
+reliability is not available for second order factors (we’ll see how to
+improve this in future versions).</p>
 <p>The other interesting table is the regression coefficients table.</p>
 <p><img src=" pics/example5/output_regression1.png " class="img-responsive" alt=""></p>
-<p>We can see that <code>bigX</code> has a positive and significant effect on <code>bigM</code>, which in turn has an effect on <code>bigY</code>. So, mediation is warranted.</p>
+<p>We can see that <code>bigX</code> has a positive and significant
+effect on <code>bigM</code>, which in turn has an effect on
+<code>bigY</code>. So, mediation is warranted.</p>
 </div>
 <div id="mediated-effect" class="section level1">
 <h1>Mediated effect</h1>
-<p>But what about the mediated effect? Well, that can be asked in the <span class="option">Parameters Options</span> panel by selecting <span class="option">Indirect Effects</span>.</p>
+<p>But what about the mediated effect? Well, that can be asked in the
+<span class="option">Parameters Options</span> panel by selecting <span
+class="option">Indirect Effects</span>.</p>
 <p><img src=" pics/example5/input_options2.png " class="img-responsive" alt=""></p>
 <p>The results are straightforward</p>
 <p><img src=" pics/example5/output_indirect1.png " class="img-responsive" alt=""></p>
-<p>The mediated effect amounts to 1.992, corresponding to .513 in the standardized scale.</p>
-<p>The same result can be obtained by specifying new parameters in the <span class="option">Custom model settings</span>. Let’s try: First, we ask for the parameters labels, so we can refer to the coefficients with their labels.</p>
+<p>The mediated effect amounts to 1.992, corresponding to .513 in the
+standardized scale.</p>
+<p>The same result can be obtained by specifying new parameters in the
+<span class="option">Custom model settings</span>. Let’s try: First, we
+ask for the parameters labels, so we can refer to the coefficients with
+their labels.</p>
 <p><img src=" pics/example5/input_options3.png " class="img-responsive" alt=""></p>
-<p>Then we look up in the regression table the labels of the coefficients we need</p>
+<p>Then we look up in the regression table the labels of the
+coefficients we need</p>
 <p><img src=" pics/example5/output_regression2.png " class="img-responsive" alt=""></p>
-<p>We want to multiply bigX-&gt;bigM, <code>p37</code>, with bigM-&gt;bigY, so <code>p38</code>. In addition, we add <code>p39</code> to the mediated effect so we get also the total effect.</p>
-<p>In the <span class="option">Custom model settings</span>, we preceed in defining the mediated effect (ME), the total effect (TOT), and since I’m lazy, I ask to compute also the proportion of mediated effect (pME), rather than using a hand calculator:</p>
+<p>We want to multiply bigX-&gt;bigM, <code>p37</code>, with
+bigM-&gt;bigY, so <code>p38</code>. In addition, we add <code>p39</code>
+to the mediated effect so we get also the total effect.</p>
+<p>In the <span class="option">Custom model settings</span>, we preceed
+in defining the mediated effect (ME), the total effect (TOT), and since
+I’m lazy, I ask to compute also the proportion of mediated effect (pME),
+rather than using a hand calculator:</p>
 <p><img src=" pics/example5/input_dp1.png " class="img-responsive" alt=""></p>
-<p>As expected, the results are the same as the ones obtained with the indirect effects option.</p>
+<p>As expected, the results are the same as the ones obtained with the
+indirect effects option.</p>
 <p><img src=" pics/example5/output_indirect2.png " class="img-responsive" alt=""></p>
 </div>
 <div id="path-diagram" class="section level1">
 <h1>PATH Diagram</h1>
-<p>If you ask for a path diagram of this model, you get a pretty ugly picture. Default settings, in fact, are not optimal for second order factors models. A better view of the model can be achieved by selecting <span class="option">Spring</span> in the layout options.</p>
+<p>If you ask for a path diagram of this model, you get a pretty ugly
+picture. Default settings, in fact, are not optimal for second order
+factors models. A better view of the model can be achieved by selecting
+<span class="option">Spring</span> in the layout options.</p>
 <p><img src=" pics/example5/input_diag1.png " class="img-responsive" alt=""></p>
-<p>The diagram is no <em>Mona Lisa</em>, but at least you see the model and can check that everything is as intended.</p>
+<p>The diagram is no <em>Mona Lisa</em>, but at least you see the model
+and can check that everything is as intended.</p>
 <p><img src=" pics/example5/output_diag1.png " class="img-responsive" alt=""></p>
-<p>In future versions we will try to embellish the diagram for this type of models.</p>
+<p>In future versions we will try to embellish the diagram for this type
+of models.</p>
 </div>
 <div id="alternative-models" class="section level1">
 <h1>Alternative models</h1>
-<p>Let now assume that our mediation model has only one second order factor, the mediator, whereas the exogenous factor (<code>bigX</code>) and the endogenous factor (<code>bigY</code>) are first order latent variables. Say we want to estimate the following model:</p>
+<p>Let now assume that our mediation model has only one second order
+factor, the mediator, whereas the exogenous factor (<code>bigX</code>)
+and the endogenous factor (<code>bigY</code>) are first order latent
+variables. Say we want to estimate the following model:</p>
 <p><img src=" pics/example5/model2.png " class="img-responsive" alt=""></p>
-<p>As regards the definition of <code>bigM</code>, nothing changes. We defined the three facets, <code>fm1</code>, <code>fm2</code> and <code>fm3</code>, and then a second order factor in the <code>Second Order Factors</code> panel, as we did before.</p>
+<p>As regards the definition of <code>bigM</code>, nothing changes. We
+defined the three facets, <code>fm1</code>, <code>fm2</code> and
+<code>fm3</code>, and then a second order factor in the
+<code>Second Order Factors</code> panel, as we did before.</p>
 <p><img src=" pics/example5/input_model2_second1.png " class="img-responsive" alt=""></p>
-<p>As regards the definition of <code>bigX</code>, it will now be defined in the input variables field, because it represents an exogenous latent variable.</p>
+<p>As regards the definition of <code>bigX</code>, it will now be
+defined in the input variables field, because it represents an exogenous
+latent variable.</p>
 <p><img src=" pics/example5/input_model2_exo1.png " class="img-responsive" alt=""></p>
-<p>As regards the definition of <code>bigY</code>, it will now be defined in the input variables field, but as an endogenous latent variable. This is because we later need it to be predicted by the other latent variables.</p>
+<p>As regards the definition of <code>bigY</code>, it will now be
+defined in the input variables field, but as an endogenous latent
+variable. This is because we later need it to be predicted by the other
+latent variables.</p>
 <p><img src=" pics/example5/input_model2_endo1.png " class="img-responsive" alt=""></p>
-<p>We then go to the <span class="option">Endogenous models</span> and fill in the regressions as before.</p>
+<p>We then go to the <span class="option">Endogenous models</span> and
+fill in the regressions as before.</p>
 <p><img src=" pics/example5/input_model2_regression1.png " class="img-responsive" alt=""></p>
-<p>We have set up a model with two latent variables and one second order mediator factor.</p>
+<p>We have set up a model with two latent variables and one second order
+mediator factor.</p>
 <p><img src=" pics/example5/output_diag2.png " class="img-responsive" alt=""></p>
 </div>
 <div id="related-examples" class="section level1">
@@ -522,7 +616,9 @@ bigy~bigm+bigx</code></pre>
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 </div>
 
