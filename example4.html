@@ -376,23 +376,54 @@ div.tocify {
 </div>
 
 
-<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM, multilevel, multigroup, lavaan, SEMLj, jamovi </span></p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥ </span> 0.8.0 </span> <span class="draft"> Draft version, mistakes may be around </span></p>
-<p>In this example we show how to estimate a multilevel, multigroup path analysis using <span class="modulename">SEMLj</span>.</p>
-<p>We show input of <span class="modulename">SEMLj</span> <em>syntax sub-module</em>, because multilevel models can be run in <span class="modulename">SEMLj</span> only in the syntax sub-module.</p>
-<p>Much of the output that <span class="modulename">SEMLj</span> produces is labeled as it is in lavaan R package output, so lots of information can be found in <a href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and tutorials</a>.</p>
-<p>Obviously, one can run the models discussed here directly in R using <code>lavaan</code> package, if <span class="jamovi">jamovi</span> is not the software one is using at the moment.</p>
+<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM,
+multilevel, multigroup, lavaan, SEMLj, jamovi </span></p>
+<p><span class="version"> <span class="versiontitle"> SEMLj version ≥
+</span> 0.8.0 </span> <span class="draft"> Draft version, mistakes may
+be around </span></p>
+<p>In this example we show how to estimate a multilevel, multigroup path
+analysis using <span class="modulename">SEMLj</span>.</p>
+<p>We show input of <span class="modulename">SEMLj</span> <em>syntax
+sub-module</em>, because multilevel models can be run in <span
+class="modulename">SEMLj</span> only in the syntax sub-module.</p>
+<p>Much of the output that <span class="modulename">SEMLj</span>
+produces is labeled as it is in lavaan R package output, so lots of
+information can be found in <a
+href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and
+tutorials</a>.</p>
+<p>Obviously, one can run the models discussed here directly in R using
+<code>lavaan</code> package, if <span class="jamovi">jamovi</span> is
+not the software one is using at the moment.</p>
 <div id="the-data" class="section level1">
 <h1>The data</h1>
-<p>For this example we are going to use the <code>Demo.twolevel</code> dataset present in <code>lavaan</code> R package, which is useful for estimating a multilevel model, with a small modification. The dataset contains 200 clusters, within each 6 items (y1-y2) and 3 continuous variables (x1-x3) are measured. Across clusters (between level) two covariates (w1 and w2) are measured .</p>
-<p>We now imagine that the 200 clusters are evenly divided in two groups, <code>g1</code> and <code>g2</code>. Had this dataset been based on a survey in 200 school classes, for instance, one can imagine that 100 classes came from one state (<code>g1</code>) and the other 100 from another state. We created the <code>group</code> variable on the spot for the sake of this exercise.</p>
+<p>For this example we are going to use the <code>Demo.twolevel</code>
+dataset present in <code>lavaan</code> R package, which is useful for
+estimating a multilevel model, with a small modification. The dataset
+contains 200 clusters, within each 6 items (y1-y2) and 3 continuous
+variables (x1-x3) are measured. Across clusters (between level) two
+covariates (w1 and w2) are measured .</p>
+<p>We now imagine that the 200 clusters are evenly divided in two
+groups, <code>g1</code> and <code>g2</code>. Had this dataset been based
+on a survey in 200 school classes, for instance, one can imagine that
+100 classes came from one state (<code>g1</code>) and the other 100 from
+another state. We created the <code>group</code> variable on the spot
+for the sake of this exercise.</p>
 <p><img src=" pics/example4/input_data1.png " class="img-responsive" alt=""></p>
-<p>We want to estimate the multilevel model (cf <a href="https://lavaan.ugent.be/tutorial/multilevel.html">lavaan help page</a>), in the whole sample, then separated for the two groups, and test some differences in parameters between the two groups.</p>
+<p>We want to estimate the multilevel model (cf <a
+href="https://lavaan.ugent.be/tutorial/multilevel.html">lavaan help
+page</a>), in the whole sample, then separated for the two groups, and
+test some differences in parameters between the two groups.</p>
 </div>
 <div id="the-model-whole-sample" class="section level1">
 <h1>The model (whole sample)</h1>
-<p>The model has a latent variable measured within clusters (<code>fw</code>) with 3 items <code>y1,y2,y3</code>. At the within-cluster level, the latent variable is predicted by the three covariates <code>x1</code>, <code>x2</code> and <code>x3</code>.</p>
-<p>At the between-cluster level, the same latent variable is present measured with the same items (<code>fb=y1+y2+y3</code>), but it is predicted by the two between-cluster covariates (<code>w1</code> and <code>w2</code>). Here is the model for the whole sample.</p>
+<p>The model has a latent variable measured within clusters
+(<code>fw</code>) with 3 items <code>y1,y2,y3</code>. At the
+within-cluster level, the latent variable is predicted by the three
+covariates <code>x1</code>, <code>x2</code> and <code>x3</code>.</p>
+<p>At the between-cluster level, the same latent variable is present
+measured with the same items (<code>fb=y1+y2+y3</code>), but it is
+predicted by the two between-cluster covariates (<code>w1</code> and
+<code>w2</code>). Here is the model for the whole sample.</p>
 <pre class="r"><code>    level: within
         fw =~ y1 + y2 + y3
         fw ~ x1 + x2 + x3
@@ -402,12 +433,23 @@ div.tocify {
 </div>
 <div id="output" class="section level1">
 <h1>Output</h1>
-<p>As soon as we set the input, we obtain the whole set of results tables. We do not go through the results now, because this is not the model we are focusing on, but we need to be sure that the estimation converges in the whole sample, so we are ready for the multigroup analysis. In fact, if the model does not converge in the whole sample, it is difficult to make it converge in multigroup analysis.</p>
+<p>As soon as we set the input, we obtain the whole set of results
+tables. We do not go through the results now, because this is not the
+model we are focusing on, but we need to be sure that the estimation
+converges in the whole sample, so we are ready for the multigroup
+analysis. In fact, if the model does not converge in the whole sample,
+it is difficult to make it converge in multigroup analysis.</p>
 <p><img src=" pics/example4/output_info1.png " class="img-responsive" alt=""></p>
 </div>
 <div id="multigroup-model" class="section level1">
 <h1>Multigroup model</h1>
-<p>We now set the multigroup analysis on top of the multilevel model. The model syntax needs to be repeated for the two groups explicitly. <strong>Important point</strong>: whereas standard multigroup analysis only requires to define a grouping variable in the <code>Multi-group analysis</code> panel, here we need to specify a grouping variable in the <code>Multigroup analysis</code> panel and the grouping structure in the syntax.</p>
+<p>We now set the multigroup analysis on top of the multilevel model.
+The model syntax needs to be repeated for the two groups explicitly.
+<strong>Important point</strong>: whereas standard multigroup analysis
+only requires to define a grouping variable in the
+<code>Multi-group analysis</code> panel, here we need to specify a
+grouping variable in the <code>Multigroup analysis</code> panel and the
+grouping structure in the syntax.</p>
 <p>There you go: First, we set the multigroup variable</p>
 <p><img src=" pics/example4/input_group.png " class="img-responsive" alt=""></p>
 <p>and then we issue the following syntax:</p>
@@ -426,14 +468,24 @@ group: g2
         fb =~ y1 + y2 + y3
         fb ~ w1 + w2</code></pre>
 <p><img src=" pics/example4/input_syntax2.png " class="img-responsive" alt=""></p>
-<p>At this point, we have all our estimated parameters, for the within and the between level, divided by group.</p>
+<p>At this point, we have all our estimated parameters, for the within
+and the between level, divided by group.</p>
 <p><img src=" pics/example4/output_mlmg1.png " class="img-responsive" alt=""></p>
-<p>If the model works, we can start testing equality constraints across groups. However, for this particular model, the <span class="option">Equality constraints</span> options in the input panel cannot be used to quickly set the constraints. We need to use the syntax. But before, let’s ask for the parameter labels, so we can identify parameters in the output.</p>
+<p>If the model works, we can start testing equality constraints across
+groups. However, for this particular model, the <span
+class="option">Equality constraints</span> options in the input panel
+cannot be used to quickly set the constraints. We need to use the
+syntax. But before, let’s ask for the parameter labels, so we can
+identify parameters in the output.</p>
 <p><img src=" pics/example4/input_label1.png " class="img-responsive" alt=""></p>
 </div>
 <div id="constraints-across-groups" class="section level1">
 <h1>Constraints across groups</h1>
-<p>Assume we want to test that measurement model at the within level is the same across groups. So we want to test that <code>fw =~ y1 + y2 + y3</code> is equivalent across groups. We need to set this syntax (notice the labels <code>a2</code> and <code>a3</code>):</p>
+<p>Assume we want to test that measurement model at the within level is
+the same across groups. So we want to test that
+<code>fw =~ y1 + y2 + y3</code> is equivalent across groups. We need to
+set this syntax (notice the labels <code>a2</code> and
+<code>a3</code>):</p>
 <pre class="r"><code>group: g1
     level: within
         fw =~ y1 + a2*y2 + a3*y3
@@ -448,13 +500,26 @@ group: g2
     level: between
         fb =~ y1 + y2 + y3
         fb ~ w1 + w2</code></pre>
-<p>By setting the same coefficients across groups (<code>a2</code>,<code>a3</code>), we set the parameters as constrained to be equal across groups. We do not need to fix <code>y1</code> because it is already fixed to 1 to give the latent variable a scale.</p>
-<p>Passing this syntax produces in the output the tests for these constraints.</p>
+<p>By setting the same coefficients across groups
+(<code>a2</code>,<code>a3</code>), we set the parameters as constrained
+to be equal across groups. We do not need to fix <code>y1</code> because
+it is already fixed to 1 to give the latent variable a scale.</p>
+<p>Passing this syntax produces in the output the tests for these
+constraints.</p>
 <p><img src=" pics/example4/output_cont1.png " class="img-responsive" alt=""></p>
-<p>To clearly understand what is going on, please check the parameter labels in the tables.</p>
+<p>To clearly understand what is going on, please check the parameter
+labels in the tables.</p>
 <p><img src=" pics/example4/output_label1.png " class="img-responsive" alt=""></p>
-<p>The loading fw-&gt;y2 has a label <code>a2 (p2)</code> for group 1 and <code>a2 (p43)</code> for group 2. This means that the user declared the label <code>a1</code> for both, and each is uniquely referred to as <code>p2</code> for group 1 and <code>p43</code> for group 2. The same goes for <code>a3</code>.</p>
-<p>Now, in the constraints tests table, we see the test for the equality of <code>a2</code>, because the test is comparing <code>p2</code> vs <code>p43</code>, and for <code>a3</code>, because the test is comparing <code>p3</code> with <code>p44</code>. We also get the overall test <code>Total</code>.</p>
+<p>The loading fw-&gt;y2 has a label <code>a2 (p2)</code> for group 1
+and <code>a2 (p43)</code> for group 2. This means that the user declared
+the label <code>a1</code> for both, and each is uniquely referred to as
+<code>p2</code> for group 1 and <code>p43</code> for group 2. The same
+goes for <code>a3</code>.</p>
+<p>Now, in the constraints tests table, we see the test for the equality
+of <code>a2</code>, because the test is comparing <code>p2</code> vs
+<code>p43</code>, and for <code>a3</code>, because the test is comparing
+<code>p3</code> with <code>p44</code>. We also get the overall test
+<code>Total</code>.</p>
 <p>With this method, we can test any constraint we wish.</p>
 </div>
 <div id="related-examples" class="section level1">
@@ -480,7 +545,9 @@ group: g2
 Comments?
 </h1>
 <p>
-Got comments, issues or spotted a bug? Please open an issue on <a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a>
+or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 </div>
 
