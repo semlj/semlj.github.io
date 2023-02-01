@@ -1,9 +1,9 @@
 # folders should be absolute or relative to the docssource folder
 # do not use the trailing slash
 MODULE_NAME="SEMLj"
-MODULE_FOLDER="/home/marcello/Skinner/Forge/jamovi/semlj/semlj"
+MODULE_FOLDER="~/Skinner/Forge/jamovi/semlj/semlj"
 ## where the source Rmd are, it is the forlder where _site.yaml is. 
-PROJECT_FOLDER="/home/marcello/Skinner/Forge/jamovi/semlj/semlj.github.io"
+PROJECT_FOLDER="~/Skinner/Forge/jamovi/semlj/semlj.github.io"
 ## where the Rmd files will go.
 SOURCE_FOLDER="docssource"
 ## target forlder. Cannot be the root of the project
@@ -24,4 +24,4 @@ BANNED_COMMITS_GREP=list("^#","^!","^Merge branch","spelling")
 
 # These handle the R vignettes
 
-VIGNETTES_FOLDER="/home/marcello/Skinner/Forge/jamovi/semlj/semlj/vignettes"
+VIGNETTES_FOLDER="~/Skinner/Forge/jamovi/semlj/semlj/vignettes"
