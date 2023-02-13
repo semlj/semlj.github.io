@@ -517,31 +517,6 @@ tested uniquely (if <span class="option">Univariate</span> is flagged)
 and in addition to the previous ones (if <span
 class="option">Cumulative</span> is flagged).</p>
 <p>Options are:</p>
-<table class="options">
-<tr>
-<td>
-<span class="option">Method</span>
-</td>
-<td>
-The estimator to be used (cf. lavaan R package). Can be one of the
-following: “ML” for maximum likelihood, “GLS” for (normal theory)
-generalized least squares, “WLS” for weighted least squares (sometimes
-called ADF estimation), “ULS” for unweighted least squares, “DWLS” for
-diagonally weighted least squares, and “DLS” for
-distributionally-weighted least squares. These are the main options that
-affect the estimation. For convenience, the “ML” option can be extended
-as “MLM”, “MLMV”, “MLMVS”, “MLF”, and “MLR”. The estimation will still
-be plain “ML”, but now with robust standard errors and a robust (scaled)
-test statistic. For “MLM”, “MLMV”, “MLMVS”, classic robust standard
-errors are used (se=“robust.sem”); for “MLF”, standard errors are based
-on first-order derivatives (information = “first.order”); for “MLR”,
-<code>Huber-White' robust standard errors are used (se="robust.huber.white"). In addition, "MLM" will compute a Satorra-Bentler scaled (mean adjusted) test statistic (test="satorra.bentler"), "MLMVS" will compute a mean and variance adjusted test statistic (Satterthwaite style) (test="mean.var.adjusted"), "MLMV" will compute a mean and variance adjusted test statistic (scaled and shifted) (test="scaled.shifted"), and "MLR" will compute a test statistic which is asymptotically equivalent to the Yuan-Bentler T2-star test statistic (test="yuan.bentler.mplus"). Analogously, the estimators "WLSM" and "WLSMV" imply the "DWLS" estimator (not the "WLS" estimator) with robust standard errors and a mean or mean and variance adjusted test statistic. Estimators "ULSM" and "ULSMV" imply the "ULS" estimator with robust standard errors and a mean or mean and variance adjusted test statistic.  &lt;/td&gt;  &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;  &lt;span class="option"&gt;ML likelihood approach&lt;/span&gt; &lt;/td&gt; &lt;td&gt; Only relevant for ML estimation. If "Wishart", the Wishart likelihood approach is used. In this approach, the covariance matrix has been divided by N-1, and both standard errors and test statistics are based on N-1. If "Normal" or "Automatic", the normal likelihood approach is used. Here, the covariance matrix has been divided by N, and both standard errors and test statistics are based on N.  &lt;/td&gt;  &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;  &lt;span class="option"&gt;Univariate&lt;/span&gt; &lt;/td&gt; &lt;td&gt; Score test (or Lagrange Multiplier test) for fixed or constrained parameters in model.  &lt;/td&gt;  &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;  &lt;span class="option"&gt;Cumulative&lt;/span&gt; &lt;/td&gt; &lt;td&gt; Score test for all fixed or constrained parameters in model (overall test).  &lt;/td&gt;  &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;  &lt;span class="option"&gt;Missing values&lt;/span&gt; &lt;/td&gt; &lt;td&gt; Handling of missing values.</code>listwise`
-delete rows with missing. ML= case-wise (or ‘full information’) maximum
-likelihood estimation.<br />
-
-</td>
-</tr>
-</table>
 </div>
 <div id="type-of-models" class="section level2">
 <h2>Type of models</h2>
@@ -594,11 +569,20 @@ basic).
 </tr>
 <tr>
 <td>
-<span class="option"></span>
+<span class="option">Estimates</span>
 </td>
 <td>
 <code>TRUE</code> or <code>FALSE</code> (default), show confidence
-intervals
+intervals for estimates
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">Betas</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), show confidence
+intervals for standardized estimates
 </td>
 </tr>
 <tr>
@@ -839,6 +823,15 @@ show Mardia’s coefficients for multivariate skewness and kurtosis
 </td>
 <td>
 shows additional reliability indices
+</td>
+</tr>
+<tr>
+<td>
+<span class="option">HTMT</span>
+</td>
+<td>
+<code>TRUE</code> or <code>FALSE</code> (default), show
+Heterotrait-monotrait (HTMT) ratio of correlations
 </td>
 </tr>
 <tr>
