@@ -124,17 +124,19 @@ This also produces the tests for the pairwise comparisons of the coefficients.
 By comparing the uniquely assigned label (`p2`, `p3`, `p4`), we know which comparison is tested.
 
 
-## Model Options
-
 `r pic("pics/syntax/panel_model.png")`
 
 The `r opt("Estimation Method")` allows choosing the right estimation method available for a model. The `r opt("Automatic")` option (default) lets `lavaan` choose the right method depending to the type of model one is estimating.
 
+`r pic("pics/syntax/panel_model2.png")`
+
 `r opt("Constraints tests")` computes the $\chi^2$ test for contrainted coefficients (if any). In case one has more than one contraints, each constraint is tested uniquely (if `r opt("Univariate")` is flagged) and in addition to the previous ones (if `r opt("Cumulative")` is flagged).
 
-Options are:
+Under `r opt("Data")` one can decide how to handle missing values.
 
-`r panel_options("semljgui","model_options")`
+The options for this panel are are:
+
+`r panel_options("semljgui","panel_modeloptions")`
 
 
 ## Type of models
