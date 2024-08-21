@@ -419,6 +419,22 @@ with <span class="modulename">SEMLj</span>.</p>
 <p><img src="pics/example6/output_cfa_2.png" width="954" /></p>
 <p>and so are the variances and covariances among factors:</p>
 <p><img src="pics/example6/output_cfa_3.png" width="860" /></p>
+<div class="adm adm-note">
+<p>
+Note: Scaling Latent Variables
+</p>
+<p>Scaling latent variables is necessary for the model to be identified,
+but the method one uses matters only in terms of convenience, because
+the actual model results are equivalent (apart from the scale of the
+latent variables). <span class="modulename">SEMLj</span> default method
+is to set the first indicator loading equal to zero, whereas CFA default
+sets the variance of the latent variable equal to 1. If one to use the
+latter method in <span class="modulename">SEMLj</span>, simply choose
+the <span class="option">Latent vars: Fix residual variances (to
+1)</span> option in <span class="option">Parameters Options</span>
+panel.</p>
+<p><img src="pics/example6/options3.png" width="425" /></p>
+</div>
 </div>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">

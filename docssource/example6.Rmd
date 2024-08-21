@@ -125,6 +125,16 @@ and so are the variances and covariances among factors:
 
 `r pic("pics/example6/output_cfa_3.png")`
 
+:::{ .adm .adm-note}
+
+<p> Note: Scaling Latent Variables </p>
+
+Scaling latent variables is necessary for the model to be identified, but the method one uses matters only in terms of convenience, because the actual model results are equivalent (apart from the scale of the latent variables).  `r modulename()` default method is to set the first indicator loading equal to zero, whereas CFA default sets the variance of the latent variable equal to 1. If one to use the latter method in `r modulename()`, simply choose the `r opt("Latent vars: Fix residual variances (to 1)")` option in `r opt("Parameters Options")` panel.
+
+`r pic("pics/example6/options3.png")`
+
+:::
+
 `r include_examples()`
 `r backto("gui","syntax")`
 `r issues()`
