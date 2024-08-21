@@ -12,3 +12,6 @@ mcdocs_init()
 `r modulename()` is awesome. 
 
 
+`r backto("help")`
+
+`r issues()`
