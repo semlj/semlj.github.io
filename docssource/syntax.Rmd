@@ -34,7 +34,7 @@ mcdocs_init()
 
 # Introduction
 
-The `r modulename()` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. The module offers a syntax interface in which lavaan syntax for the model definition can be passed to the module. Almost everything you can pass in lavaan, you can pass it to `r modulename()`. All the available options are in the foldable panels below the syntax field. Thus, it is recomended that the user takes a look at `lavaan` [website](https://lavaan.ugent.be/index.html) for details.
+The `r modulename()` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. The module offers a syntax interface in which lavaan syntax for the model definition can be passed to the module. Almost everything you can pass in lavaan, you can pass it to `r modulename()`. All the available options are in the foldable panels below the syntax field. Thus, it is recommended that the user takes a look at `lavaan` [website](https://lavaan.ugent.be/index.html) for details.
 
 # User Interface
 
@@ -48,8 +48,22 @@ Here we need `r opt("SEM (syntax)")`.
 
 `r pic("pics/syntax/panel_syntax.png")`
 
-The syntax pannel accepts `lavaan` syntax as decribed in [lavaan website](https://lavaan.ugent.be/tutorial/syntax1.html)
+The syntax panel accepts `lavaan` syntax as described in [lavaan website](https://lavaan.ugent.be/tutorial/syntax1.html).
+
+
+:::{ .adm .adm-note }
+<p>Note:</p>
+<p>
+The syntax field accepts the lavaan syntax to define a model, not lavaan options or commands. For options, please use the options panels beneath the syntax field.
+</p>
+
+:::
+
+:::{ .adm .adm-warning }
+<p>Warning:</p>
+
 Whereas any syntax you submit will be passed to `lavaan::lavaan()`, `r modulename()` may be not ready to understand the results and frame them in the output tables. At the moment, we have tested:
+
 
 * Path analysis models
 * Structural Equation models
@@ -59,6 +73,7 @@ Whereas any syntax you submit will be passed to `lavaan::lavaan()`, `r modulenam
 * Defined parameters (i.e a:=p1^2)
 * free and fixing parameters via model syntax (i.e x~~x or a~0*1)
 
+:::
 
 ## Type of variables
 
@@ -189,9 +204,7 @@ The other options are:
 
 `r panel_options("semljgui","output_options")`
 
-As regards predicted values, there are three possible types of predicted values that can be saved to the datasheet.
 
-`r format_outputs("semljgui")`
 
 The name of the new variables saved in the datasheet are indicated in a footnote of the `Info Table`.
 
