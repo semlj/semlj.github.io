@@ -352,8 +352,8 @@ beneath.</p>
 <p><img src="pics/example6/input_gui_f1.png" width="635" /></p>
 <p>and we keep defining the factors with their indicators</p>
 <p><img src="pics/example6/input_gui_f2.png" width="643" /></p>
-<p>until we have nine of them. We can see in the Model Info output table
-that the factors are defined as intended.</p>
+<p>until we have three of them. We can see in the Model Info output
+table that the factors are defined as intended.</p>
 <p><img src="pics/example6/output1.png" width="440" /></p>
 </div>
 <div id="syntax" class="section level1">
@@ -363,6 +363,8 @@ their indicators as follows</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>F1<span class="ot">=</span><span class="er">~</span>x11<span class="sc">+</span>x12<span class="sc">+</span>x13</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>F2<span class="ot">=</span><span class="er">~</span>m21<span class="sc">+</span>m22<span class="sc">+</span>m23</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>F3<span class="ot">=</span><span class="er">~</span>y31<span class="sc">+</span>y32<span class="sc">+</span>y33</span></code></pre></div>
+<p>We are not going to discuss the output of the syntax sub-module
+because it is identical to the interactive sub-module output.</p>
 </div>
 <div id="output" class="section level1">
 <h1>Output</h1>
@@ -371,17 +373,18 @@ tables. We do not go through the results in detail, but it is
 interesting to see the basic results</p>
 <p><img src="pics/example6/output2.png" width="486" /></p>
 <p>The overall tests are presented in the first three tables. We can use
-them to compare the results with <code>jamovi</code> CFA command
-results.</p>
+them to compare the results with <code>jamovi</code> CFA command results
+(see below).</p>
 <p><img src="pics/example6/output3.png" width="765" /></p>
-<p>As regards the measurement model table, it indicates the associations
-between the observed variables and the factors. We can notice that the
-first indicator of each factor shows a factor loading equal to 1. This
-is one of the possible ways of setting the latent variable scale. We’ll
-see that <span
+<p>As regards the measurement model table (factor loadings), it
+indicates the associations between the observed variables and the
+factors. We can notice that the first indicator of each factor shows a
+factor loading equal to 1. This is one of the possible ways of setting
+the latent variable scale. We’ll see that <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 CFA has a different default, which can be changed to align the results
-to the ones obtained here (see below). The scale option is in the <span
+to the ones obtained here (see below). In <span
+class="modulename">SEMLj</span>, the scale option is in the <span
 class="option">Parameters Options</span> panel.</p>
 <p><img src="pics/example6/options1.png" width="402" /></p>
 <p><img src="pics/example6/output4.png" width="709" /></p>
@@ -391,13 +394,16 @@ This happens because the default option in <span
 class="option">Variances and Covariances</span> panel: <span
 class="option">Correlated -&gt; Latent vars </span>.</p>
 <p><img src="pics/example6/options2.png" width="636" /></p>
+<p>This is basically a CFA run in <span class="modulename">SEMLj</span>.
+All options of the module are available, so one can start tweaking the
+model as required by the researcher interests and aims.</p>
 </div>
 <div id="jamovi-cfa" class="section level1">
 <h1>jamovi CFA</h1>
 <p>We can now check the results using <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
 CFA default command.</p>
-<p><img src="pics/example6/input_cfa_1.png" width="1864" /></p>
+<p><img src="pics/example6/input_cfa_1.png" width="333" /></p>
 <p>First, we setup the three factors as we did in <span
 class="modulename">SEMLj</span>.</p>
 <p><img src="pics/example6/input_cfa_2.png" width="637" /></p>

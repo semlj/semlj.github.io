@@ -53,7 +53,7 @@ and we keep defining the factors with their indicators
 
 `r pic("pics/example6/input_gui_f2.png")`
 
-until we have nine of them. We can see in the Model Info output table that the factors are defined as intended.
+until we have three of them. We can see in the Model Info output table that the factors are defined as intended.
 
 `r pic("pics/example6/output1.png")`
 
@@ -71,17 +71,19 @@ F3=~y31+y32+y33
 
 ```
 
+We are not going to discuss the output of the syntax sub-module because it is identical to the interactive sub-module output.
+
 # Output
 
 As soon as we set the input, we obtain the whole set of results tables. We do not go through the results in detail, but it is interesting to see the basic results
 
 `r pic("pics/example6/output2.png")`
 
-The overall tests are presented in the first three tables. We can use them to compare the results with `jamovi` CFA command results. 
+The overall tests are presented in the first three tables. We can use them to compare the results with `jamovi` CFA command results (see below). 
 
 `r pic("pics/example6/output3.png")`
 
-As regards the measurement model table, it indicates the associations between the observed variables and the factors. We can notice that the first indicator of each factor shows a factor loading equal to 1. This is one of the possible ways of setting the latent variable scale. We'll see that `r jamovi` CFA has a different default, which can be changed to align the results to the ones obtained here (see below). The scale option is in the `r opt("Parameters Options")` panel.
+As regards the measurement model table (factor loadings), it indicates the associations between the observed variables and the factors. We can notice that the first indicator of each factor shows a factor loading equal to 1. This is one of the possible ways of setting the latent variable scale. We'll see that `r jamovi` CFA has a different default, which can be changed to align the results to the ones obtained here (see below). In `r modulename()`,  the scale option is in the `r opt("Parameters Options")` panel.
 
 `r pic("pics/example6/options1.png")`
 
@@ -90,6 +92,8 @@ As regards the measurement model table, it indicates the associations between th
 As regards the variances and covariances, we can notice that the three factors are let to be correlated (see bottom part of the table). This happens because the default option in `r opt("Variances and Covariances")` panel: `r opt("Correlated -> Latent vars ")`.
 
 `r pic("pics/example6/options2.png")`
+
+This is basically a CFA run in `r modulename()`. All options of the module are available, so one can start tweaking the model as required by the researcher interests and aims. 
 
 # jamovi CFA
 
