@@ -216,8 +216,8 @@ The $R^2$ are now two, one for each endogenous variable (see [PATHj example](htt
 `r pic("pics/example1/output_model3_r2.png")`
 
 
-# Related examples
-`r include_examples("general")`
-`r include_examples("gui")`
+`r include_examples()`
+
+`r backto()`
 
 `r issues()`

@@ -1,18 +1,11 @@
 ---
 title: "SEM via lavaan syntax in jamovi"
+author: Marcello Gallucci
 topic: syntax
 category: help
 nickname: syntax_main
-output: 
-  html_document:
-     includes:
-         in_header: ganalytics.txt
-     toc: true
-     toc_float:
-        collapsed: false
 bibliography: 
      - bib.bib
-    
 link-citations: true
 
 ---
@@ -218,19 +211,11 @@ The options are:
 
 `r panel_options("semljgui","pathdiagram_options")`
 
-
-# Examples
-
-Some worked out examples of the analyses carried out with jamovi `r modulename()` are posted here (more to come)
-
 `r include_examples()`
 
-# Details
+`r include_details()`
 
-Some more information about the module specs can be found here
-
-`r include_details("pathj")`
-
+`r backto("help")`
 
 `r issues()`
 

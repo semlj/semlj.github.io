@@ -1,14 +1,8 @@
 ---
 title: "GUI SEM via lavaan in jamovi"
-topic: syntax
+author: Marcello Gallucci
+topic: gui
 category: help
-output: 
-  html_document:
-     includes:
-         in_header: ganalytics.txt
-     toc: true
-     toc_float:
-        collapsed: false
 bibliography: 
      - bib.bib
 link-citations: true
@@ -189,7 +183,7 @@ The options are:
 
 `r include_examples()`
 
-`r include_details("pathj")`
+`r include_details()`
 
 `r backto("help")`
 

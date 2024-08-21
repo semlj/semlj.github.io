@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
 
-        <meta name="author" content="(Marcello Gallucci)" />
+        <meta name="author" content="Marcello Gallucci" />
     
     
-    <title>Second order mediation analysis</title>
+    <title>Confirmatory Factor Analysis</title>
 
         <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -256,41 +256,30 @@
         </div><!--/.container -->
       </div><!--/.navbar -->
         
-      <h1 class="title">Second order mediation analysis</h1>
+      <h1 class="title">Confirmatory Factor Analysis</h1>
       
          <!-- readthedown authors -->
    <div id="sidebar">
-    <h2><a href="#content">Second order mediation analysis</a></h2>
+    <h2><a href="#content">Confirmatory Factor Analysis</a></h2>
     <div id="toc">
       <ul>
       <li><a href="#the-data" id="toc-the-data">The data</a></li>
       <li><a href="#the-model" id="toc-the-model">The model</a></li>
-      <li><a href="#syntax" id="toc-syntax">Syntax</a></li>
       <li><a href="#interactive-gui"
-      id="toc-interactive-gui">Interactive (GUI)</a>
-      <ul>
-      <li><a href="#facets" id="toc-facets">Facets</a></li>
-      <li><a href="#second-order-factors"
-      id="toc-second-order-factors">Second order factors</a></li>
-      <li><a href="#regression-model"
-      id="toc-regression-model">Regression model</a></li>
-      </ul></li>
+      id="toc-interactive-gui">Interactive (GUI)</a></li>
+      <li><a href="#syntax" id="toc-syntax">Syntax</a></li>
       <li><a href="#output" id="toc-output">Output</a></li>
-      <li><a href="#mediated-effect" id="toc-mediated-effect">Mediated
-      effect</a></li>
-      <li><a href="#path-diagram" id="toc-path-diagram">PATH
-      Diagram</a></li>
-      <li><a href="#alternative-models"
-      id="toc-alternative-models">Alternative models</a></li>
-      <li><a href="#related-examples" id="toc-related-examples">Related
-      examples</a></li>
+      <li><a href="#jamovi-cfa" id="toc-jamovi-cfa">jamovi CFA</a>
+      <ul>
+      <li><a href="#output-1" id="toc-output-1">Output</a></li>
+      </ul></li>
       <li><a href="#examples" id="toc-examples">Examples</a></li>
       <li><a href="#comments" id="toc-comments">Comments?</a></li>
       </ul>
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
-                  <p class="author"><span class="glyphicon glyphicon-user"></span> (Marcello
-Gallucci)</p>
+                  <p class="author"><span class="glyphicon glyphicon-user"></span> Marcello
+Gallucci</p>
                       </div>
    </div>
      
@@ -301,8 +290,7 @@ Gallucci)</p>
 <!-- Don't indent these lines or it will mess pre blocks indentation --> 
 <div id="main">
 <p><span class="keywords"> <span class="keytitle"> keywords </span> SEM,
-second order factor analysis, mediation, lavaan, SEMLj, jamovi
-</span></p>
+confirmatory analysis, mediation, lavaan, SEMLj, jamovi </span></p>
 <div class="version">
 <p>
 0.7.0
@@ -311,11 +299,19 @@ second order factor analysis, mediation, lavaan, SEMLj, jamovi
 <div style="clear:both">
 
 </div>
-<p><span class="draft"> Draft version, mistakes may be around
-</span></p>
-<p>In this example we show how to estimate a second order factor
-analysis and mediation among second order latent variables in <span
-class="modulename">SEMLj</span>.</p>
+<p>In this example, we demonstrate how to estimate a simple confirmatory
+factor analysis using <span class="modulename">SEMLj</span>. It’s
+important to note that <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>s
+default commands allow you to perform a confirmatory factor analysis
+without requiring any additional modules. This can be easily done via
+<span class="option">Factor -&gt; Confirmatory Factor Analysis</span>.
+However, there are instances where users may prefer to use <span
+class="modulename">SEMLj</span> for confirmatory factor analysis. This
+could be due to the need for preliminary analysis before building more
+complex structural models, the desire to utilize specific options
+available in the <span class="modulename">SEMLj</span>, or simply to
+cross-check the results.</p>
 <p>We show input of <span class="modulename">SEMLj</span> <em>syntax
 sub-module</em> and <em>interactive sub-module</em>, with particular
 focus on the latter one. We focus more on the setup of the model (how to
@@ -336,197 +332,88 @@ data are generated to feature 27 observed variables for 200 cases.</p>
 </div>
 <div id="the-model" class="section level1">
 <h1>The model</h1>
-<p>Assume we have three latent variables, <code>bigX</code>,
-<code>bigM</code> and <code>bigY</code>, such that <code>bigX</code>
-predicts <code>bigY</code>, and its effect is mediated by
-<code>bigM</code>, which functions as a mediator. Assume that each of
-these latent variables is measured by three facets,
-<code>fx1</code>,<code>fx2</code> and<code>fx3</code> for
-<code>bigX</code>, <code>fy1</code>,<code>fy2</code> and<code>fy3</code>
-for <code>bigY</code>, and <code>fm1</code>,<code>fm2</code>
-and<code>fm3</code> for <code>bigM</code>. Each facet, in turn, is
-measured by three observed variables, named
-<code>x[i][j]</code>,<code>y[i][j]</code>, and <code>m[i][j]</code>
-where <em>i</em> is the facet, <em>j</em> is the item indices.</p>
+<p>Assume we have three latent factors, <code>F1</code>, <code>F2</code>
+and <code>F3</code>. Assume that each of these factors is measured by
+three observed variables:</p>
+<ul>
+<li>F1: x11, x12, x13</li>
+<li>F2: m11, m12, m13</li>
+<li>F3: y11, y12, y13</li>
+</ul>
 <p>Basically, we want to estimate the following model:</p>
-<p><img src="pics/example5/model.png" width="1058" /></p>
-</div>
-<div id="syntax" class="section level1">
-<h1>Syntax</h1>
-<p>Let’s start with the syntax. First, we want to define the nine facets
-in terms of their indicators</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>fx1<span class="ot">=</span><span class="er">~</span>x11<span class="sc">+</span>x12<span class="sc">+</span>x13</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>fx2<span class="ot">=</span><span class="er">~</span>x21<span class="sc">+</span>x22<span class="sc">+</span>x23</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>fx3<span class="ot">=</span><span class="er">~</span>x31<span class="sc">+</span>x32<span class="sc">+</span>x33</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>fm1<span class="ot">=</span><span class="er">~</span>m11<span class="sc">+</span>m12<span class="sc">+</span>m13</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>fm2<span class="ot">=</span><span class="er">~</span>m21<span class="sc">+</span>m22<span class="sc">+</span>m23</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>fm3<span class="ot">=</span><span class="er">~</span>m31<span class="sc">+</span>m32<span class="sc">+</span>m33</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>fy1<span class="ot">=</span><span class="er">~</span>y11<span class="sc">+</span>y12<span class="sc">+</span>y13</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>fy2<span class="ot">=</span><span class="er">~</span>y21<span class="sc">+</span>y22<span class="sc">+</span>y23</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>fy3<span class="ot">=</span><span class="er">~</span>y31<span class="sc">+</span>y32<span class="sc">+</span>y33</span></code></pre></div>
-<p>and then, we want to define the three second order latent variables
-as measured by the corresponding facets.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>bigx<span class="ot">=</span><span class="er">~</span>fx1<span class="sc">+</span>fx2<span class="sc">+</span>fx3</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>bigm<span class="ot">=</span><span class="er">~</span>fm1<span class="sc">+</span>fm2<span class="sc">+</span>fm3</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>bigy<span class="ot">=</span><span class="er">~</span>fy1<span class="sc">+</span>fy2<span class="sc">+</span>fy3</span></code></pre></div>
-<p>We can now add the regression model among the second order latent
-variables:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>bigm<span class="sc">~</span>bigx</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>bigy<span class="sc">~</span>bigm<span class="sc">+</span>bigx</span></code></pre></div>
-<p>Putting all together in the <span class="modulename">SEMLj</span>
-<em>syntax sub-module</em>, we run this:</p>
-<p><img src="pics/example5/input_syn_model1.png" width="690" /></p>
+<p><img src="pics/example6/model1.png" width="1018" /></p>
 </div>
 <div id="interactive-gui" class="section level1">
 <h1>Interactive (GUI)</h1>
-<div id="facets" class="section level2">
-<h2>Facets</h2>
-<p>For the interactive module, we start setting each facet as an
-exogenous latent variable (notice that setting them as endogenous would
-give exactly the same results). For <code>fx1</code> and
-<code>fx2</code> we proceed as follows:</p>
-<p><img src="pics/example5/input_gui_fx1.png" width="371" /></p>
-<p>and we keep defining the facets with their indicators</p>
-<p><img src="pics/example5/input_gui_fy3.png" width="430" /></p>
-<p>until we have nine of them.</p>
+<p>Let’s start with the interactive module. In <span
+class="option">Latent Endogenous Variables </span> (aka factors) we name
+each factor and put the observed variables measuring it in the field
+beneath.</p>
+<p><img src="pics/example6/input_gui_f1.png" width="635" /></p>
+<p>and we keep defining the factors with their indicators</p>
+<p><img src="pics/example6/input_gui_f2.png" width="643" /></p>
+<p>until we have nine of them. We can see in the Model Info output table
+that the factors are defined as intended.</p>
+<p><img src="pics/example6/output1.png" width="440" /></p>
 </div>
-<div id="second-order-factors" class="section level2">
-<h2>Second order factors</h2>
-<p>We now open the <span class="option">Second Order Factors</span>
-panel.</p>
-<p><img src="pics/example5/input_gui_so1.png" width="677" /></p>
-<p>On the left we find the latent facets we have defined before. We
-change the name <code>Factor 1</code> into a name that suits us, like
-<code>bigX</code>, and define the indicator of the second order
-factor.</p>
-<p><img src="pics/example5/input_gui_so2.png" width="674" /></p>
-<p>By pressing <code>Add New Latent</code> we can repeat the operation
-for the other two second order factors.</p>
-<p><img src="pics/example5/input_gui_so3.png" width="673" /></p>
-<p>Please notice that as soon as you define a new second order factor,
-it appears also in the input field on the left. This allows for defining
-third, fourth etc. order factors. We do not need this now, but it is
-good to know that’s possible.</p>
-</div>
-<div id="regression-model" class="section level2">
-<h2>Regression model</h2>
-<p>We can now open the <span class="option">Endogenous models</span>
-panel to define the structural relationships among the second order
-factors.</p>
-<p><img src="pics/example5/input_gui_regression1.png" width="670" /></p>
-<p>The software already set up one slot for each latent factor. This
-means that we are free to decide which factor is exogenous (it will have
-no predictors) and which is endogenous (it will have at least one
-predictor). We only need to specify which factor predicts the other.</p>
-<p>According to our theoretical model, we set the mediation as
-follows:</p>
-<p><img src="pics/example5/input_gui_regression2.png" width="679" /></p>
-<p>And we have done. The model is estimated.</p>
-</div>
+<div id="syntax" class="section level1">
+<h1>Syntax</h1>
+<p>In the syntax sub-module we can define the three factors in terms of
+their indicators as follows</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>F1<span class="ot">=</span><span class="er">~</span>x11<span class="sc">+</span>x12<span class="sc">+</span>x13</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>F2<span class="ot">=</span><span class="er">~</span>m21<span class="sc">+</span>m22<span class="sc">+</span>m23</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>F3<span class="ot">=</span><span class="er">~</span>y31<span class="sc">+</span>y32<span class="sc">+</span>y33</span></code></pre></div>
 </div>
 <div id="output" class="section level1">
 <h1>Output</h1>
 <p>As soon as we set the input, we obtain the whole set of results
 tables. We do not go through the results in detail, but it is
 interesting to see the basic results</p>
-<p><img src="pics/example5/output_info1.png" width="613" /></p>
-<p>The info table gives some detail about the estimation, and lists the
-syntax resulting from our setup in the interactive input panel. We can
-notice that the resulting syntax is identical to the one we used before
-in the <em>syntax sub-module</em>, so we can rest assured that the
-results are going to be the same.</p>
-<p><img src="pics/example5/output_measure1.png" width="861" /></p>
-<p>The measurement model table indicates the associations between the
-observed variables and the facets, and then the associations between
-facets and second order factors. Factor loadings are all quite large,
-thus the model makes sense in terms of measures.</p>
-<p>We can also ask for the reliability of the first order factors</p>
-<p><img src="pics/example5/input_options1.png" width="664" />
-<img src="pics/example5/output_reliability1.png" width="548" /></p>
-<p>and check they have all a pretty good alpha and omega. At the moment,
-reliability is not available for second order factors (we’ll see how to
-improve this in future versions).</p>
-<p>The other interesting table is the regression coefficients table.</p>
-<p><img src="pics/example5/output_regression1.png" width="772" /></p>
-<p>We can see that <code>bigX</code> has a positive and significant
-effect on <code>bigM</code>, which in turn has an effect on
-<code>bigY</code>. So, mediation is warranted.</p>
+<p><img src="pics/example6/output2.png" width="486" /></p>
+<p>The overall tests are presented in the first three tables. We can use
+them to compare the results with <code>jamovi</code> CFA command
+results.</p>
+<p><img src="pics/example6/output3.png" width="765" /></p>
+<p>As regards the measurement model table, it indicates the associations
+between the observed variables and the factors. We can notice that the
+first indicator of each factor shows a factor loading equal to 1. This
+is one of the possible ways of setting the latent variable scale. We’ll
+see that <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+CFA has a different default, which can be changed to align the results
+to the ones obtained here (see below). The scale option is in the <span
+class="option">Parameters Options</span> panel.</p>
+<p><img src="pics/example6/options1.png" width="402" /></p>
+<p><img src="pics/example6/output4.png" width="709" /></p>
+<p>As regards the variances and covariances, we can notice that the
+three factors are let to be correlated (see bottom part of the table).
+This happens because the default option in <span
+class="option">Variances and Covariances</span> panel: <span
+class="option">Correlated -&gt; Latent vars </span>.</p>
+<p><img src="pics/example6/options2.png" width="636" /></p>
 </div>
-<div id="mediated-effect" class="section level1">
-<h1>Mediated effect</h1>
-<p>But what about the mediated effect? Well, that can be asked in the
-<span class="option">Parameters Options</span> panel by selecting <span
-class="option">Indirect Effects</span>.</p>
-<p><img src="pics/example5/input_options2.png" width="676" /></p>
-<p>The results are straightforward</p>
-<p><img src="pics/example5/output_indirect1.png" width="961" /></p>
-<p>The mediated effect amounts to 1.992, corresponding to .513 in the
-standardized scale.</p>
-<p>The same result can be obtained by specifying new parameters in the
-<span class="option">Custom model settings</span>. Let’s try: First, we
-ask for the parameters labels, so we can refer to the coefficients with
-their labels.</p>
-<p><img src="pics/example5/input_options3.png" width="576" /></p>
-<p>Then we look up in the regression table the labels of the
-coefficients we need</p>
-<p><img src="pics/example5/output_regression2.png" width="897" /></p>
-<p>We want to multiply bigX-&gt;bigM, <code>p37</code>, with
-bigM-&gt;bigY, so <code>p38</code>. In addition, we add <code>p39</code>
-to the mediated effect so we get also the total effect.</p>
-<p>In the <span class="option">Custom model settings</span>, we preceed
-in defining the mediated effect (ME), the total effect (TOT), and since
-I’m lazy, I ask to compute also the proportion of mediated effect (pME),
-rather than using a hand calculator:</p>
-<p><img src="pics/example5/input_dp1.png" width="679" /></p>
-<p>As expected, the results are the same as the ones obtained with the
-indirect effects option.</p>
-<p><img src="pics/example5/output_indirect2.png" width="1066" /></p>
+<div id="jamovi-cfa" class="section level1">
+<h1>jamovi CFA</h1>
+<p>We can now check the results using <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+CFA default command.</p>
+<p><img src="pics/example6/input_cfa_1.png" width="1864" /></p>
+<p>First, we setup the three factors as we did in <span
+class="modulename">SEMLj</span>.</p>
+<p><img src="pics/example6/input_cfa_2.png" width="637" /></p>
+<p>Then we scale the factor fixing the first indicator loading to 1.</p>
+<p><img src="pics/example6/input_cfa_3.png" width="642" /></p>
+<div id="output-1" class="section level2">
+<h2>Output</h2>
+<p>We can see that the results are exactly the same of the ones obtained
+with <span class="modulename">SEMLj</span>.</p>
+<p>The fit indices are the same:</p>
+<p><img src="pics/example6/output_cfa_1.png" width="1083" /></p>
+<p>the factor loadings (Estimates and standard errors) are the same:</p>
+<p><img src="pics/example6/output_cfa_2.png" width="954" /></p>
+<p>and so are the variances and covariances among factors:</p>
+<p><img src="pics/example6/output_cfa_3.png" width="860" /></p>
 </div>
-<div id="path-diagram" class="section level1">
-<h1>PATH Diagram</h1>
-<p>If you ask for a path diagram of this model, you get a pretty ugly
-picture. Default settings, in fact, are not optimal for second order
-factors models. A better view of the model can be achieved by selecting
-<span class="option">Spring</span> in the layout options.</p>
-<p><img src="pics/example5/input_diag1.png" width="685" /></p>
-<p>The diagram is no <em>Mona Lisa</em>, but at least you see the model
-and can check that everything is as intended.</p>
-<p><img src="pics/example5/output_diag1.png" width="835" /></p>
-<p>In future versions we will try to embellish the diagram for this type
-of models.</p>
-</div>
-<div id="alternative-models" class="section level1">
-<h1>Alternative models</h1>
-<p>Let now assume that our mediation model has only one second order
-factor, the mediator, whereas the exogenous factor (<code>bigX</code>)
-and the endogenous factor (<code>bigY</code>) are first order latent
-variables. Say we want to estimate the following model:</p>
-<p><img src="pics/example5/model2.png" width="1063" /></p>
-<p>As regards the definition of <code>bigM</code>, nothing changes. We
-defined the three facets, <code>fm1</code>, <code>fm2</code> and
-<code>fm3</code>, and then a second order factor in the
-<code>Second Order Factors</code> panel, as we did before.</p>
-<p><img src="pics/example5/input_model2_second1.png" width="670" /></p>
-<p>As regards the definition of <code>bigX</code>, it will now be
-defined in the input variables field, because it represents an exogenous
-latent variable.</p>
-<p><img src="pics/example5/input_model2_exo1.png" width="469" /></p>
-<p>As regards the definition of <code>bigY</code>, it will now be
-defined in the input variables field, but as an endogenous latent
-variable. This is because we later need it to be predicted by the other
-latent variables.</p>
-<p><img src="pics/example5/input_model2_endo1.png" width="425" /></p>
-<p>We then go to the <span class="option">Endogenous models</span> and
-fill in the regressions as before.</p>
-<p><img src="pics/example5/input_model2_regression1.png" width="670" /></p>
-<p>We have set up a model with two latent variables and one second order
-mediator factor.</p>
-<p><img src="pics/example5/output_diag2.png" width="848" /></p>
-</div>
-<div id="related-examples" class="section level1">
-<h1>Related examples</h1>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">
 <h1>Examples</h1>
@@ -553,6 +440,14 @@ Some worked out practical examples can be found here
 <a href="example6.html">Confirmatory Factor Analysis</a>
 </li>
 </ul>
+</div>
+<div class="adm adm-seealso backto">
+<p>
+Return to main help pages
+</p>
+<a class='backto' href='index.html'>Main page</a>
+<a class="backto" href="gui.html">GUI SEM via lavaan in jamovi</a>
+<a class="backto" href="syntax.html">SEM via lavaan syntax in jamovi</a>
 </div>
 <div id="comments" class="section level1 adm adm-warning">
 <h1>Comments?</h1>

@@ -23,8 +23,8 @@ Structural Equation Models for jamovi based on R package lavaan
 
 `r modulename()` is composed of two sub-modules, please visit the sub-module page for more info.
 
-* [SEMLj GUI](gui.html) for point-and-click user interface
-* [SEMLj Syntax](syntax.html) for lavaan style model definition
+* [SEMLj (interactive)](gui.html) for point-and-click user interface
+* [SEMLj (syntax)](syntax.html) for lavaan style model definition
 
 :::
 
