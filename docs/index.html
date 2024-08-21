@@ -9,14 +9,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Marcello Gallucci" />
 
 
 <title>SEMLj: Structural Equation Models in jamovi</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -32,15 +33,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2YGWBQCQK3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-2YGWBQCQK3');
-</script>
-
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -67,7 +59,6 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -253,13 +244,10 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="help.html">Help</a>
+  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="syntax.html">SEMLj Syntax</a>
-</li>
-<li>
-  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="examples.html">Examples</a>
@@ -286,24 +274,48 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">SEMLj: Structural Equation Models in
 jamovi</h1>
+<h4 class="author">Marcello Gallucci</h4>
 
 </div>
 
 
+<div class="root">
+
+</div>
 <p>Structural Equation Models for jamovi based on R package lavaan</p>
 <p><img src="pics/overview.png" class="img-responsive" alt="overview" width="600"></p>
-<div id="help" class="section level2">
-<h2>Help</h2>
-<p>Please visti the <a href="help.html">Help</a> tab for usage
-information of the module in <span class="jamovi">jamovi</span>. For
-usage information in R, please visti the ‘SEMLj in R’ tab.</p>
-</div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
-<p>Some worked out examples of the analyses carried out with jamovi
-<span class="modulename">SEMLj</span> are posted in the <a
-href="examples.html">Examples</a> tab (more to come)</p>
+<div id="main-sub-modules" class="section level1 adm adm-seealso">
+<h1>Main Sub-Modules</h1>
+<p><span class="modulename">SEMLj</span> is composed of two sub-modules,
+please visit the sub-module page for more info.</p>
 <ul>
+<li><a href="gui.html">SEMLj GUI</a> for point-and-click user
+interface</li>
+<li><a href="syntax.html">SEMLj Syntax</a> for lavaan style model
+definition</li>
+</ul>
+</div>
+<div id="examples" class="section level1 adm adm-seealso">
+<h1>Examples</h1>
+<p>
+Some worked out practical examples can be found here
+</p>
+<ul>
+<li>
+<a href="example1.html">Simple models</a>
+</li>
+<li>
+<a href="example2.html">SEM: Political Democracy</a>
+</li>
+<li>
+<a href="example3.html">Ordinal observed variables</a>
+</li>
+<li>
+<a href="example4.html">Multigroup multilevel models</a>
+</li>
+<li>
+<a href="example5.html">Second order mediation analysis</a>
+</li>
 </ul>
 </div>
 <div id="installation" class="section level1">
@@ -329,13 +341,13 @@ notes</a>.</p>
 <h1>Quality control</h1>
 <p>Please check the <a href="rosetta.html">rosetta store</a> for
 alignment with other software results and possible discrepancies.</p>
-<h1>
-Comments?
-</h1>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
 <p>
 Got comments, issues or spotted a bug? Please open an issue on
-<a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a>
-or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+<a href="https://github.com/semlj/semlj//issues " target="_blank"> SEMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 </div>
 

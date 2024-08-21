@@ -13,10 +13,10 @@
 
 <title>GUI SEM via lavaan in jamovi</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -92,7 +92,6 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -357,13 +356,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="help.html">Help</a>
+  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="syntax.html">SEMLj Syntax</a>
-</li>
-<li>
-  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="examples.html">Examples</a>
@@ -396,19 +392,24 @@ div.tocify {
 <p><span class="keywords"> <span class="keytitle"> keywords </span>
 semlj,jamovi, lavaan, SEM </span></p>
 <p><strong>SEMLj</strong> GUI module based on lavaan</p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥
-</span> 0.7.* </span> <span class="draft"> Draft version, mistakes may
-be around </span></p>
+<div class="version">
+<p>
+0.7.*
+</p>
+</div>
+<div style="clear:both">
+
+</div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>The <span class="modulename">SEMLj</span> module is a <span
-class="jamovi">jamovi</span> interface to <code>lavaan</code> R package
-<span class="citation">(<a href="#ref-lavaan"
-role="doc-biblioref">Rosseel 2012</a>)</span>. The module offers a
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+interface to <code>lavaan</code> R package <span class="citation">(<a
+href="#ref-lavaan">Rosseel 2012</a>)</span>. The module offers a
 Graphical User Interface (point-and-click) to build a model, which is
 translated in lavaan syntax and passed to R lavaan functions . All the
 available options are in the foldable panels below the variable
-definition fields. Thus, it is recomended that the user takes a look at
+definition fields. Thus, it is recommended that the user takes a look at
 <code>lavaan</code> <a
 href="https://lavaan.ugent.be/index.html">website</a> for details.</p>
 </div>
@@ -416,12 +417,12 @@ href="https://lavaan.ugent.be/index.html">website</a> for details.</p>
 <h1>User Interface</h1>
 <p>When installed, the module sub-modules can be found in the
 <code>SEM</code> menu.</p>
-<p><img src=" pics/menu.png " class="img-responsive" alt=""></p>
+<p><img src="pics/menu.png" width="313" /></p>
 <p>Here we need <span class="option">SEM (interactive)</span>.</p>
 <div id="latent-variables-definition" class="section level2">
 <h2>Latent variables definition</h2>
-<p><img src=" pics/gui/panel_vars.png " class="img-responsive" alt=""></p>
-<p>The pannel allows to define a set of endogenous and exogenous
+<p><img src="pics/gui/panel_vars.png" width="686" /></p>
+<p>The panel allows to define a set of endogenous and exogenous
 variables, measured by one or more observed variables. To make the
 interface simple and efficient This allows estimating almost all sort of
 structural equation models and path analysis (but check out the jamovi
@@ -452,12 +453,12 @@ class="math inline">\(x3\)</span>.</p>
 <p>In this page, we assume that the user has named the endogenous latern
 variable <em>latent_dep</em> and the exogenous latent variable
 <em>latent_ind</em>, as in the next figure.</p>
-<p><img src=" pics/gui/panel_vars2.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/panel_vars2.png" width="349" /></p>
 <p>One can define as many latent variables one needs by clicking on
 <span class="option">Add New Latent</span> button.</p>
 <p>At the right bottom of the panel we find also the <span
 class="option">Multigroup Analysis Factor</span>, in which one puts the
-categorical variable defining groups for multi-groups analyses.</p>
+categorical variable defining groups for multi-group analyses.</p>
 </div>
 <div id="type-of-variables" class="section level2">
 <h2>Type of variables</h2>
@@ -465,7 +466,7 @@ categorical variable defining groups for multi-groups analyses.</p>
 variables are marked as <code>continuous variable</code> in the dataset.
 You see a little <em>ruler</em> icon on the left of the variable name,
 like this:</p>
-<p><img src=" pics/gui/input_type1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/input_type1.png" width="667" /></p>
 <p>When variables are defined as <code>continuous</code>, they are
 considered continuous variables in <span
 class="modulename">SEMLj</span>.</p>
@@ -474,7 +475,7 @@ dichotomous or ordinal variable. <span class="modulename">SEMLj</span>
 treats variables as ordered variables if they are defined as
 <code>Nominal</code> or <code>Ordinal</code> in the dataset, like
 this:</p>
-<p><img src=" pics/gui/input_type2.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/input_type2.png" width="672" /></p>
 <p>When indicators are ordinal or nominal, Diagonal Weighted Least
 Squares is used for estimation, with robust standard error. Please refer
 to <a href="https://lavaan.ugent.be/tutorial/cat.html">lavaan
@@ -482,7 +483,7 @@ documentation</a> for more details.</p>
 </div>
 <div id="second-order-factors" class="section level2">
 <h2>Second Order Factors</h2>
-<p><img src=" pics/gui/input_gui_so1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/input_gui_so1.png" width="673" /></p>
 <p>This panel is useful to define second order factors, that is latent
 variables that are measured by other latent variables. See
 <a href="example5.html">Second order mediation analysis</a> for an
@@ -490,7 +491,7 @@ example of usage.</p>
 </div>
 <div id="endogenous-models" class="section level2">
 <h2>Endogenous models</h2>
-<p><img src=" pics/gui/panel_endo.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/panel_endo.png" width="685" /></p>
 <p>In this panel one specifies the relationship among latent variables
 (the stuctural relationships). The user can simply declare here what are
 the latent predictors of the latent endogenous variables. At least one
@@ -498,7 +499,7 @@ relationship should be defined.</p>
 </div>
 <div id="variances-and-covariances" class="section level2">
 <h2>Variances and covariances</h2>
-<p><img src=" pics/gui/panel_variances.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/panel_variances.png" width="670" /></p>
 <p>In this panel one specifies the variances and covariances to estimate
 (set free). Variances are specified by selecting twice a single variance
 (as for <span class="math inline">\(y6\)</span> in the figure).
@@ -507,7 +508,7 @@ arrow.</p>
 </div>
 <div id="custom-model-settings" class="section level2">
 <h2>Custom model settings</h2>
-<p><img src=" pics/gui/panel_custom.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/panel_custom.png" width="676" /></p>
 <p>In this panel one specifies additional model settings, such as free
 variances or defined parameters by passing <code>lavaan</code> syntax,
 one directive per row. In the picture, for instance, the users frees the
@@ -523,17 +524,17 @@ class="option">Output options</span> panel.</p>
 syntax examples</span> in the <span class="option">Output
 options</span>, which returns in output the following table of
 examples:</p>
-<p><img src=" pics/gui/output_examples.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/output_examples.png" width="1080" /></p>
 </div>
 <div id="model-options" class="section level2">
 <h2>Model Options</h2>
-<p><img src=" pics/syntax/panel_model.png " class="img-responsive" alt=""></p>
+<p><img src="pics/syntax/panel_model.png" width="668" /></p>
 <p>The <span class="option">Estimation Method</span> allows choosing the
 right estimation method available for a model. The <span
 class="option">Automatic</span> option (default) lets
 <code>lavaan</code> choose the right method depending to the type of
 model one is estimating.</p>
-<p><img src=" pics/syntax/panel_model2.png " class="img-responsive" alt=""></p>
+<p><img src="pics/syntax/panel_model2.png" width="564" /></p>
 <p><span class="option">Constraints tests</span> computes the <span
 class="math inline">\(\chi^2\)</span> test for contrainted coefficients
 (if any). In case one has more than one contraints, each constraint is
@@ -545,7 +546,7 @@ missing values.</p>
 <p>The options for this panel are are:</p>
 <table class="options">
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Method</span>
 </td>
 <td>
@@ -578,7 +579,7 @@ standard errors and a mean or mean and variance adjusted test statistic.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">ML likelihood approach</span>
 </td>
 <td>
@@ -591,7 +592,7 @@ standard errors and test statistics are based on N.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Missing values</span>
 </td>
 <td>
@@ -605,7 +606,7 @@ covariances between variables.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Univariate</span>
 </td>
 <td>
@@ -614,7 +615,7 @@ parameters in model.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Cumulative</span>
 </td>
 <td>
@@ -644,7 +645,7 @@ camper.</p>
 </div>
 <div id="model-parameters" class="section level2">
 <h2>Model parameters</h2>
-<p><img src=" pics/syntax/panel_parameters.png " class="img-responsive" alt=""></p>
+<p><img src="pics/syntax/panel_parameters.png" width="689" /></p>
 <p>This panel offers many options to be passed to <code>lavaan</code>
 for specify parameters characteristics, such as how to compute their
 standard errors, their confidence intervals, or how to fix scales of
@@ -656,7 +657,7 @@ model.</p>
 <p>The options are:</p>
 <table class="options">
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Standard errors</span>
 </td>
 <td>
@@ -664,7 +665,7 @@ Standard error method.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Bootstrap C.I</span>
 </td>
 <td>
@@ -674,7 +675,23 @@ basic).
 </td>
 </tr>
 <tr>
+<td class="optionname">
+<span class="option">Bootstrap Rep.</span>
+</td>
 <td>
+The number of bootstrap samples for estimating confidence intervals.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Parallel Computation</span>
+</td>
+<td>
+use parallel computation for bootstrap C.I
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Estimates</span>
 </td>
 <td>
@@ -683,7 +700,7 @@ intervals for estimates
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Betas</span>
 </td>
 <td>
@@ -692,7 +709,16 @@ intervals for standardized estimates
 </td>
 </tr>
 <tr>
+<td class="optionname">
+<span class="option">Confidence level</span>
+</td>
 <td>
+A number between 50 and 99.9 (default: 95) specifying the confidence
+interval width for the parameter estimates.
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Fix exogenous covariates</span>
 </td>
 <td>
@@ -705,7 +731,7 @@ option.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Mean structure</span>
 </td>
 <td>
@@ -714,7 +740,7 @@ for calculating the intercepts of the estimates.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Observed variables</span>
 </td>
 <td>
@@ -723,7 +749,7 @@ for observed variables
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Latent variables</span>
 </td>
 <td>
@@ -732,7 +758,7 @@ for latent variables
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Indirect Effects</span>
 </td>
 <td>
@@ -741,7 +767,7 @@ endogenous variables, and multiply the coefficients along the path.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Scale / stand. latent vars.</span>
 </td>
 <td>
@@ -756,7 +782,7 @@ variances of other groups are set free.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Observed vars.: Standardize before
 estimation</span>
 </td>
@@ -769,7 +795,7 @@ analysis.
 </div>
 <div id="multi-group-analysis" class="section level2">
 <h2>Multi-group Analysis</h2>
-<p><img src=" pics/gui/panel_multigroup.png " class="img-responsive" alt=""></p>
+<p><img src="pics/gui/panel_multigroup.png" width="681" /></p>
 <p>Once a multi-group factor is set in the variable definition (see
 above), in this panel one can choose which parameters to fix as equal
 across groups.</p>
@@ -779,12 +805,12 @@ across groups.</p>
 <h2>Multilevel Analysis</h2>
 <p>Multilevel models are not available in the GUI version of <span
 class="modulename">SEMLj</span>. To estimate these models in <span
-class="jamovi">jamovi</span>, please use <a href="syntax.html">SEM via
-lavaan syntax in jamovi</a></p>
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>,
+please use <a href="syntax.html">SEM via lavaan syntax in jamovi</a></p>
 </div>
 <div id="output-options" class="section level2">
 <h2>Output Options</h2>
-<p><img src=" pics/syntax/panel_output.png " class="img-responsive" alt=""></p>
+<p><img src="pics/syntax/panel_output.png" width="562" /></p>
 <p>This panel allows requesting all sort of additional information about
 the model results, such as the <span
 class="math inline">\(R^2\)</span>’s, the implied and residual variances
@@ -793,40 +819,39 @@ and covariances, and the modification indexes.</p>
 predicted values that can be saved to the datasheet.</p>
 <table class="options">
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Factor Scores</span>
 </td>
 <td>
 this option saves, for each participant, the latent variables predicted
 values based on the latent variables estimation. The values are obtained
 with <code>lavaan::lavPredict(..,type="lv")</code>. See <span
-class="citation">Rosseel (<a href="#ref-lavaan"
-role="doc-biblioref">2012</a>)</span> for details. The values are
-basically factor scores.
+class="citation">Rosseel (<a href="#ref-lavaan">2012</a>)</span> for
+details. The values are basically factor scores.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Indicators</span>
 </td>
 <td>
 this option saves, for each participant, the observed variables
 predicted values based on the latent variables estimation. The values
 are obtained with <code>lavaan::lavPredict(..,type="ov")</code>. See
-<span class="citation">Rosseel (<a href="#ref-lavaan"
-role="doc-biblioref">2012</a>)</span> for details
+<span class="citation">Rosseel (<a href="#ref-lavaan">2012</a>)</span>
+for details
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Dependent variables</span>
 </td>
 <td>
 this option saves, for each participant, the model based predicted
 values of the observed variables involved in the measurement of purely
 endogenous dependent variables. The predicted values computation is
-based on <span class="citation">Rooij et al. (<a href="#ref-predict"
-role="doc-biblioref">2022</a>)</span>, and the implementation is adpted
+based on <span class="citation">Rooij et al. (<a
+href="#ref-predict">2022</a>)</span>, and the implementation is adpted
 from <a href="https://github.com/mjderooij/SEMpredict">github
 SEMpredict</a>
 </td>
@@ -837,7 +862,7 @@ a footnote of the <code>Info Table</code>.</p>
 <p>The options are:</p>
 <table class="options">
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Show parameters labels</span>
 </td>
 <td>
@@ -845,7 +870,7 @@ show the labels of the parameters in the model
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Show syntax examples</span>
 </td>
 <td>
@@ -853,7 +878,15 @@ show examples of the lavaan model syntax
 </td>
 </tr>
 <tr>
+<td class="optionname">
+<span class="option">Show Lavaan Options</span>
+</td>
 <td>
+show options of the lavaan model
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Additional fit measures</span>
 </td>
 <td>
@@ -861,7 +894,7 @@ show additional fit measures (e.g., CFI, TLI, etc.)
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Mardia’s coefficients</span>
 </td>
 <td>
@@ -869,7 +902,7 @@ show Mardia’s coefficients for multivariate skewness and kurtosis
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Reliability indices</span>
 </td>
 <td>
@@ -877,18 +910,18 @@ shows additional reliability indices
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">HTMT</span>
 </td>
 <td>
 <code>TRUE</code> or <code>FALSE</code> (default), show
 Heterotrait-monotrait (HTMT) ratio of correlations as reccomended by
 <span class="citation">Henseler, Ringle, and Sarstedt (<a
-href="#ref-henseler2015new" role="doc-biblioref">2015</a>)</span>
+href="#ref-henseler2015new">2015</a>)</span>
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">R-squared</span>
 </td>
 <td>
@@ -898,7 +931,7 @@ for no R-squared.
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Observed</span>
 </td>
 <td>
@@ -907,7 +940,7 @@ show the covariances and correlations between the observed values of the
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Model-implied (fitted)</span>
 </td>
 <td>
@@ -916,7 +949,7 @@ values of the (manifest) variables
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Residual</span>
 </td>
 <td>
@@ -925,7 +958,7 @@ show the covariances and correlations between the residuals of the
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Combined into one table</span>
 </td>
 <td>
@@ -935,7 +968,7 @@ variable combination underneath each other)
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Model-implied latent</span>
 </td>
 <td>
@@ -943,7 +976,7 @@ show model-implied latent covariances
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Modification indices</span>
 </td>
 <td>
@@ -952,30 +985,78 @@ model
 </td>
 </tr>
 <tr>
-<td>
+<td class="optionname">
 <span class="option">Hide low indices</span>
 </td>
 <td>
 hide modification indices below a certain threshold.
 </td>
 </tr>
+<tr>
+<td class="optionname">
+<span class="option">Threshold</span>
+</td>
+<td>
+Numeric (default: 10), set a threshold the modification indices must
+exceed in order to be shown.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Factor Scores</span>
+</td>
+<td>
+this option saves, for each participant, the latent variables predicted
+values based on the latent variables estimation. The values are obtained
+with <code>lavaan::lavPredict(..,type="lv")</code>. See <span
+class="citation">Rosseel (<a href="#ref-lavaan">2012</a>)</span> for
+details. The values are basically factor scores.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Indicators</span>
+</td>
+<td>
+this option saves, for each participant, the observed variables
+predicted values based on the latent variables estimation. The values
+are obtained with <code>lavaan::lavPredict(..,type="ov")</code>. See
+<span class="citation">Rosseel (<a href="#ref-lavaan">2012</a>)</span>
+for details
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Dependent variables</span>
+</td>
+<td>
+this option saves, for each participant, the model based predicted
+values of the observed variables involved in the measurement of purely
+endogenous dependent variables. The predicted values computation is
+based on <span class="citation">Rooij et al. (<a
+href="#ref-predict">2022</a>)</span>, and the implementation is adpted
+from <a href="https://github.com/mjderooij/SEMpredict">github
+SEMpredict</a>
+</td>
+</tr>
 </table>
 </div>
 <div id="path-diagram" class="section level2">
 <h2>Path Diagram</h2>
-<p><img src=" pics/syntax/panel_diagram.png " class="img-responsive" alt=""></p>
+<p><img src="pics/syntax/panel_diagram.png" width="675" /></p>
 <p>This panel produces the path diagram graph and allow for some change
 in shapes and orientation of the diagram. The digram is produced using R
 <a href="http://sachaepskamp.com/semPlot">semPlot module</a>, see also
-<span class="citation">(<a href="#ref-semplot"
-role="doc-biblioref">Epskamp 2015</a>)</span></p>
+<span class="citation">(<a href="#ref-semplot">Epskamp
+2015</a>)</span></p>
 <p>The options are:</p>
 </div>
 </div>
-<div id="examples" class="section level1">
+<div id="examples" class="section level1 adm adm-seealso">
 <h1>Examples</h1>
-<p>Some worked out examples of the analyses carried out with jamovi
-<span class="modulename">SEMLj</span> are posted here (more to come)</p>
+<p>
+Some worked out practical examples can be found here
+</p>
 <ul>
 <li>
 <a href="example1.html">Simple models</a>
@@ -994,19 +1075,20 @@ role="doc-biblioref">Epskamp 2015</a>)</span></p>
 </li>
 </ul>
 </div>
-<div id="details" class="section level1">
+<div id="details" class="section level1 adm adm-seealso">
 <h1>Details</h1>
-<p>Some more information about the module specs can be found here</p>
-<ul>
-</ul>
-<h1>
-Comments?
-</h1>
+<p>
+Some more information about the module specs can be found here
+</p>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
 <p>
 Got comments, issues or spotted a bug? Please open an issue on
-<a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a>
-or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+<a href="https://github.com/semlj/semlj//issues " target="_blank"> SEMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
+</div>
 <div id="references" class="section level2 unnumbered">
 <h2 class="unnumbered">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
@@ -1033,7 +1115,6 @@ Rosseel, Yves. 2012. <span>“<span class="nocase">lavaan</span>: An
 <span>R</span> Package for Structural Equation Modeling.”</span>
 <em>Journal of Statistical Software</em> 48 (2): 1–36. <a
 href="https://www.jstatsoft.org/v48/i02/">https://www.jstatsoft.org/v48/i02/</a>.
-</div>
 </div>
 </div>
 </div>

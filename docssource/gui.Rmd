@@ -26,13 +26,12 @@ mcdocs_init()
 **SEMLj** GUI module based on lavaan 
 
 `r version("0.7.*")` 
-`r draft`
 
 
 # Introduction
 
 
-The `r modulename()` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. The module offers a Graphical User Interface (point-and-click)  to build a model, which is translated in lavaan syntax and passed to R lavaan functions . All the available options are in the foldable panels below the variable definition fields. Thus, it is recomended that the user takes a look at `lavaan` [website](https://lavaan.ugent.be/index.html) for details.
+The `r modulename()` module is a `r jamovi` interface to `lavaan` R package [@lavaan]. The module offers a Graphical User Interface (point-and-click)  to build a model, which is translated in lavaan syntax and passed to R lavaan functions . All the available options are in the foldable panels below the variable definition fields. Thus, it is recommended that the user takes a look at `lavaan` [website](https://lavaan.ugent.be/index.html) for details.
 
 # User Interface
 
@@ -46,7 +45,7 @@ Here we need `r opt("SEM (interactive)")`.
 
 `r pic("pics/gui/panel_vars.png")`
 
-The  pannel allows to define a set of endogenous and exogenous variables, measured by one or more observed variables. To make the interface simple and efficient This allows estimating almost all sort of structural equation models and path analysis (but check out the jamovi module [PATHj](https://pathj.github.io/), dedicated to path analysis). It allows for factor analysis models, but check out the jamovi CFA core command (in "Factor" menu) for a dedicated command.
+The  panel allows to define a set of endogenous and exogenous variables, measured by one or more observed variables. To make the interface simple and efficient This allows estimating almost all sort of structural equation models and path analysis (but check out the jamovi module [PATHj](https://pathj.github.io/), dedicated to path analysis). It allows for factor analysis models, but check out the jamovi CFA core command (in "Factor" menu) for a dedicated command.
 
 Thus, the sub-module can estimate:
 
@@ -64,7 +63,7 @@ In this page, we assume that the user has named the endogenous latern variable _
 One can define as many latent variables one needs by clicking on `r opt("Add New Latent")` button.
 
 
-At the right bottom of the panel we find also the `r opt("Multigroup Analysis Factor")`, in which one puts the categorical variable defining groups for multi-groups analyses.
+At the right bottom of the panel we find also the `r opt("Multigroup Analysis Factor")`, in which one puts the categorical variable defining groups for multi-group analyses.
 
 ## Type of variables
 
@@ -188,19 +187,11 @@ The options are:
 `r panel_options("semljgui","panel_pathdiagram")`
 
 
-
-# Examples
-
-Some worked out examples of the analyses carried out with jamovi `r modulename()` are posted here (more to come)
-
 `r include_examples()`
-
-# Details
-
-Some more information about the module specs can be found here
 
 `r include_details("pathj")`
 
+`r backto("help")`
 
 `r issues()`
 

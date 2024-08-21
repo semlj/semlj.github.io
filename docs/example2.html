@@ -14,10 +14,10 @@
 
 <title>SEM: Political Democracy</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -93,7 +93,6 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -358,13 +357,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="help.html">Help</a>
+  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="syntax.html">SEMLj Syntax</a>
-</li>
-<li>
-  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="examples.html">Examples</a>
@@ -425,7 +421,7 @@ class="math inline">\(x3\)</span> are indistrialization indicators in
 (latent) indistrialization level in 1960 influences (latent) democracy
 in 1960, which in turn influences (latent) democracy in 1965.</p>
 <p>The path diagram should be the following.</p>
-<p><img src=" pics/example2/output_model1_path.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_path.png" width="796" /></p>
 <p>It is worth noticing that this model requires the latent relations we
 mentioned, and some correlations between observed variables. In
 particular, we want the following pairs of observed variables to be
@@ -438,7 +434,7 @@ class="math inline">\(r(y6,y8)\)</span>. Those are correlations among
 residuals of the observed variables, after removing their loadings on
 the latent variables. In factor analysis terms, the correlations among
 uniquenesses.</p>
-<p><img src=" pics/example2/input_model1_variances.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/input_model1_variances.png" width="670" /></p>
 </div>
 <div id="model-input" class="section level1">
 <h1>Model Input</h1>
@@ -448,11 +444,11 @@ corresponding observed variables.</p>
 <p>For each latent variable, we define its name in place of “Endogenous
 1”, “Endogenous 2” etc, and put the observed variables in the
 corresponding field.</p>
-<p><img src=" pics/example2/input_model1_vars.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/input_model1_vars.png" width="670" /></p>
 <p>In details, we have the variables role panels defined as follows:</p>
-<p><img src=" pics/example2/input_model1_vars2.png " class="img-responsive" alt="">
-<img src=" pics/example2/input_model1_vars3.png " class="img-responsive" alt="">
-<img src=" pics/example2/input_model1_vars4.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/input_model1_vars2.png" width="356" />
+<img src="pics/example2/input_model1_vars3.png" width="364" />
+<img src="pics/example2/input_model1_vars4.png" width="358" /></p>
 <p>When we set the variables like we did, <span
 class="modulename">SEMLj</span> knows our model has three latent
 variables, two endogenuous and one exogenous, and it knows what are the
@@ -462,19 +458,19 @@ indicators of each latent variable.</p>
 <code>dem65</code> is predicted by <code>ind60</code> and
 <code>dem60</code>. We declare that in the <span
 class="option">Endogenous models</span>.</p>
-<p><img src=" pics/example2/input_model1_model.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/input_model1_model.png" width="669" /></p>
 <p>If we run this model like this, we would obtain the following
 structural model.</p>
-<p><img src=" pics/example2/output_model1_path2.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_path2.png" width="872" /></p>
 <p>We can notice that this model, as compared with the intented model
 seen before, lacks the correlations between the observed variables. We
 can easily free them (meaning estimate them), in the <span
 class="option">Variances and covariances</span> panel. We select the
 pairs of variables we wants to be correlated.</p>
-<p><img src=" pics/example2/input_model1_variances.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/input_model1_variances.png" width="670" /></p>
 <p>Because we want to see the path diagram of the model, we ask for the
 path diagram in the <span class="option">Path Diagram</span> panel.</p>
-<p><img src=" pics/example1/input_model1_diagram.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example1/input_model1_diagram.png" width="555" /></p>
 <div id="output" class="section level2">
 <h2>Output</h2>
 </div>
@@ -482,14 +478,14 @@ path diagram in the <span class="option">Path Diagram</span> panel.</p>
 <h2>Path diagram</h2>
 <p>We check the path diagram to be sure we set the model as we intended,
 and we did.</p>
-<p><img src=" pics/example2/output_model1_path3.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_path3.png" width="881" /></p>
 <p>For now on, we discuss the output tables in the order they appear in
 the output.</p>
 </div>
 <div id="model-info" class="section level2">
 <h2>Model info</h2>
 <p>Here we find general informations about the model.</p>
-<p><img src=" pics/example2/output_model1_modelinfo.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_modelinfo.png" width="564" /></p>
 <p>We can see that we have 75 observations, 42 free (estimated)
 parameters (including the intercepts), and that the model converged. We
 find the model likelihood for the user model and the unrestricted one,
@@ -500,7 +496,7 @@ them in this example.</p>
 <div id="overall-tests" class="section level2">
 <h2>Overall Tests</h2>
 <p>Here we find inferential tests regarding the whole model.</p>
-<p><img src=" pics/example2/output_model1_overalltests.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_overalltests.png" width="565" /></p>
 <p>To interpret the <span class="option">Fit indices</span> table, I’d
 suggest to use <a
 href="http://davidakenny.net/webinars/listpp.htm#Fit">David Kenny
@@ -557,7 +553,7 @@ coefficients to zero.</p>
 </div>
 <div id="parameters-estimates" class="section level2">
 <h2>Parameters Estimates</h2>
-<p><img src=" pics/example2/output_model1_parameters.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_parameters.png" width="799" /></p>
 <p>The <span class="option">Parameters Estimates</span> table reports
 the regression coefficients linking the latent variables. The
 <em>Estimate</em> column reports the coefficients, the <span
@@ -566,7 +562,7 @@ coefficients.</p>
 </div>
 <div id="measurement-model" class="section level2">
 <h2>Measurement Model</h2>
-<p><img src=" pics/example2/output_model1_measurement.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_measurement.png" width="766" /></p>
 <p>Here we can see the factor loading of each indicator to its latent
 variable. We can appreciate that the scale of the latent variables is
 set to the scale of the first indicator (<em>Estimate</em>=1). This is
@@ -576,7 +572,7 @@ fixing to 1 the residual variance of the latent variables.</p>
 </div>
 <div id="variances" class="section level2">
 <h2>Variances</h2>
-<p><img src=" pics/example2/output_model1_variances.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_variances.png" width="799" /></p>
 <p>Here we can find the variances and covariances of the indicators and
 the latent variables.</p>
 </div>
@@ -588,11 +584,17 @@ select <span class="option">R-squared</span> <span
 class="option">Endogenous</span> to get the <span
 class="math inline">\(R^2\)</span> of the model, as shown in the
 figure.</p>
-<p><img src=" pics/example2/output_model1_r2.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example2/output_model1_r2.png" width="371" /></p>
 </div>
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>
+</div>
+<div id="examples" class="section level1 adm adm-seealso">
+<h1>Examples</h1>
+<p>
+Some worked out practical examples can be found here
+</p>
 <ul>
 <li>
 <a href="example1.html">Simple models</a>
@@ -610,15 +612,19 @@ figure.</p>
 <a href="example5.html">Second order mediation analysis</a>
 </li>
 </ul>
-<ul>
-</ul>
-<h1>
-Comments?
-</h1>
+</div>
+<div id="examples-1" class="section level1 adm adm-seealso">
+<h1>Examples</h1>
+<p>
+Some worked out practical examples can be found here
+</p>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
 <p>
 Got comments, issues or spotted a bug? Please open an issue on
-<a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a>
-or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+<a href="https://github.com/semlj/semlj//issues " target="_blank"> SEMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 </div>
 <div id="additional-references" class="section level1 unnumbered">

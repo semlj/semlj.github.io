@@ -1,21 +1,13 @@
 ---
 title: "SEMLj computation details"
+author: Marcello Gallucci
 nickname: computation_details
 topic: semlj
 category: details
-output: 
-  html_document:
-     includes:
-         in_header: ganalytics.txt
-     toc: true
-     toc_float:
-        collapsed: false
 bibliography: 
      - bib.bib
      - bib.yaml
 link-citations: true
-editor_options: 
-  chunk_output_type: console
 ---
 
 
@@ -32,12 +24,7 @@ mcdocs_init()
 `r draft`
 
 
-# Introduction
-
-
-
-
+`r backto("help")`
 
 `r issues()`
 
-'

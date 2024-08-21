@@ -14,10 +14,10 @@
 
 <title>Multigroup multilevel models</title>
 
-<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -71,7 +71,6 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -336,13 +335,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="help.html">Help</a>
+  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="syntax.html">SEMLj Syntax</a>
-</li>
-<li>
-  <a href="gui.html">SEMLj GUI</a>
 </li>
 <li>
   <a href="examples.html">Examples</a>
@@ -375,9 +371,16 @@ div.tocify {
 
 <p><span class="keywords"> <span class="keytitle"> keywords </span> SEM,
 multilevel, multigroup, lavaan, SEMLj, jamovi </span></p>
-<p><span class="version"> <span class="versiontitle"> SEMLj version ≥
-</span> 0.8.0 </span> <span class="draft"> Draft version, mistakes may
-be around </span></p>
+<div class="version">
+<p>
+0.8.0
+</p>
+</div>
+<div style="clear:both">
+
+</div>
+<p><span class="draft"> Draft version, mistakes may be around
+</span></p>
 <p>In this example we show how to estimate a multilevel, multigroup path
 analysis using <span class="modulename">SEMLj</span>.</p>
 <p>We show input of <span class="modulename">SEMLj</span> <em>syntax
@@ -389,8 +392,9 @@ information can be found in <a
 href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and
 tutorials</a>.</p>
 <p>Obviously, one can run the models discussed here directly in R using
-<code>lavaan</code> package, if <span class="jamovi">jamovi</span> is
-not the software one is using at the moment.</p>
+<code>lavaan</code> package, if <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+is not the software one is using at the moment.</p>
 <div id="the-data" class="section level1">
 <h1>The data</h1>
 <p>For this example we are going to use the <code>Demo.twolevel</code>
@@ -405,7 +409,7 @@ on a survey in 200 school classes, for instance, one can imagine that
 100 classes came from one state (<code>g1</code>) and the other 100 from
 another state. We created the <code>group</code> variable on the spot
 for the sake of this exercise.</p>
-<p><img src=" pics/example4/input_data1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/input_data1.png" width="726" /></p>
 <p>We want to estimate the multilevel model (cf <a
 href="https://lavaan.ugent.be/tutorial/multilevel.html">lavaan help
 page</a>), in the whole sample, then separated for the two groups, and
@@ -436,7 +440,7 @@ model we are focusing on, but we need to be sure that the estimation
 converges in the whole sample, so we are ready for the multigroup
 analysis. In fact, if the model does not converge in the whole sample,
 it is difficult to make it converge in multigroup analysis.</p>
-<p><img src=" pics/example4/output_info1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/output_info1.png" width="551" /></p>
 </div>
 <div id="multigroup-model" class="section level1">
 <h1>Multigroup model</h1>
@@ -448,7 +452,7 @@ only requires to define a grouping variable in the
 grouping variable in the <code>Multigroup analysis</code> panel and the
 grouping structure in the syntax.</p>
 <p>There you go: First, we set the multigroup variable</p>
-<p><img src=" pics/example4/input_group.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/input_group.png" width="680" /></p>
 <p>and then we issue the following syntax:</p>
 <pre class="r"><code>group: g1
     level: within
@@ -464,17 +468,17 @@ group: g2
     level: between
         fb =~ y1 + y2 + y3
         fb ~ w1 + w2</code></pre>
-<p><img src=" pics/example4/input_syntax2.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/input_syntax2.png" width="710" /></p>
 <p>At this point, we have all our estimated parameters, for the within
 and the between level, divided by group.</p>
-<p><img src=" pics/example4/output_mlmg1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/output_mlmg1.png" width="969" /></p>
 <p>If the model works, we can start testing equality constraints across
 groups. However, for this particular model, the <span
 class="option">Equality constraints</span> options in the input panel
 cannot be used to quickly set the constraints. We need to use the
 syntax. But before, let’s ask for the parameter labels, so we can
 identify parameters in the output.</p>
-<p><img src=" pics/example4/input_label1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/input_label1.png" width="682" /></p>
 </div>
 <div id="constraints-across-groups" class="section level1">
 <h1>Constraints across groups</h1>
@@ -503,10 +507,10 @@ to be equal across groups. We do not need to fix <code>y1</code> because
 it is already fixed to 1 to give the latent variable a scale.</p>
 <p>Passing this syntax produces in the output the tests for these
 constraints.</p>
-<p><img src=" pics/example4/output_cont1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/output_cont1.png" width="618" /></p>
 <p>To clearly understand what is going on, please check the parameter
 labels in the tables.</p>
-<p><img src=" pics/example4/output_label1.png " class="img-responsive" alt=""></p>
+<p><img src="pics/example4/output_label1.png" width="1012" /></p>
 <p>The loading fw-&gt;y2 has a label <code>a2 (p2)</code> for group 1
 and <code>a2 (p43)</code> for group 2. This means that the user declared
 the label <code>a1</code> for both, and each is uniquely referred to as
@@ -521,6 +525,12 @@ of <code>a2</code>, because the test is comparing <code>p2</code> vs
 </div>
 <div id="related-examples" class="section level1">
 <h1>Related examples</h1>
+</div>
+<div id="examples" class="section level1 adm adm-seealso">
+<h1>Examples</h1>
+<p>
+Some worked out practical examples can be found here
+</p>
 <ul>
 <li>
 <a href="example1.html">Simple models</a>
@@ -538,13 +548,13 @@ of <code>a2</code>, because the test is comparing <code>p2</code> vs
 <a href="example5.html">Second order mediation analysis</a>
 </li>
 </ul>
-<h1>
-Comments?
-</h1>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
 <p>
 Got comments, issues or spotted a bug? Please open an issue on
-<a href="https://github.com/semlj/semlj//issues "> SEMLj at github</a>
-or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+<a href="https://github.com/semlj/semlj//issues " target="_blank"> SEMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
 </p>
 </div>
 

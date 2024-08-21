@@ -12,26 +12,7 @@
     padding-right: 50px !important;
 }
 
-h1 {
-  margin-top: 25px;
-  margin-bottom: 10px;
-  font-size: 26px;
-  font-weight: bold;
-  color:  #2C3E50  ;
 
-}
-
-.section h1 {
-  padding-top: 155px !important; 
-  margin-top: -155px !important; 
-  
-}
-
-.section h2 {
-  font-size: 20px;
-  font-weight: bold;
-  color:  #2C3E50  ;
-}
 
 h2.vignettes {
  padding-top: 20px;
@@ -39,15 +20,6 @@ h2.vignettes {
 
 }
 
-.section h3 {
-  font-size: 15px;
-  font-weight: bold;
-  color:  #2C3E50  ;
-}
-
-a, a:hover, a:focus {
-  color: DodgerBlue;
-}
 
 span.keywords {
   display: inline-block;
@@ -105,7 +77,7 @@ span.incomplete {
   font-size: 12px;
   font-style: italic;
   border-radius: 5px; 
-  color: #F8F8FF;
+  color: black;
   background-color: #FF0000;
   margin-bottom: 10px;
 }
@@ -124,12 +96,13 @@ div.littletitle {
   font-style: normal;
 }
 
-span.jamovi {
-  font-weight: bold;
-  color:   #3E6DA9;
-  font-family: Tahoma, Geneva, sans-serif;
-  text-transform: lowercase;
+span.little {
+  padding-left: 5px;
+  font-style: normal;
+  font-size: 15px;
 }
+
+
 
 span.modulename {
   font-weight: bold;
@@ -138,11 +111,11 @@ span.modulename {
 }
 
 
+
 pre.jamovitable {
   color:black;
   background-color: white;
   margin-bottom: 35px;  
-  font-size: 11px;
 }
 figure {
   margin-top: 30px;
@@ -157,8 +130,13 @@ figcaption {
   
 }
 
+td.optionname {
+  vertical-align: top;
+  white-space: nowrap;
+
+}
+
 span.option {
-    white-space: pre;
     background-color: rgba(0, 0, 0, 0.04);
     padding: 2px 4px;
     font-size: 90%;
@@ -169,7 +147,7 @@ span.option {
 }
 
 .return{
-  font-size: 1.2em;
+  font-size: .9em;
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight:  bold;
@@ -179,11 +157,50 @@ code {
   color: black;
 }
 
-.options {
-  border-collapse: separate;
-  border-spacing: 10px;
+
+
+.collapsible {
+  background-color: white;
+  color: #2C3E50;
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+}
+
+.colltitle {
+  padding-left: 5px;
+}
+
+.collinfo {
+  
+  font-size: 16px;
+  font-weight:  normal  ;
+  font-style: italic;
+  float: right;
+  padding-right: 5px;
+}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #87cefa;
+  border-radius: 5px;
+
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.collapsiblecontent {
+  padding: 5px 18px 10px 5px;
   margin-bottom: 20px;
+  display: none;
+  overflow: hidden;
+  background-color: white;
+  border: 2px solid #87cefa;
 }
-tr {
-  vertical-align: top;
-}
+
+
