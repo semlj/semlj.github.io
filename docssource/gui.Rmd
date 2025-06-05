@@ -19,7 +19,7 @@ mcdocs_init()
 
 **SEMLj** GUI module based on lavaan 
 
-`r version("0.7.*")` 
+`r version("1.3.*")` 
 
 
 # Introduction
@@ -179,6 +179,16 @@ This panel produces the path diagram graph  and allow for some change in shapes 
 The options are:
 
 `r panel_options("semljgui","panel_pathdiagram")`
+
+
+
+## Input Data
+
+`r pic("pics/commons/panel_inputdata.png")`
+
+This panel allows to use variances-covariances matrix as input data. Please see a detailed example here `r link_pages(nickname="covsinput")`.
+
+`r panel_options("semljgui","panel_inputdata")`
 
 
 `r include_examples()`

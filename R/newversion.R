@@ -2,7 +2,8 @@
 library(mcdocs)
 mcdocs_init()
 ## this renders the website
-render_mcdocs()
+output_format = "rmdformats::readthedown"
+render_mcdocs(output_format)
 
 ## this update your github site
 update_git()

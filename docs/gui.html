@@ -10,7 +10,7 @@
     
     <title>GUI SEM via lavaan in jamovi</title>
 
-        <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
         <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
@@ -227,6 +227,7 @@
       Options</a></li>
       <li><a href="#path-diagram" id="toc-path-diagram">Path
       Diagram</a></li>
+      <li><a href="#input-data" id="toc-input-data">Input Data</a></li>
       </ul></li>
       <li><a href="#examples" id="toc-examples">Examples</a></li>
       <li><a href="#details" id="toc-details">Details</a></li>
@@ -251,7 +252,7 @@ semlj,jamovi, lavaan, SEM </span></p>
 <p><strong>SEMLj</strong> GUI module based on lavaan</p>
 <div class="version">
 <p>
-0.7.*
+1.3.*
 </p>
 </div>
 <div style="clear:both">
@@ -343,7 +344,7 @@ documentation</a> for more details.</p>
 <p><img src="pics/gui/input_gui_so1.png" width="673" /></p>
 <p>This panel is useful to define second order factors, that is latent
 variables that are measured by other latent variables. See
-<a href="example5.html">Second order mediation analysis</a> for an
+<a href="./example5.html">Second order mediation analysis</a> for an
 example of usage.</p>
 </div>
 <div id="endogenous-models" class="section level2">
@@ -406,7 +407,7 @@ missing values.</p>
 <td class="optionname">
 <span class="option">Method</span>
 </td>
-<td>
+<td class="optionvalue">
 The estimator to be used (cf. lavaan R package). Can be one of the
 following: “ML” for maximum likelihood, “GLS” for (normal theory)
 generalized least squares, “WLS” for weighted least squares (sometimes
@@ -439,7 +440,7 @@ standard errors and a mean or mean and variance adjusted test statistic.
 <td class="optionname">
 <span class="option">ML likelihood approach</span>
 </td>
-<td>
+<td class="optionvalue">
 Only relevant for ML estimation. If “Wishart”, the Wishart likelihood
 approach is used. In this approach, the covariance matrix has been
 divided by N-1, and both standard errors and test statistics are based
@@ -452,7 +453,7 @@ standard errors and test statistics are based on N.
 <td class="optionname">
 <span class="option">Missing values</span>
 </td>
-<td>
+<td class="optionvalue">
 Handling of missing values. <code>listwise</code> delete rows with
 missing. <code>FIML</code> for ‘full information’ maximum likelihood
 estimation. <code>FIML (including fixed x)</code> for ‘full information’
@@ -466,7 +467,7 @@ covariances between variables.
 <td class="optionname">
 <span class="option">Univariate</span>
 </td>
-<td>
+<td class="optionvalue">
 Score test (or Lagrange Multiplier test) for fixed or constrained
 parameters in model.
 </td>
@@ -475,7 +476,7 @@ parameters in model.
 <td class="optionname">
 <span class="option">Cumulative</span>
 </td>
-<td>
+<td class="optionvalue">
 Score test for all fixed or constrained parameters in model (cumulative
 tests).
 </td>
@@ -517,7 +518,7 @@ model.</p>
 <td class="optionname">
 <span class="option">Standard errors</span>
 </td>
-<td>
+<td class="optionvalue">
 Standard error method.
 </td>
 </tr>
@@ -525,7 +526,7 @@ Standard error method.
 <td class="optionname">
 <span class="option">Bootstrap C.I</span>
 </td>
-<td>
+<td class="optionvalue">
 Choose the confidence interval type (“perc” - percentiles [default],
 “bca.simple” - adjusted bias-corrected, “norm” - normal, “basic” -
 basic).
@@ -535,7 +536,7 @@ basic).
 <td class="optionname">
 <span class="option">Bootstrap Rep.</span>
 </td>
-<td>
+<td class="optionvalue">
 The number of bootstrap samples for estimating confidence intervals.
 </td>
 </tr>
@@ -543,7 +544,7 @@ The number of bootstrap samples for estimating confidence intervals.
 <td class="optionname">
 <span class="option">Parallel Computation</span>
 </td>
-<td>
+<td class="optionvalue">
 use parallel computation for bootstrap C.I
 </td>
 </tr>
@@ -551,7 +552,7 @@ use parallel computation for bootstrap C.I
 <td class="optionname">
 <span class="option">Estimates</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), show confidence
 intervals for estimates
 </td>
@@ -560,7 +561,7 @@ intervals for estimates
 <td class="optionname">
 <span class="option">Betas</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), show confidence
 intervals for standardized estimates
 </td>
@@ -569,7 +570,7 @@ intervals for standardized estimates
 <td class="optionname">
 <span class="option">Confidence level</span>
 </td>
-<td>
+<td class="optionvalue">
 A number between 50 and 99.9 (default: 95) specifying the confidence
 interval width for the parameter estimates.
 </td>
@@ -578,7 +579,7 @@ interval width for the parameter estimates.
 <td class="optionname">
 <span class="option">Fix exogenous covariates</span>
 </td>
-<td>
+<td class="optionvalue">
 If <code>TRUE</code>, the exogenous covariates are considered fixed
 variables and the means, variances and covariances of these variables
 are fixed to their sample values. If <code>FALSE</code>, they are
@@ -589,9 +590,26 @@ option.
 </tr>
 <tr>
 <td class="optionname">
+<span class="option">Dependent vars (y)</span>
+</td>
+<td class="optionvalue">
+<code>TRUE</code> (default) or <code>FALSE</code>, TO ADD
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Latent vars</span>
+</td>
+<td class="optionvalue">
+<code>TRUE</code> (default) or <code>FALSE</code>, is the negation of
+orthogonal option
+</td>
+</tr>
+<tr>
+<td class="optionname">
 <span class="option">Mean structure</span>
 </td>
-<td>
+<td class="optionvalue">
 If TRUE, the means of the observed variables enter the model. Required
 for calculating the intercepts of the estimates.
 </td>
@@ -600,7 +618,7 @@ for calculating the intercepts of the estimates.
 <td class="optionname">
 <span class="option">Observed variables</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), calculate intercepts
 for observed variables
 </td>
@@ -609,7 +627,7 @@ for observed variables
 <td class="optionname">
 <span class="option">Latent variables</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), calculate intercepts
 for latent variables
 </td>
@@ -618,7 +636,7 @@ for latent variables
 <td class="optionname">
 <span class="option">Indirect Effects</span>
 </td>
-<td>
+<td class="optionvalue">
 compute the indirect effect by finding all paths from exogenous to
 endogenous variables, and multiply the coefficients along the path.
 </td>
@@ -627,7 +645,7 @@ endogenous variables, and multiply the coefficients along the path.
 <td class="optionname">
 <span class="option">Scale / stand. latent vars.</span>
 </td>
-<td>
+<td class="optionvalue">
 If <code>Fix first indicator</code> (default), the factor loading of the
 first indicator is set to 1.0 for every latent variable. If
 <code>Fix residual variances</code>, the metric of each latent variable
@@ -643,7 +661,7 @@ variances of other groups are set free.
 <span class="option">Observed vars.: Standardize before
 estimation</span>
 </td>
-<td>
+<td class="optionvalue">
 If set, all observed variables are standardized before entering the
 analysis.
 </td>
@@ -663,7 +681,8 @@ across groups.</p>
 <p>Multilevel models are not available in the GUI version of <span
 class="modulename">SEMLj</span>. To estimate these models in <span
 class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>,
-please use <a href="syntax.html">SEM via lavaan syntax in jamovi</a></p>
+please use <a href="./syntax.html">SEM via lavaan syntax in
+jamovi</a></p>
 </div>
 <div id="output-options" class="section level2">
 <h2>Output Options</h2>
@@ -679,7 +698,7 @@ predicted values that can be saved to the datasheet.</p>
 <td class="optionname">
 <span class="option">Factor Scores</span>
 </td>
-<td>
+<td class="optionvalue">
 this option saves, for each participant, the latent variables predicted
 values based on the latent variables estimation. The values are obtained
 with <code>lavaan::lavPredict(..,type="lv")</code>. See <span
@@ -691,7 +710,7 @@ details. The values are basically factor scores.
 <td class="optionname">
 <span class="option">Indicators</span>
 </td>
-<td>
+<td class="optionvalue">
 this option saves, for each participant, the observed variables
 predicted values based on the latent variables estimation. The values
 are obtained with <code>lavaan::lavPredict(..,type="ov")</code>. See
@@ -703,7 +722,7 @@ for details
 <td class="optionname">
 <span class="option">Dependent variables</span>
 </td>
-<td>
+<td class="optionvalue">
 this option saves, for each participant, the model based predicted
 values of the observed variables involved in the measurement of purely
 endogenous dependent variables. The predicted values computation is
@@ -722,7 +741,7 @@ a footnote of the <code>Info Table</code>.</p>
 <td class="optionname">
 <span class="option">Show parameters labels</span>
 </td>
-<td>
+<td class="optionvalue">
 show the labels of the parameters in the model
 </td>
 </tr>
@@ -730,7 +749,7 @@ show the labels of the parameters in the model
 <td class="optionname">
 <span class="option">Show syntax examples</span>
 </td>
-<td>
+<td class="optionvalue">
 show examples of the lavaan model syntax
 </td>
 </tr>
@@ -738,7 +757,7 @@ show examples of the lavaan model syntax
 <td class="optionname">
 <span class="option">Show Lavaan Options</span>
 </td>
-<td>
+<td class="optionvalue">
 show options of the lavaan model
 </td>
 </tr>
@@ -746,7 +765,7 @@ show options of the lavaan model
 <td class="optionname">
 <span class="option">Additional fit measures</span>
 </td>
-<td>
+<td class="optionvalue">
 show additional fit measures (e.g., CFI, TLI, etc.)
 </td>
 </tr>
@@ -754,7 +773,7 @@ show additional fit measures (e.g., CFI, TLI, etc.)
 <td class="optionname">
 <span class="option">Mardia’s coefficients</span>
 </td>
-<td>
+<td class="optionvalue">
 show Mardia’s coefficients for multivariate skewness and kurtosis
 </td>
 </tr>
@@ -762,7 +781,7 @@ show Mardia’s coefficients for multivariate skewness and kurtosis
 <td class="optionname">
 <span class="option">Reliability indices</span>
 </td>
-<td>
+<td class="optionvalue">
 shows additional reliability indices
 </td>
 </tr>
@@ -770,7 +789,7 @@ shows additional reliability indices
 <td class="optionname">
 <span class="option">HTMT</span>
 </td>
-<td>
+<td class="optionvalue">
 <code>TRUE</code> or <code>FALSE</code> (default), show
 Heterotrait-monotrait (HTMT) ratio of correlations as reccomended by
 <span class="citation">Henseler, Ringle, and Sarstedt (<a
@@ -781,7 +800,7 @@ href="#ref-henseler2015new">2015</a>)</span>
 <td class="optionname">
 <span class="option">R-squared</span>
 </td>
-<td>
+<td class="optionvalue">
 compute R-squared for all endogenous variables (<code>Endogenous</code>)
 or for all variables in the model (<code>All</code>). <code>None</code>
 for no R-squared.
@@ -791,7 +810,7 @@ for no R-squared.
 <td class="optionname">
 <span class="option">Observed</span>
 </td>
-<td>
+<td class="optionvalue">
 show the covariances and correlations between the observed values of the
 (manifest) variables
 </td>
@@ -800,7 +819,7 @@ show the covariances and correlations between the observed values of the
 <td class="optionname">
 <span class="option">Model-implied (fitted)</span>
 </td>
-<td>
+<td class="optionvalue">
 show the covariances and correlations between the model-implied / fitted
 values of the (manifest) variables
 </td>
@@ -809,7 +828,7 @@ values of the (manifest) variables
 <td class="optionname">
 <span class="option">Residual</span>
 </td>
-<td>
+<td class="optionvalue">
 show the covariances and correlations between the residuals of the
 (manifest) variables.
 </td>
@@ -818,7 +837,7 @@ show the covariances and correlations between the residuals of the
 <td class="optionname">
 <span class="option">Combined into one table</span>
 </td>
-<td>
+<td class="optionvalue">
 combine the (up to) three covariance / correlation tables into one table
 (i.e., showing observed, model-implied and residual values for each
 variable combination underneath each other)
@@ -828,7 +847,7 @@ variable combination underneath each other)
 <td class="optionname">
 <span class="option">Model-implied latent</span>
 </td>
-<td>
+<td class="optionvalue">
 show model-implied latent covariances
 </td>
 </tr>
@@ -836,7 +855,7 @@ show model-implied latent covariances
 <td class="optionname">
 <span class="option">Modification indices</span>
 </td>
-<td>
+<td class="optionvalue">
 show modification indices for if certain terms were removed from the
 model
 </td>
@@ -845,7 +864,7 @@ model
 <td class="optionname">
 <span class="option">Hide low indices</span>
 </td>
-<td>
+<td class="optionvalue">
 hide modification indices below a certain threshold.
 </td>
 </tr>
@@ -853,7 +872,7 @@ hide modification indices below a certain threshold.
 <td class="optionname">
 <span class="option">Threshold</span>
 </td>
-<td>
+<td class="optionvalue">
 Numeric (default: 10), set a threshold the modification indices must
 exceed in order to be shown.
 </td>
@@ -862,7 +881,7 @@ exceed in order to be shown.
 <td class="optionname">
 <span class="option">Factor Scores</span>
 </td>
-<td>
+<td class="optionvalue">
 this option saves, for each participant, the latent variables predicted
 values based on the latent variables estimation. The values are obtained
 with <code>lavaan::lavPredict(..,type="lv")</code>. See <span
@@ -874,7 +893,7 @@ details. The values are basically factor scores.
 <td class="optionname">
 <span class="option">Indicators</span>
 </td>
-<td>
+<td class="optionvalue">
 this option saves, for each participant, the observed variables
 predicted values based on the latent variables estimation. The values
 are obtained with <code>lavaan::lavPredict(..,type="ov")</code>. See
@@ -886,7 +905,7 @@ for details
 <td class="optionname">
 <span class="option">Dependent variables</span>
 </td>
-<td>
+<td class="optionvalue">
 this option saves, for each participant, the model based predicted
 values of the observed variables involved in the measurement of purely
 endogenous dependent variables. The predicted values computation is
@@ -908,6 +927,50 @@ in shapes and orientation of the diagram. The digram is produced using R
 2015</a>)</span></p>
 <p>The options are:</p>
 </div>
+<div id="input-data" class="section level2">
+<h2>Input Data</h2>
+<p><img src="pics/commons/panel_inputdata.png" width="565" /></p>
+<p>This panel allows to use variances-covariances matrix as input data.
+Please see a detailed example here .</p>
+<table class="options">
+<tr>
+<td class="optionname">
+<span class="option">Type of input</span>
+</td>
+<td class="optionvalue">
+The type of input data (default: “Data”), it can be
+<code>Covariances</code> or <code>Correlations</code>.
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Sample N variable</span>
+</td>
+<td class="optionvalue">
+The column name in the dataset containing the sample size of the
+covariances
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Sample means variable</span>
+</td>
+<td class="optionvalue">
+The column name in the dataset containing the sample means of the
+observed variables
+</td>
+</tr>
+<tr>
+<td class="optionname">
+<span class="option">Sample STD variable</span>
+</td>
+<td class="optionvalue">
+The column name in the dataset containing the sample standard deviations
+of the observed variables
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">
 <h1>Examples</h1>
@@ -916,22 +979,22 @@ Some worked out practical examples can be found here
 </p>
 <ul>
 <li>
-<a href="example1.html">Simple models</a>
+<a href="./example1.html">Simple models</a>
 </li>
 <li>
-<a href="example2.html">SEM: Political Democracy</a>
+<a href="./example2.html">SEM: Political Democracy</a>
 </li>
 <li>
-<a href="example3.html">Ordinal observed variables</a>
+<a href="./example3.html">Ordinal observed variables</a>
 </li>
 <li>
-<a href="example4.html">Multigroup multilevel models</a>
+<a href="./example4.html">Multigroup multilevel models</a>
 </li>
 <li>
-<a href="example5.html">Second order mediation analysis</a>
+<a href="./example5.html">Second order mediation analysis</a>
 </li>
 <li>
-<a href="example6.html">Confirmatory Factor Analysis</a>
+<a href="./example6.html">Confirmatory Factor Analysis</a>
 </li>
 </ul>
 </div>
@@ -942,7 +1005,7 @@ Some more information about the module specs can be found here
 </p>
 <ul>
 <li>
-<a href="compute_details.html">SEMLj computation details</a>
+<a href="./compute_details.html">SEMLj computation details</a>
 </li>
 </ul>
 </div>

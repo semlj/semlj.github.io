@@ -11,7 +11,7 @@ STORE_FOLDER="docs"
 ## put `.` for organization pages, "docs" for standard github pages, or whatever folder
 ## you want the final web pages in
 TARGET_FOLDER="."
-DATALINK<-""
+DATALINK<-"https://github.com/semlj/semlj.github.io/blob/main/data"
 MODULE_LINK="https://github.com/semlj/semlj/"
 MODULE_EMAIL="mcfanda@gmail.com"
 

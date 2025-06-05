@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="generator" content="pandoc" />
+
+        <meta name="author" content="(Marcello Gallucci)" />
+    
+    
+    <title>Multigroup multilevel models</title>
+
+        <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+        <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <script src="site_libs/navigation-1.1/tabsets.js"></script>
+        <link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+        <script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+        <link href="site_libs/readthedown-0.1/readthedown.css" rel="stylesheet" />
+        <link href="site_libs/readthedown-0.1/readthedown_fonts_embed.css" rel="stylesheet" />
+        <script src="site_libs/readthedown-0.1/readthedown.js"></script>
+        <script>
+        $(document).ready(function () {
+
+            if ($(".root")[0]){
+              return
+            };
+            $('.navbar-toggle').show();
+            $('.navbar').css('display', 'none');
+            $('#sidebar > h2 ').append("<a id='navbut' href=''><i class='fa fa-bars'></i></a>");
+            $('#navbut').on( "click", function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+               } );
+              $('.navbar-toggle').on('click', function(e) {
+                       $('.navbar').toggle();
+                       e.preventDefault();
+              });       
+            $(window).scroll(function (event) {
+                $('.navbar').css('display', 'none');
+            });       
+        });
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2YGWBQCQK3"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-2YGWBQCQK3');
+        </script>
+
+    
+    
+        <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+          background-color: #ffffff;
+          color: #a0a0a0;
+        }
+      pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+      div.sourceCode
+        { color: #1f1c1b; background-color: #ffffff; }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      code span { color: #1f1c1b; } /* Normal */
+      code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+      code span.an { color: #ca60ca; } /* Annotation */
+      code span.at { color: #0057ae; } /* Attribute */
+      code span.bn { color: #b08000; } /* BaseN */
+      code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+      code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+      code span.ch { color: #924c9d; } /* Char */
+      code span.cn { color: #aa5500; } /* Constant */
+      code span.co { color: #898887; } /* Comment */
+      code span.cv { color: #0095ff; } /* CommentVar */
+      code span.do { color: #607880; } /* Documentation */
+      code span.dt { color: #0057ae; } /* DataType */
+      code span.dv { color: #b08000; } /* DecVal */
+      code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+      code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+      code span.fl { color: #b08000; } /* Float */
+      code span.fu { color: #644a9b; } /* Function */
+      code span.im { color: #ff5500; } /* Import */
+      code span.in { color: #b08000; } /* Information */
+      code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+      code span.op { color: #1f1c1b; } /* Operator */
+      code span.ot { color: #006e28; } /* Other */
+      code span.pp { color: #006e28; } /* Preprocessor */
+      code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+      code span.sc { color: #3daee9; } /* SpecialChar */
+      code span.ss { color: #ff5500; } /* SpecialString */
+      code span.st { color: #bf0303; } /* String */
+      code span.va { color: #0057ae; } /* Variable */
+      code span.vs { color: #bf0303; } /* VerbatimString */
+      code span.wa { color: #bf0303; } /* Warning */
+    </style>
+    
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <link rel="stylesheet" href="down.css" type="text/css" />
+    
+    <!-- tabsets -->
+    <script>
+      $(document).ready(function () {
+	  window.buildTabsets("toc");
+      });
+      $(document).ready(function () {
+	  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+	      $(this).parent().toggleClass('nav-tabs-open')
+	  });
+      });
+    </script>
+
+    <!-- code folding -->
+    
+    <!-- code download -->
+    
+    <!-- tabsets dropdown -->
+
+    <style type="text/css">
+      .tabset-dropdown > .nav-tabs {
+	  display: inline-table;
+	  max-height: 500px;
+	  min-height: 44px;
+	  overflow-y: auto;
+	  background: white;
+	  border: 1px solid #ddd;
+	  border-radius: 4px;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+	  content: "&#xe258;";
+	  border: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+	  content: "";
+	  font-family: 'Glyphicons Halflings';
+	  display: inline-block;
+	  padding: 10px;
+	  border-right: 1px solid #ddd;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li.active {
+	  display: block;
+      }
+
+      .tabset-dropdown > .nav-tabs > li.active a {
+  	  padding: 0 15px !important;
+      }
+
+      .tabset-dropdown > .nav-tabs > li > a,
+      .tabset-dropdown > .nav-tabs > li > a:focus,
+      .tabset-dropdown > .nav-tabs > li > a:hover {
+	  border: none;
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: transparent;
+      }
+      
+      .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+	  display: block;
+	  float: none;
+      }
+      
+      .tabset-dropdown > .nav-tabs > li {
+	  display: none;
+	  margin-left: 0 !important;
+      }
+    </style>
+    
+</head>
+
+<body class="preload">
+
+   	
+         <!-- readthedown start -->   
+   <div id="content" data-toggle="wy-nav-shift">
+     <nav id="nav-top" role="navigation" aria-label="top navigation">
+       <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+     </nav>
+         
+   
+      
+      <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">SEMLj</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li>
+        <a href="gui.html">SEMLj GUI</a>
+      </li>
+      <li>
+        <a href="syntax.html">SEMLj Syntax</a>
+      </li>
+      <li>
+        <a href="examples.html">Examples</a>
+      </li>
+      <li>
+        <a href="rosetta.html">Rosetta Store</a>
+      </li>
+      <li>
+        <a href="release_notes.html">Release Notes</a>
+      </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+        <a href="https://github.com/semlj/semlj">View on Github</a>
+      </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar -->
+        
+      <h1 class="title">Multigroup multilevel models</h1>
+      
+         <!-- readthedown authors -->
+   <div id="sidebar">
+    <h2><a href="#content">Multigroup multilevel models</a></h2>
+    <div id="toc">
+      <ul>
+      <li><a href="#the-data" id="toc-the-data">The data</a></li>
+      <li><a href="#the-model-whole-sample"
+      id="toc-the-model-whole-sample">The model (whole sample)</a></li>
+      <li><a href="#output" id="toc-output">Output</a></li>
+      <li><a href="#multigroup-model"
+      id="toc-multigroup-model">Multigroup model</a></li>
+      <li><a href="#constraints-across-groups"
+      id="toc-constraints-across-groups">Constraints across
+      groups</a></li>
+      <li><a href="#related-examples" id="toc-related-examples">Related
+      examples</a></li>
+      <li><a href="#examples" id="toc-examples">Examples</a></li>
+      <li><a href="#comments" id="toc-comments">Comments?</a></li>
+      </ul>
+    </div>
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+                  <p class="author"><span class="glyphicon glyphicon-user"></span> (Marcello
+Gallucci)</p>
+                      </div>
+   </div>
+     
+
+   
+      
+   
+<!-- Don't indent these lines or it will mess pre blocks indentation --> 
+<div id="main">
+<p><span class="keywords"> <span class="keytitle"> keywords </span> SEM,
+multilevel, multigroup, lavaan, SEMLj, jamovi </span></p>
+<div class="version">
+<p>
+0.8.0
+</p>
+</div>
+<div style="clear:both">
+
+</div>
+<p><span class="draft"> Draft version, mistakes may be around
+</span></p>
+<p>In this example we show how to estimate a multilevel, multigroup path
+analysis using <span class="modulename">SEMLj</span>.</p>
+<p>We show input of <span class="modulename">SEMLj</span> <em>syntax
+sub-module</em>, because multilevel models can be run in <span
+class="modulename">SEMLj</span> only in the syntax sub-module.</p>
+<p>Much of the output that <span class="modulename">SEMLj</span>
+produces is labeled as it is in lavaan R package output, so lots of
+information can be found in <a
+href="https://lavaan.ugent.be/tutorial/tutorial.pdf">lavaan help and
+tutorials</a>.</p>
+<p>Obviously, one can run the models discussed here directly in R using
+<code>lavaan</code> package, if <span
+class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
+is not the software one is using at the moment.</p>
+<div id="the-data" class="section level1">
+<h1>The data</h1>
+<p>For this example we are going to use the <code>Demo.twolevel</code>
+dataset present in <code>lavaan</code> R package, which is useful for
+estimating a multilevel model, with a small modification. The dataset
+contains 200 clusters, within each 6 items (y1-y2) and 3 continuous
+variables (x1-x3) are measured. Across clusters (between level) two
+covariates (w1 and w2) are measured .</p>
+<p>We now imagine that the 200 clusters are evenly divided in two
+groups, <code>g1</code> and <code>g2</code>. Had this dataset been based
+on a survey in 200 school classes, for instance, one can imagine that
+100 classes came from one state (<code>g1</code>) and the other 100 from
+another state. We created the <code>group</code> variable on the spot
+for the sake of this exercise.</p>
+<p><img src="pics/example4/input_data1.png" width="726" /></p>
+<p>We want to estimate the multilevel model (cf <a
+href="https://lavaan.ugent.be/tutorial/multilevel.html">lavaan help
+page</a>), in the whole sample, then separated for the two groups, and
+test some differences in parameters between the two groups.</p>
+</div>
+<div id="the-model-whole-sample" class="section level1">
+<h1>The model (whole sample)</h1>
+<p>The model has a latent variable measured within clusters
+(<code>fw</code>) with 3 items <code>y1,y2,y3</code>. At the
+within-cluster level, the latent variable is predicted by the three
+covariates <code>x1</code>, <code>x2</code> and <code>x3</code>.</p>
+<p>At the between-cluster level, the same latent variable is present
+measured with the same items (<code>fb=y1+y2+y3</code>), but it is
+predicted by the two between-cluster covariates (<code>w1</code> and
+<code>w2</code>). Here is the model for the whole sample.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>    level<span class="sc">:</span> within</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>        fw <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>        fw <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    level<span class="sc">:</span> between</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>        fb <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>        fb <span class="sc">~</span> w1 <span class="sc">+</span> w2</span></code></pre></div>
+</div>
+<div id="output" class="section level1">
+<h1>Output</h1>
+<p>As soon as we set the input, we obtain the whole set of results
+tables. We do not go through the results now, because this is not the
+model we are focusing on, but we need to be sure that the estimation
+converges in the whole sample, so we are ready for the multigroup
+analysis. In fact, if the model does not converge in the whole sample,
+it is difficult to make it converge in multigroup analysis.</p>
+<p><img src="pics/example4/output_info1.png" width="551" /></p>
+</div>
+<div id="multigroup-model" class="section level1">
+<h1>Multigroup model</h1>
+<p>We now set the multigroup analysis on top of the multilevel model.
+The model syntax needs to be repeated for the two groups explicitly.
+<strong>Important point</strong>: whereas standard multigroup analysis
+only requires to define a grouping variable in the
+<code>Multi-group analysis</code> panel, here we need to specify a
+grouping variable in the <code>Multigroup analysis</code> panel and the
+grouping structure in the syntax.</p>
+<p>There you go: First, we set the multigroup variable</p>
+<p><img src="pics/example4/input_group.png" width="680" /></p>
+<p>and then we issue the following syntax:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>group<span class="sc">:</span> g1</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    level<span class="sc">:</span> within</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>        fw <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>        fw <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>    level<span class="sc">:</span> between</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>        fb <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>        fb <span class="sc">~</span> w1 <span class="sc">+</span> w2</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>group<span class="sc">:</span> g2</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    level<span class="sc">:</span> within</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>        fw <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>        fw <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    level<span class="sc">:</span> between</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>        fb <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>        fb <span class="sc">~</span> w1 <span class="sc">+</span> w2</span></code></pre></div>
+<p><img src="pics/example4/input_syntax2.png" width="710" /></p>
+<p>At this point, we have all our estimated parameters, for the within
+and the between level, divided by group.</p>
+<p><img src="pics/example4/output_mlmg1.png" width="969" /></p>
+<p>If the model works, we can start testing equality constraints across
+groups. However, for this particular model, the <span
+class="option">Equality constraints</span> options in the input panel
+cannot be used to quickly set the constraints. We need to use the
+syntax. But before, let’s ask for the parameter labels, so we can
+identify parameters in the output.</p>
+<p><img src="pics/example4/input_label1.png" width="682" /></p>
+</div>
+<div id="constraints-across-groups" class="section level1">
+<h1>Constraints across groups</h1>
+<p>Assume we want to test that measurement model at the within level is
+the same across groups. So we want to test that
+<code>fw =~ y1 + y2 + y3</code> is equivalent across groups. We need to
+set this syntax (notice the labels <code>a2</code> and
+<code>a3</code>):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>group<span class="sc">:</span> g1</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    level<span class="sc">:</span> within</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>        fw <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> a2<span class="sc">*</span>y2 <span class="sc">+</span> a3<span class="sc">*</span>y3</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>        fw <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    level<span class="sc">:</span> between</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>        fb <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>        fb <span class="sc">~</span> w1 <span class="sc">+</span> w2</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>group<span class="sc">:</span> g2</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>    level<span class="sc">:</span> within</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>        fw <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> a2<span class="sc">*</span>y2 <span class="sc">+</span> a3<span class="sc">*</span>y3</span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>        fw <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    level<span class="sc">:</span> between</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>        fb <span class="ot">=</span><span class="er">~</span> y1 <span class="sc">+</span> y2 <span class="sc">+</span> y3</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>        fb <span class="sc">~</span> w1 <span class="sc">+</span> w2</span></code></pre></div>
+<p>By setting the same coefficients across groups
+(<code>a2</code>,<code>a3</code>), we set the parameters as constrained
+to be equal across groups. We do not need to fix <code>y1</code> because
+it is already fixed to 1 to give the latent variable a scale.</p>
+<p>Passing this syntax produces in the output the tests for these
+constraints.</p>
+<p><img src="pics/example4/output_cont1.png" width="618" /></p>
+<p>To clearly understand what is going on, please check the parameter
+labels in the tables.</p>
+<p><img src="pics/example4/output_label1.png" width="1012" /></p>
+<p>The loading fw-&gt;y2 has a label <code>a2 (p2)</code> for group 1
+and <code>a2 (p43)</code> for group 2. This means that the user declared
+the label <code>a1</code> for both, and each is uniquely referred to as
+<code>p2</code> for group 1 and <code>p43</code> for group 2. The same
+goes for <code>a3</code>.</p>
+<p>Now, in the constraints tests table, we see the test for the equality
+of <code>a2</code>, because the test is comparing <code>p2</code> vs
+<code>p43</code>, and for <code>a3</code>, because the test is comparing
+<code>p3</code> with <code>p44</code>. We also get the overall test
+<code>Total</code>.</p>
+<p>With this method, we can test any constraint we wish.</p>
+</div>
+<div id="related-examples" class="section level1">
+<h1>Related examples</h1>
+</div>
+<div id="examples" class="section level1 adm adm-seealso">
+<h1>Examples</h1>
+<p>
+Some worked out practical examples can be found here
+</p>
+<ul>
+<li>
+<a href="./example1.html">Simple models</a>
+</li>
+<li>
+<a href="./example2.html">SEM: Political Democracy</a>
+</li>
+<li>
+<a href="./example3.html">Ordinal observed variables</a>
+</li>
+<li>
+<a href="./example4.html">Multigroup multilevel models</a>
+</li>
+<li>
+<a href="./example5.html">Second order mediation analysis</a>
+</li>
+<li>
+<a href="./example6.html">Confirmatory Factor Analysis</a>
+</li>
+<li>
+<a href="./example7.html">Sample statistics as input data</a>
+</li>
+</ul>
+</div>
+<div id="comments" class="section level1 adm adm-warning">
+<h1>Comments?</h1>
+<p>
+Got comments, issues or spotted a bug? Please open an issue on
+<a href="https://github.com/semlj/semlj//issues " target="_blank"> SEMLj
+at github</a> or <a href="mailto:mcfanda@gmail.com">send me an email</a>
+</p>
+</div>
+</div>
+
+   
+   
+            
+      
+
+  <script>
+    $(document).ready(function () {
+
+			
+ 		
+		$('#content img:not(.no-lightbox)').addClass("image-lb");
+	$('#content').magnificPopup({
+	    type:'image',
+	    closeOnContentClick: false,
+	    closeBtnInside: false,
+	    delegate: '.image-lb',
+	    gallery: {enabled: false },
+	    image: {
+	        verticalFit: true,
+		titleSrc: 'alt'
+	    }
+ 	});
+ 	    });
+  </script>
+
+
+
+    <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+  
+</body>
+</html>
