@@ -54,75 +54,6 @@
 
     
     
-        <style type="text/css">code{white-space: pre;}</style>
-    <style type="text/css">
-      pre > code.sourceCode { white-space: pre; position: relative; }
-      pre > code.sourceCode > span { line-height: 1.25; }
-      pre > code.sourceCode > span:empty { height: 1.2em; }
-      .sourceCode { overflow: visible; }
-      code.sourceCode > span { color: inherit; text-decoration: inherit; }
-      div.sourceCode { margin: 1em 0; }
-      pre.sourceCode { margin: 0; }
-      @media screen {
-      div.sourceCode { overflow: auto; }
-      }
-      @media print {
-      pre > code.sourceCode { white-space: pre-wrap; }
-      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-      }
-      pre.numberSource code
-        { counter-reset: source-line 0; }
-      pre.numberSource code > span
-        { position: relative; left: -4em; counter-increment: source-line; }
-      pre.numberSource code > span > a:first-child::before
-        { content: counter(source-line);
-          position: relative; left: -1em; text-align: right; vertical-align: baseline;
-          border: none; display: inline-block;
-          -webkit-touch-callout: none; -webkit-user-select: none;
-          -khtml-user-select: none; -moz-user-select: none;
-          -ms-user-select: none; user-select: none;
-          padding: 0 4px; width: 4em;
-          background-color: #ffffff;
-          color: #a0a0a0;
-        }
-      pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-      div.sourceCode
-        { color: #1f1c1b; background-color: #ffffff; }
-      @media screen {
-      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-      }
-      code span { color: #1f1c1b; } /* Normal */
-      code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-      code span.an { color: #ca60ca; } /* Annotation */
-      code span.at { color: #0057ae; } /* Attribute */
-      code span.bn { color: #b08000; } /* BaseN */
-      code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-      code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-      code span.ch { color: #924c9d; } /* Char */
-      code span.cn { color: #aa5500; } /* Constant */
-      code span.co { color: #898887; } /* Comment */
-      code span.cv { color: #0095ff; } /* CommentVar */
-      code span.do { color: #607880; } /* Documentation */
-      code span.dt { color: #0057ae; } /* DataType */
-      code span.dv { color: #b08000; } /* DecVal */
-      code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-      code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-      code span.fl { color: #b08000; } /* Float */
-      code span.fu { color: #644a9b; } /* Function */
-      code span.im { color: #ff5500; } /* Import */
-      code span.in { color: #b08000; } /* Information */
-      code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-      code span.op { color: #1f1c1b; } /* Operator */
-      code span.ot { color: #006e28; } /* Other */
-      code span.pp { color: #006e28; } /* Preprocessor */
-      code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-      code span.sc { color: #3daee9; } /* SpecialChar */
-      code span.ss { color: #ff5500; } /* SpecialString */
-      code span.st { color: #bf0303; } /* String */
-      code span.va { color: #0057ae; } /* Variable */
-      code span.vs { color: #bf0303; } /* VerbatimString */
-      code span.wa { color: #bf0303; } /* Warning */
-    </style>
     
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" />
         <link rel="stylesheet" href="style.css" type="text/css" />
@@ -264,15 +195,6 @@
     <div id="toc">
       <ul>
       <li><a href="#the-data" id="toc-the-data">The data</a></li>
-      <li><a href="#the-model" id="toc-the-model">The model</a></li>
-      <li><a href="#interactive-gui"
-      id="toc-interactive-gui">Interactive (GUI)</a></li>
-      <li><a href="#syntax" id="toc-syntax">Syntax</a></li>
-      <li><a href="#output" id="toc-output">Output</a></li>
-      <li><a href="#jamovi-cfa" id="toc-jamovi-cfa">jamovi CFA</a>
-      <ul>
-      <li><a href="#output-1" id="toc-output-1">Output</a></li>
-      </ul></li>
       <li><a href="#examples" id="toc-examples">Examples</a></li>
       <li><a href="#comments" id="toc-comments">Comments?</a></li>
       </ul>
@@ -301,10 +223,10 @@ covariances, correlations, lavaan, SEMLj, jamovi </span></p>
 </div>
 <p>In this example, we demonstrate how to use a variances-covariances
 matrix as input data of <span class="modulename">SEMLj</span>. We show
-input of <span class="modulename">SEMLj</span> <em>syntax
-sub-module</em> and <em>interactive sub-module</em>, with particular
-focus on the latter one. We focus more on the setup of the data, so the
-example would not be interpreted as for other cases.</p>
+input of <span class="modulename">SEMLj</span> that is exactly the same
+for the <em>syntax sub-module</em> and <em>interactive sub-module</em>,
+the examples applyy to both modules. We focus more on the setup of the
+data, so the example would not be interpreted as for other cases.</p>
 <div id="the-data" class="section level1">
 <h1>The data</h1>
 <p>For this example, we use the <strong>Holzinger and Swineford
@@ -315,118 +237,14 @@ original dataset provides disaggregated data, for the purposes of this
 example we treat the data as if only sample estimates — such as
 covariances or correlations — were available, similar to what one might
 find in published articles or statistical reports.</p>
-<p>We start with the case in which variances and covariances are
-available. The data containing the variances and covariances of the
-observed variables are in the file <a
-href="https://github.com/semlj/semlj.github.io/blob/main/data/HS_covs_whole.csv"
-target="_blank">HS_covs_whole.csv</a>.</p>
-</div>
-<div id="the-model" class="section level1">
-<h1>The model</h1>
-<p>Assume we have three latent factors, <code>F1</code>, <code>F2</code>
-and <code>F3</code>. Assume that each of these factors is measured by
-three observed variables:</p>
-<ul>
-<li>F1: x11, x12, x13</li>
-<li>F2: m11, m12, m13</li>
-<li>F3: y11, y12, y13</li>
-</ul>
-<p>Basically, we want to estimate the following model:</p>
-<p><img src="pics/example6/model1.png" width="1018" /></p>
-</div>
-<div id="interactive-gui" class="section level1">
-<h1>Interactive (GUI)</h1>
-<p>Let’s start with the interactive module. In <span
-class="option">Latent Endogenous Variables </span> (aka factors) we name
-each factor and put the observed variables measuring it in the field
-beneath.</p>
-<p><img src="pics/example6/input_gui_f1.png" width="635" /></p>
-<p>and we keep defining the factors with their indicators</p>
-<p><img src="pics/example6/input_gui_f2.png" width="643" /></p>
-<p>until we have three of them. We can see in the Model Info output
-table that the factors are defined as intended.</p>
-<p><img src="pics/example6/output1.png" width="440" /></p>
-</div>
-<div id="syntax" class="section level1">
-<h1>Syntax</h1>
-<p>In the syntax sub-module we can define the three factors in terms of
-their indicators as follows</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>F1<span class="ot">=</span><span class="er">~</span>x11<span class="sc">+</span>x12<span class="sc">+</span>x13</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>F2<span class="ot">=</span><span class="er">~</span>m21<span class="sc">+</span>m22<span class="sc">+</span>m23</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>F3<span class="ot">=</span><span class="er">~</span>y31<span class="sc">+</span>y32<span class="sc">+</span>y33</span></code></pre></div>
-<p>We are not going to discuss the output of the syntax sub-module
-because it is identical to the interactive sub-module output.</p>
-</div>
-<div id="output" class="section level1">
-<h1>Output</h1>
-<p>As soon as we set the input, we obtain the whole set of results
-tables. We do not go through the results in detail, but it is
-interesting to see the basic results</p>
-<p><img src="pics/example6/output2.png" width="508" /></p>
-<p>The overall tests are presented in the first three tables. We can use
-them to compare the results with <code>jamovi</code> CFA command results
-(see below).</p>
-<p><img src="pics/example6/output3.png" width="728" /></p>
-<p>As regards the measurement model table (factor loadings), it
-indicates the associations between the observed variables and the
-factors. We can notice that the first indicator of each factor shows a
-factor loading equal to 1. This is one of the possible ways of setting
-the latent variable scale. We’ll see that <span
-class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
-CFA has a different default, which can be changed to align the results
-to the ones obtained here (see below). In <span
-class="modulename">SEMLj</span>, the scale option is in the <span
-class="option">Parameters Options</span> panel.</p>
-<p><img src="pics/example6/options1.png" width="402" /></p>
-<p><img src="pics/example6/output4.png" width="732" /></p>
-<p>As regards the variances and covariances, we can notice that the
-three factors are let to be correlated (see bottom part of the table).
-This happens because the default option in <span
-class="option">Variances and Covariances</span> panel: <span
-class="option">Correlated -&gt; Latent vars </span>.</p>
-<p><img src="pics/example6/options2.png" width="636" /></p>
-<p>This is basically a CFA run in <span class="modulename">SEMLj</span>.
-All options of the module are available, so one can start tweaking the
-model as required by the researcher interests and aims.</p>
-</div>
-<div id="jamovi-cfa" class="section level1">
-<h1>jamovi CFA</h1>
-<p>We can now check the results using <span
-class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>
-CFA default command.</p>
-<p><img src="pics/example6/input_cfa_1.png" width="333" /></p>
-<p>First, we setup the three factors as we did in <span
-class="modulename">SEMLj</span>.</p>
-<p><img src="pics/example6/input_cfa_2.png" width="637" /></p>
-<p>Then we scale the factor fixing the first indicator loading to 1.</p>
-<p><img src="pics/example6/input_cfa_3.png" width="642" /></p>
-<div id="output-1" class="section level2">
-<h2>Output</h2>
-<p>We can see that the results are exactly the same of the ones obtained
-with <span class="modulename">SEMLj</span>.</p>
-<p>The fit indices are the same:</p>
-<p><img src="pics/example6/output_cfa_1.png" width="1083" /></p>
-<p>the factor loadings (Estimates and standard errors) are the same:</p>
-<p><img src="pics/example6/output_cfa_2.png" width="954" /></p>
-<p>and so are the variances and covariances among factors:</p>
-<p><img src="pics/example6/output_cfa_3.png" width="860" /></p>
-<div class="adm adm-note">
-<p>
-Note: Scaling Latent Variables
-</p>
-<p>Scaling latent variables is necessary for the model to be identified,
-but the method one uses matters only in terms of convenience, because
-the actual model results are equivalent (apart from the scale of the
-latent variables). <span class="modulename">SEMLj</span> default method
-is to set the first indicator loading equal to zero, whereas CFA default
-sets the variance of the latent variable equal to 1. If one to use the
-latter method in <span class="modulename">SEMLj</span>, simply choose
-the <span class="option">Latent vars: Fix residual variances (to
-1)</span> option in <span class="option">Parameters Options</span>
-panel.</p>
-<p><img src="pics/example6/options3.png" width="425" /></p>
-</div>
-</div>
+<p>For the sake of comparison, here are the overall fit indices of a
+three-factor confirmatory factors analysis, with this structure</p>
+<pre><code>visual=~x1+x2+x3
+textual=~x4+x5+x6
+speed=~x7+x8+x9
+</code></pre>
+<p><span class="incomplete"> Incomplete version, please wait for updates
+</span></p>
 </div>
 <div id="examples" class="section level1 adm adm-seealso">
 <h1>Examples</h1>
